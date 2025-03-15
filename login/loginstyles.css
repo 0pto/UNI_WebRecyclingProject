@@ -1,3 +1,8 @@
+/* import the footer css file as explained at https://www.geeksforgeeks.org/how-to-include-one-css-file-in-another/ . 
+This way, all the styles in the imported file will apply here as well. */
+@import "../Assets/css/globalStyles.css";
+@import "../Assets/css/footer.css";
+
 #main-content {
 	width: 100%;
 	display: flex;
@@ -108,4 +113,19 @@ input {
 	font-size: medium;
 }
 
-/*  make modile responsive responsive */
+/* footer styles */
+footer {
+	background-color: #0c3334;
+	bottom: 0;
+	width: 100%;
+	height: 30%;
+	padding: 0;
+	align-items: center;
+	height: 30%; /*footer is 30% as prescribed by brief*/
+}
+
+.sb_footer-below {
+	border-top: 1px solid #f1fbfb;
+}
+
+/* media queries to make the page responsive */
