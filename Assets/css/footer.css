@@ -3,13 +3,6 @@
   padding: 4rem 4rem;
 }
 
-body {
-  background-color: gray;
-  font-family: Arial;
-  margin: 0;
-  padding: 0;
-}
-
 .footer {
   background-color: #0c3334;
   position: static;
@@ -33,10 +26,6 @@ body {
   margin-bottom: 2rem;
 }
 
-h4 {
-  color: #e7723f;
-}
-
 .sb_footer-links-div {
   width: 150px;
   margin: 1rem;
@@ -46,28 +35,8 @@ h4 {
   color: white;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-.socialmedia {
-  display: flex;
-  flex-direction: row;
-}
-
-.socialmedia img {
-  width: 100%;
-  padding-top: 10px;
-}
-
-.facebook {
-  width: 38% !important;
-  padding-left: 10px;
-}
-
 .sb_footer-links-div h4 {
+  color: #e7723f;
   font-size: 14px;
   line-height: 17px;
   margin-bottom: 0.9rem;
@@ -78,6 +47,32 @@ a {
   line-height: 15px;
   margin: 0.5rem;
   cursor: pointer;
+  color: white;
+}
+
+.sb_footer-links-div a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.sb_footer-links-div a:hover {
+  color: #ff914f;
+}
+
+.socialmedia {
+  display: flex;
+  flex-direction: row;
+}
+
+.socialmedia img {
+  width: 24px; /* Adjusted for consistent sizing */
+  padding-top: 10px;
+}
+
+.facebook {
+  width: 9.12px !important; /* 38% of 24px */
+  padding-left: 10px;
 }
 
 .sb_footer-below {
@@ -100,9 +95,20 @@ a {
   font-weight: 600;
 }
 
+.sb_footer-below-links a {
+  color: #ff914f;
+  text-decoration: none;
+}
+
+.sb_footer-below-links a:hover {
+  color: white;
+}
+
 hr {
   color: #e7723f !important;
   width: 100%;
+  border: 0;
+  border-top: 1px solid #e7723f;
 }
 
 .sb_footer-copyright {
@@ -112,6 +118,11 @@ hr {
   font-weight: 600;
 }
 
+.sb_footer-copyright p {
+  color: white;
+}
+
+/* Responsive adjustments */
 @media screen and (max-width: 850px) {
   .sb_footer-heading h1 {
     font-size: 44px;
@@ -120,14 +131,20 @@ hr {
 }
 
 @media screen and (max-width: 550px) {
+  .section_padding {
+    padding: 2rem;
+  }
+
   .sb_footer-heading h1 {
     font-size: 34px;
     line-height: 42px;
   }
+
   .sb_footer-below {
     flex-direction: column;
     justify-content: left;
   }
+
   .sb_footer-below-links p {
     margin-left: 0rem;
     margin-top: 1rem;
@@ -135,6 +152,10 @@ hr {
 }
 
 @media screen and (max-width: 300px) {
+  .section_padding {
+    padding: 1rem;
+  }
+
   .sb_footer-heading h1 {
     font-size: 27px;
     line-height: 38px;

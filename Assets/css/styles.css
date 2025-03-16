@@ -1,72 +1,31 @@
+/* styles.css */
 body {
-  background-color: gray;
-  font-family: Arial;
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #0c3334;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.todo-grid,
-.todo-input-grid {
-  display: grid;
-  grid-template-columns: 200px 150px 100px;
-  column-gap: 10px;
-  row-gap: 10px;
-  align-items: center;
+main,
+.content {
+  flex: 1 0 auto; /* Ensure main or content takes up available space */
+  padding: 20px;
+  min-height: 300px; /* Minimum height to push footer down on empty pages */
 }
 
-.todo-input-grid {
-  margin-bottom: 10px;
-  align-items: stretch;
+h1 {
+  text-align: center;
+  color: #e7723f;
 }
 
-.name-input,
-.date-input {
-  font-size: 15px;
-  padding: 5px;
-}
-
-.add-button {
-  background-color: green;
-  color: white;
-  border: none;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  font-size: 15px;
-  cursor: pointer;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-header {
-  background: #333;
-  color: white;
-  padding: 10px 20px;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 15px;
-}
-
-nav ul li a {
-  color: white;
+a {
+  color: #ff914f;
   text-decoration: none;
 }
 
-.Ticket-MainBox {
-  display: flex;
-
-  justify-content: center;
-  margin: 2rem;
+a:hover {
+  color: #e7723f;
 }
