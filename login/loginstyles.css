@@ -1,7 +1,8 @@
-/* import the footer css file as explained at https://www.geeksforgeeks.org/how-to-include-one-css-file-in-another/ . 
-This way, all the styles in the imported file will apply here as well. */
+/* import the global css file as explained at: 
+https://www.geeksforgeeks.org/how-to-include-one-css-file-in-another/ . 
+This way, all the styles in the imported file will apply here as well. 
+This improves readability, performance and code maintainance */
 @import "../Assets/css/globalStyles.css";
-@import "../Assets/css/footer.css";
 
 #main-content {
 	width: 100%;
@@ -74,40 +75,6 @@ input {
 	justify-content: space-evenly;
 }
 
-/* submit button styles */
-.submit-button {
-	border-radius: 5rem;
-	box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-	box-sizing: border-box;
-	color: #ffffff;
-	display: flex;
-	font-size: 20px;
-	justify-content: center;
-	line-height: 1em;
-	min-width: 10rem;
-	text-decoration: none;
-	cursor: pointer;
-	background-color: #8dc63f;
-	padding: 10px 24px;
-	border: none;
-	transition: 300ms;
-}
-
-.submit-button:hover {
-	background-color: #ff914f;
-}
-
-.submit-or-register > #register-button {
-	border: none;
-	cursor: pointer;
-	background-color: #00800054;
-	text-underline-offset: auto;
-	color: #ffffff;
-	font-size: large;
-	min-width: 10rem;
-	text-align: left;
-}
-
 .submit-or-register > #register-button:hover {
 	background-color: #00a651;
 	font-size: medium;
@@ -115,8 +82,6 @@ input {
 
 /* footer styles */
 footer {
-	background-color: #0c3334;
-	bottom: 0;
 	width: 100%;
 	height: 30%;
 	padding: 0;

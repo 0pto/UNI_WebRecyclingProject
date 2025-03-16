@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AdminProfile</title>
+    <link rel="stylesheet" href="./userDashboardStyle.css">
 </head>
 
 <body>
@@ -16,34 +17,181 @@
     </nav>
 
     <!-- dashboard content -->
-    <div id="main-content" style="min-height: 400px">
+    <div id="mainContent">
         <!--profile details-->
         <div class="profile">
-            <div class="details-and-update">
-                <div class="details">
-                    <!-- image with lazy loading for better rendering performnance -->
-                    <img loading="lazy" src="../images/user-solid.svg" alt="profile picture">
-                    <div class="username">
-                        <p>Username</p>
-                        <p>Username@gmail.com</p>
-                    </div>
+            <div id="details">
+                <!-- image with lazy loading for better rendering performnance -->
+                <img id="profilePicture" loading="lazy" src="../Assets/Images/user-solid.svg" alt="profile picture"
+                    height="150px" width="150px">
+                <div class="username">
+                    <p>Username</p>
+                    <p>Username@gmail.com</p>
                 </div>
-                <button type="submit">Update My Details</button>
             </div>
-            <div class="greetings">Hi Username, Welcome to your dashboard!</div>
+            <div class="greetingsand-update">
+                <span>Hi Username, Welcome to your dashboard!</span>
+                <!-- button to update users details add events handlers later -->
+                <button class="submit-button" type="submit">Update My Details</button>
+                <!-- Form to be dipays once the update details button is clicked -->
+                <form id="updateDetails" action="" method="post"
+                    style="display: none; border-radius: 10px; padding: 2rem">
+                    <section class="user-details" style="width: 100%">
+                        <div class="input-item">
+                            <label for="name">Fist Name:</label>
+                            <input type="text" id="name" name="user_name" />
+                        </div>
+                        <div class="input-item">
+                            <label for="name">Last Name:</label>
+                            <input type="text" id="name" name="user_name" />
+                        </div>
+                        <div class="input-item">
+                            <label for="name">Phone Number:</label>
+                            <input type="text" id="name" name="user_name" />
+                        </div>
+                        <div class="input-item">
+                            <label for="name">Home/Company Address:</label>
+                            <input type="text" id="name" name="user_name" />
+                        </div>
+                        <div class="input-item">
+                            <label for="name">Postcode:</label>
+                            <input type="text" id="name" name="user_name" />
+                        </div>
+                    </section>
+                    <section id="usernamePassword" class="username-password" style="width: 100%">
+                        <div class="input-item">
+                            <label for="name">Usename:</label>
+                            <input type="text" id="name" name="user_name" />
+                        </div>
+                        <div class="input-item">
+                            <label for="name">Email:</label>
+                            <input type="email" id="name" name="user_name" />
+                        </div>
+                        <div class="input-item">
+                            <label for="name">New Password:</label>
+                            <input type="password" id="name" name="user_name" />
+                        </div>
+                        <div class="input-item">
+                            <label for="name">Confirm Password:</label>
+                            <input type="password" id="name" name="user_name" />
+                        </div>
+                    </section>
+                    <button type="submit" class="submit-button">Update</button>
+                </form>
+            </div>
         </div>
         <!--booking details-->
         <div class="bookings">
         </div>
-        <!--statistics-->
-        <div class="statistics">
-        </div>
     </div>
 
     <!-- footer -->
-    <footer>
-        <h6>Pass in the footer componet later</h6>
+    <footer class="sb_footer section_padding">
+        <div class="sb_footer-links">
+            <div class="sb_footer-links-div">
+                <h4>For Business</h4>
+                <a href="/Employer">
+                    <p>Employer</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random2">
+                    <p>Random2</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Social media</h4>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Random</h4>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Random</h4>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Random</h4>
+                <a href="/Employer">
+                    <p>Employer</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random2">
+                    <p>Random2</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Social media</h4>
+                <div class="socialmedia">
+                    <!-- social media images with lazy loading for better renderting time -->
+                    <p><img loading="lazy" src="../Assets/Images/instagram.svg" alt="Instagram"></p>
+                    <p><img loading="lazy" class="facebook" src="../Assets/Images/facebook.svg" alt="Facebook"></p>
+                    <p><img loading="lazy" src="../Assets/Images/youtube.svg" alt="YouTube"></p>
+                </div>
+            </div>
+        </div>
+        <!-- removed hr tag -->
+        <div class="sb_footer-below">
+            <div class="sb_footer-copyright">
+                <!-- copyrights with static year. make it dynamic later -->
+                <p>This app is &copy 2025 by group2 interactive apps all rights reserved.</p>
+            </div>
+            <div class="sb_footer-below-links">
+                <a href="/terms">
+                    <div>
+                        <p>Terms & Conditions</p>
+                    </div>
+                </a>
+                <a href="/terms">
+                    <div>
+                        <p>Privacy</p>
+                    </div>
+                </a>
+                <a href="/terms">
+                    <div>
+                        <p>Security</p>
+                    </div>
+                </a>
+                <a href="/terms">
+                    <div>
+                        <p>Cookies</p>
+                    </div>
+                </a>
+            </div>
+        </div>
     </footer>
 </body>
+<!-- include the scripts with a defer attribute so that the scripts load only after all the element have rendered -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer>
+</script>
+<script src="./adminDashboardScripts.js" defer></script>
 
 </html>
