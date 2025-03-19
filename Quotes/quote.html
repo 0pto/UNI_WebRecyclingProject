@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get A Quote</title>
+    <link rel="stylesheet" href="./quoteStyles.css">
+</head>
+
+<body>
+    <!-- navigation bar using nav element for accessibility and best practice -->
+    <nav>
+        <ul>
+            <li>
+                <a href="">
+                    <h3>nav bar componet later</h3>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Posts content -->
+    <div id="mainContent">
+        <div id="title">
+            <h3>Select the services you need below:</h3>
+        </div>
+        <!--All the services-->
+        <div class="servicesSelection">
+            <div id="serviceItem">
+                <img id="serviceItemImg" loading="lazy" src="../Assets/Images/businessWaste.jpg" alt="profile picture"
+                    height="150px" width="150px">
+                <div class="username">
+                    <label for="busines">Business Waste</label>
+                    <select name="busines" id="Busines">
+                        <option value="">Business Waste option 1</option>
+                        <option value="">Business Waste option 2</option>
+                        <option value="">Business Waste option 3</option>
+                        <option value="">Business Waste option 4</option>
+                        <option value="">Business Waste option 5</option>
+                    </select>
+                </div>
+            </div>
+            <div id="serviceItem">
+                <img id="serviceItemImg" loading="lazy" src="../Assets/Images/domesticWaste.jpg" alt="profile picture"
+                    height="150px" width="150px">
+                <div class="username">
+                    <label for="domestic">Domestic Waste</label>
+                    <select name="domestic" id="domestic">
+                        <option value="">Domestic Waste option 1</option>
+                        <option value="">Domestic Waste option 2</option>
+                        <option value="">Domestic Waste option 3</option>
+                        <option value="">Domestic Waste option 4</option>
+                        <option value="">Domestic Waste option 5</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">Get Your Quote</button>
+        </div>
+
+        <!-- This section contains a table that will display the quote after subtion -->
+        <div class="displayQuote">
+
+
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="sb_footer section_padding">
+        <div class="sb_footer-links">
+            <div class="sb_footer-links-div">
+                <h4>For Business</h4>
+                <a href="/Employer">
+                    <p>Employer</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random2">
+                    <p>Random2</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Social media</h4>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Random</h4>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Random</h4>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Random</h4>
+                <a href="/Employer">
+                    <p>Employer</p>
+                </a>
+                <a href="/Random">
+                    <p>Random</p>
+                </a>
+                <a href="/Random2">
+                    <p>Random2</p>
+                </a>
+            </div>
+            <div class="sb_footer-links-div">
+                <h4>Social media</h4>
+                <div class="socialmedia">
+                    <!-- social media images with lazy loading for better renderting time -->
+                    <p><img loading="lazy" src="../Assets/Images/instagram.svg" alt="Instagram"></p>
+                    <p><img loading="lazy" class="facebook" src="../Assets/Images/facebook.svg" alt="Facebook"></p>
+                    <p><img loading="lazy" src="../Assets/Images/youtube.svg" alt="YouTube"></p>
+                </div>
+            </div>
+        </div>
+        <!-- removed hr tag -->
+        <div class="sb_footer-below">
+            <div class="sb_footer-copyright">
+                <!-- copyrights with static year. make it dynamic later -->
+                <p>This app is &copy 2025 by group2 interactive apps all rights reserved.</p>
+            </div>
+            <div class="sb_footer-below-links">
+                <a href="/terms">
+                    <div>
+                        <p>Terms & Conditions</p>
+                    </div>
+                </a>
+                <a href="/terms">
+                    <div>
+                        <p>Privacy</p>
+                    </div>
+                </a>
+                <a href="/terms">
+                    <div>
+                        <p>Security</p>
+                    </div>
+                </a>
+                <a href="/terms">
+                    <div>
+                        <p>Cookies</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+<!-- include the scripts with a defer attribute so that the scripts load only after all the element have rendered -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer>
+</script>
+<script src="./adminDashboardScripts.js" defer></script>
+
+</html>
