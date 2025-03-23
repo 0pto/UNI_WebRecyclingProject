@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get A Quote - RecycleNow</title>
+    <link rel="stylesheet" href="../../Assets/css/styles.css" />
+    <link rel="stylesheet" href="../../Assets/css/navbar.css" />
+    <link rel="stylesheet" href="../../Assets/css/footer.css" />
+    <link rel="stylesheet" href="../../Assets/css/quoteStyles.css" />
+  </head>
+  <body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+      <div id="title">
+        <h3>Select the services you need below:</h3>
+      </div>
+      <!-- All the Services -->
+      <div class="servicesSelection">
+        <form id="quoteForm">
+          <div id="serviceItem">
+            <img
+              id="serviceItemImg"
+              loading="lazy"
+              src="../../Assets/Images/businessWaste.jpg"
+              alt="Business Waste"
+              height="150px"
+              width="150px"
+            />
+            <div class="username">
+              <label for="business">Business Waste</label>
+              <select name="business" id="business">
+                <option value="">Business Waste option 1</option>
+                <option value="">Business Waste option 2</option>
+                <option value="">Business Waste option 3</option>
+                <option value="">Business Waste option 4</option>
+                <option value="">Business Waste option 5</option>
+              </select>
+            </div>
+          </div>
+          <div id="serviceItem">
+            <img
+              id="serviceItemImg"
+              loading="lazy"
+              src="../../Assets/Images/domesticWaste.jpg"
+              alt="Domestic Waste"
+              height="150px"
+              width="150px"
+            />
+            <div class="username">
+              <label for="domestic">Domestic Waste</label>
+              <select name="domestic" id="domestic">
+                <option value="">Domestic Waste option 1</option>
+                <option value="">Domestic Waste option 2</option>
+                <option value="">Domestic Waste option 3</option>
+                <option value="">Domestic Waste option 4</option>
+                <option value="">Domestic Waste option 5</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="submit-button">Get Your Quote</button>
+        </form>
+      </div>
+
+      <!-- This section contains a table that will display the quote after submission -->
+      <div class="displayQuote"></div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../../Assets/js/navbar.js" defer></script>
+    <script src="../../Assets/js/basket.js" defer></script>
+    <script src="../../Assets/js/footer.js" defer></script>
+    <script src="../../Assets/js/quoteScripts.js" defer></script>
+  </body>
+</html>

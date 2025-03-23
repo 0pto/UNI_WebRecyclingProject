@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ideas & Tips - RecycleNow</title>
+    <link rel="stylesheet" href="../../Assets/css/styles.css" />
+    <link rel="stylesheet" href="../../Assets/css/navbar.css" />
+    <link rel="stylesheet" href="../../Assets/css/footer.css" />
+    <link rel="stylesheet" href="../../Assets/css/IdeasPosts.css" />
+  </head>
+  <body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Posts Content -->
+    <div id="mainContent">
+      <a id="makeAPost" href="#submitPost">
+        <img
+          loading="lazy"
+          src="../../Assets/Images/share-icon.svg"
+          alt="share"
+          style="width: 2rem; height: 2rem"
+        />
+        <span>Share An Idea</span>
+      </a>
+      <!-- Display All Posts -->
+      <div class="posts">
+        <div id="allPosts">
+          <table id="postsTable">
+            <thead>
+              <tr>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="postItem">
+          <div id="details author">
+            <img
+              id="profilePicture"
+              loading="lazy"
+              src="../../Assets/Images/user-solid.svg"
+              alt="profile picture"
+              height="150px"
+              width="150px"
+            />
+            <div class="username">
+              <p>By Username</p>
+            </div>
+          </div>
+          <h3>Post Title</h3>
+        </div>
+      </div>
+
+      <!-- Form to Publish New Posts -->
+      <form id="sharePost" action="" method="post">
+        <section id="submitPost" class="username-password" style="width: 100%">
+          <div class="input-item">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" />
+          </div>
+          <div class="input-item">
+            <label for="postTitle">Title:</label>
+            <input type="text" id="postTitle" name="postTitle" />
+          </div>
+          <div class="input-item">
+            <label for="postContent">Post Content:</label>
+            <textarea
+              id="postContent"
+              name="postContent"
+              placeholder="Start your post here"
+            ></textarea>
+          </div>
+        </section>
+        <button type="submit" class="submit-button">Publish</button>
+      </form>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../../Assets/js/navbar.js" defer></script>
+    <script src="../../Assets/js/basket.js" defer></script>
+    <script src="../../Assets/js/footer.js" defer></script>
+    <script src="../../Assets/js/IdeasPostsScripts.js" defer></script>
+  </body>
+</html>

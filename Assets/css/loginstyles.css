@@ -1,0 +1,96 @@
+/* import the global css file as explained at: 
+https://www.geeksforgeeks.org/how-to-include-one-css-file-in-another/ . 
+This way, all the styles in the imported file will apply here as well. 
+This improves readability, performance and code maintainance */
+@import "./globalStyles.css";
+
+#main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40rem;
+  justify-content: center;
+}
+
+.login-form-container,
+.register-form-container {
+  min-width: 50%;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 54px 55px rgba(0, 0, 0, 0.25), 0 -12px 30px rgba(0, 0, 0, 0.12),
+    0 4px 6px rgba(0, 0, 0, 0.12), 0 12px 13px rgba(0, 0, 0, 0.17),
+    0 -3px 5px rgb(0 0 0 / 9%);
+}
+
+.form-img {
+  height: 100%;
+  width: 300px;
+  border-radius: 10px 0 0 10px;
+}
+
+#login,
+#register {
+  /* border: 2px solid; */
+  /* width: 60%; */
+  height: 100%;
+  min-height: 400px;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding: 0 2rem;
+  background-color: #f1fbfb;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid #808080ad;
+}
+
+.user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.user-details > .input-item {
+  width: 45%;
+}
+
+.login-details {
+  width: 100%;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.submit-or-register > #register-button:hover {
+  background-color: #00a651;
+  font-size: medium;
+}
+
+/* footer styles */
+footer {
+  width: 100%;
+  height: 30%;
+  padding: 0;
+  align-items: center;
+  height: 30%; /*footer is 30% as prescribed by brief*/
+}
+
+.sb_footer-below {
+  border-top: 1px solid #f1fbfb;
+}
+
+/* media queries to make the page responsive */

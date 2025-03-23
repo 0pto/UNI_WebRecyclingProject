@@ -1,0 +1,133 @@
+/* import the global css file as explained at: 
+https://www.geeksforgeeks.org/how-to-include-one-css-file-in-another/ . 
+This way, all the styles in the imported file will apply here as well. 
+This improves readability, performance and code maintainance */
+@import "./globalStyles.css";
+
+#mainContent {
+  display: flex;
+  flex-direction: column;
+  min-height: 35rem;
+  padding: 2rem;
+}
+
+/* services section */
+.servicesSelection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#serviceItem {
+  box-shadow: -1px 1px 5px 0px rgb(0 0 0 / 9%);
+  width: 30%;
+  min-height: 20rem;
+  border: 1px solid #8dc63f;
+  border-radius: 8px;
+  margin: 2rem;
+}
+
+/* *************************** */
+/* share post styles */
+a#makeAPost {
+  height: 2rem;
+  width: 11%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  background-color: #8dc63f6b;
+  color: #3f3c3cd6;
+}
+
+/* all posts section styles */
+.posts {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+#allPosts,
+#postItem {
+  min-height: 50rem;
+  width: 45%;
+  border-radius: 8px;
+  background-color: #f8f8f3;
+  border: 2px solid grey;
+  overflow-y: scroll;
+}
+
+#sharePost {
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+/* ********* */
+.profile,
+.statistics {
+  display: flex;
+  justify-content: space-between;
+}
+
+#details {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.username {
+  width: 57%;
+}
+
+.greetingsand-update {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#profilePicture {
+  border: 2px solid #0e32337a;
+  border-radius: 100%;
+}
+
+/* Statistics section styles */
+.statistics {
+  height: 25rem;
+  margin: 2rem;
+  margin-bottom: 2rem;
+}
+
+#salesPieChart,
+#barGraph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  border: 1px solid grey;
+  border-radius: 8px;
+  box-shadow: 6px -6px 5px 0px rgb(0 0 0 / 9%);
+}
+
+canvas {
+  height: 100% !important;
+  cursor: pointer;
+}
+
+/* footer styles */
+footer {
+  width: 100%;
+  padding: 0;
+  align-items: center;
+  height: 30%; /*footer is 30% as prescribed by brief*/
+}
+
+.sb_footer-below {
+  border-top: 1px solid #f1fbfb;
+}
+
+/* media queries to make the page responsive */

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile - RecycleNow</title>
+    <link rel="stylesheet" href="../../Assets/css/styles.css" />
+    <link rel="stylesheet" href="../../Assets/css/navbar.css" />
+    <link rel="stylesheet" href="../../Assets/css/footer.css" />
+    <link rel="stylesheet" href="../../Assets/css/userDashboardStyle.css" />
+  </head>
+  <body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Dashboard Content -->
+    <div id="mainContent">
+      <!-- Profile Details -->
+      <div class="profile">
+        <div id="details">
+          <img
+            id="profilePicture"
+            loading="lazy"
+            src="../../Assets/Images/user-solid.svg"
+            alt="profile picture"
+            height="150px"
+            width="150px"
+          />
+          <div class="username">
+            <p>Username</p>
+            <p>Username@gmail.com</p>
+          </div>
+        </div>
+        <div class="greetingsand-update">
+          <span>Hi Username, Welcome to your dashboard!</span>
+          <button class="submit-button" type="button">Update My Details</button>
+          <form
+            id="updateDetails"
+            action=""
+            method="post"
+            style="display: none; border-radius: 10px; padding: 2rem"
+          >
+            <section class="user-details" style="width: 100%">
+              <div class="input-item">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first_name" />
+              </div>
+              <div class="input-item">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last_name" />
+              </div>
+              <div class="input-item">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" />
+              </div>
+              <div class="input-item">
+                <label for="address">Home/Company Address:</label>
+                <input type="text" id="address" name="address" />
+              </div>
+              <div class="input-item">
+                <label for="postcode">Postcode:</label>
+                <input type="text" id="postcode" name="postcode" />
+              </div>
+            </section>
+            <section
+              id="usernamePassword"
+              class="username-password"
+              style="width: 100%"
+            >
+              <div class="input-item">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" />
+              </div>
+              <div class="input-item">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" />
+              </div>
+              <div class="input-item">
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" name="new_password" />
+              </div>
+              <div class="input-item">
+                <label for="confirm-password">Confirm Password:</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm_password"
+                />
+              </div>
+            </section>
+            <button type="submit" class="submit-button">Update</button>
+          </form>
+        </div>
+      </div>
+      <!-- Booking Details -->
+      <div class="bookings"></div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../../Assets/js/navbar.js" defer></script>
+    <script src="../../Assets/js/basket.js" defer></script>
+    <script src="../../Assets/js/footer.js" defer></script>
+    <script src="../../Assets/js/userDashboardScripts.js" defer></script>
+  </body>
+</html>

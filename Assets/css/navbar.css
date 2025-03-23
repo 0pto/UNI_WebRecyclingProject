@@ -1,104 +1,136 @@
-/* Reset default margin on body to remove whitespace */
-body {
+/* Reset default styles */
+* {
   margin: 0;
-}
-
-/* Navbar styling */
-.navbar {
-  background-color: #0c3334;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* Navbar container */
+.navbar {
+  background-color: #1a3c34; /* Dark teal/green to match the footer */
+  padding: 10px 20px;
+  width: 100%;
+}
+
+/* Inner container for logo and menu */
 .nav-container {
-  max-width: 1300px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.logo {
-  color: #ff914f; /* Lighter orange for the logo */
-  font-size: 2rem; /* Larger logo text */
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* Logo styling */
+.logo img {
+  vertical-align: middle;
 }
 
-.logo:hover {
-  color: #e7723f; /* Orange on hover for interactivity */
-}
-
+/* Menu styling */
 .nav-menu {
-  display: flex;
   list-style: none;
+  display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
 
+/* Menu items */
 .nav-item {
-  margin-left: 3rem; /* Increased spacing between items */
+  margin: 0 15px;
+  position: relative;
 }
 
+/* Menu links */
 .nav-link {
-  color: #ff914f; /* Lighter orange for links */
   text-decoration: none;
-  font-size: 1.3rem; /* Larger font size */
-  transition: all 0.3s ease;
-  padding: 0.75rem 1.5rem; /* Increased padding for bigger buttons */
+  color: #fff; /* White text to match the footer */
+  font-weight: 500;
+  font-size: 16px;
 }
 
+/* Hover effect for links */
 .nav-link:hover {
-  color: #0c3334; /* Dark green text on hover */
-  background-color: #e7723f; /* Orange background on hover */
-  border-radius: 8px; /* Slightly larger radius */
+  color: #ff9900; /* Orange hover effect */
 }
 
-/* Hamburger menu for mobile */
+/* Basket icon styling */
+.basket-icon {
+  display: flex;
+  align-items: center;
+}
+
+.basket-icon img {
+  margin-right: 5px;
+  filter: brightness(0) invert(1); /* Make the basket icon white to match the theme */
+}
+
+#basket-count {
+  background-color: #ff9900;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Dropdown styles */
+.nav-item.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1a3c34; /* Match the navbar background */
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.dropdown-menu li {
+  margin: 5px 0;
+}
+
+.dropdown-menu .nav-link {
+  color: #fff; /* White text in the dropdown */
+  white-space: nowrap;
+}
+
+.dropdown-menu .nav-link:hover {
+  color: #ff9900;
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.dropdown-toggle:focus + .dropdown-menu {
+  display: block;
+}
+
+/* Hamburger menu (hidden by default on desktop) */
 .hamburger {
   display: none;
-  cursor: pointer;
+  font-size: 24px;
   background: none;
   border: none;
-  font-size: 2rem; /* Larger hamburger icon */
-  color: #ff914f; /* Lighter orange */
+  cursor: pointer;
+  color: #fff; /* White hamburger icon to match the theme */
 }
 
-.hamburger:hover {
-  color: #e7723f; /* Orange on hover */
-}
-
-/* Responsive design */
+/* Responsive design for mobile */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
   }
 
-  .navbar {
-    padding: 1rem; /* Reduced padding on mobile */
-  }
-
-  .logo {
-    font-size: 1.5rem; /* Slightly smaller logo on mobile */
-  }
-
   .nav-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 60px;
     left: 0;
-    right: 0;
-    background-color: #0c3334; /* Dark green */
+    width: 100%;
+    background-color: #1a3c34; /* Match the navbar background */
     flex-direction: column;
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 999;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   .nav-menu.active {
@@ -106,13 +138,14 @@ body {
   }
 
   .nav-item {
-    margin: 1.5rem 0; /* Increased spacing on mobile */
+    margin: 10px 0;
     text-align: center;
   }
 
-  .nav-link {
-    font-size: 1.2rem; /* Slightly smaller font on mobile */
-    display: block;
-    padding: 0.5rem 1rem;
+  .nav-item.dropdown .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    padding: 0;
+    background-color: #2a4c44; /* Slightly lighter shade for contrast */
   }
 }
