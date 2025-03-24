@@ -1,7 +1,8 @@
 body {
-	margin: 0;
 	width: 100%;
+	min-height: 100%;
 	font-family: sans-serif, Helvetica Neue;
+	margin: 0; /*Reset default margin on body to remove whitespace */
 }
 
 /* this is for styling purposes remove this later or comment it out */
@@ -9,7 +10,76 @@ body {
 	outline: 1px solid #f00 !important;
 } */
 
-/* navbar styles */
+/**************  navbar styles *********************/
+.navbar {
+	background-color: #0c3334;
+	padding: 1.5rem 2rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	box-sizing: border-box;
+}
+
+.nav-container {
+	max-width: 1300px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	color: #ff914f; /* Lighter orange for the logo */
+	font-size: 2rem; /* Larger logo text */
+	font-weight: bold;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.logo:hover {
+	color: #e7723f; /* Orange on hover for interactivity */
+}
+
+.nav-menu {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-item {
+	margin-left: 3rem; /* Increased spacing between items */
+}
+
+.nav-link {
+	color: #fff; /* Lighter orange for links */
+	text-decoration: none;
+	font-size: 1.3rem; /* Larger font size */
+	transition: all 0.3s ease;
+	padding: 0.75rem 1.5rem; /* Increased padding for bigger buttons */
+}
+
+.nav-link:hover {
+	color: #0c3334; /* Dark green text on hover */
+	background-color: #e7723f; /* Orange background on hover */
+	border-radius: 8px; /* Slightly larger radius */
+}
+
+/* Hamburger menu for mobile */
+.hamburger {
+	display: none;
+	cursor: pointer;
+	background: none;
+	border: none;
+	font-size: 2rem; /* Larger hamburger icon */
+	color: #ff914f; /* Lighter orange */
+}
+
+.hamburger:hover {
+	color: #e7723f; /* Orange on hover */
+}
 
 /* submit button styles */
 .submit-button {
@@ -50,9 +120,11 @@ body {
 footer {
 	background-color: #0c3334;
 	margin: 0;
-	padding: 4rem 4rem;
 	display: flex;
 	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	height: 30%;
 }
 
 .sb_footer-links {
@@ -128,6 +200,10 @@ a {
 	flex-direction: row;
 }
 
+.sb_footer-links div {
+	margin: 1rem 0;
+}
+
 .sb_footer-below-links p {
 	font-size: 13px;
 	line-height: 15px;
@@ -177,6 +253,45 @@ hr {
 	}
 }
 
-.sb_footer-links div {
-	margin: 1rem 0;
+/****************** Media queries for Responsive Navbar*********************/
+@media (max-width: 768px) {
+	.hamburger {
+		display: block;
+	}
+
+	.navbar {
+		padding: 1rem; /* Reduced padding on mobile */
+	}
+
+	.logo {
+		font-size: 1.5rem; /* Slightly smaller logo on mobile */
+	}
+
+	.nav-menu {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: #0c3334; /* Dark green */
+		flex-direction: column;
+		padding: 1.5rem;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		z-index: 999;
+	}
+
+	.nav-menu.active {
+		display: flex;
+	}
+
+	.nav-item {
+		margin: 1.5rem 0; /* Increased spacing on mobile */
+		text-align: center;
+	}
+
+	.nav-link {
+		font-size: 1.2rem; /* Slightly smaller font on mobile */
+		display: block;
+		padding: 0.5rem 1rem;
+	}
 }

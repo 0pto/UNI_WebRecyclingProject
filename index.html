@@ -1,22 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Home Page</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="tickets.html">Make a Ticket</a></li>
-        </ul>
-      </nav>
-    </header>
 
-    <script src="assets/js/script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home - RecycleNow</title>
+  <link rel="stylesheet" href="./Assets/css/globalStyles.css" />
+</head>
+
+<body>
+  <!-- navigation bar-->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">RecycleNow</a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">How to Recycle</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a href="./Quotes/quote.html" class="nav-link">Get a quote</a>
+        </li>
+      </ul>
+      <button class="hamburger">☰</button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="mainContentWrapper" style="display: flex; flex-direction: column; min-height: 35rem;">
+    <h1>Home</h1>
+  </div>
+
+  <!-- footer -->
+  <footer class="sb_footer section_padding">
+    <div class="sb_footer-links">
+      <div class="sb_footer-links-div">
+        <h4>For Business</h4>
+        <a href="/Employer">
+          <p>Employer</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random2">
+          <p>Random2</p>
+        </a>
+      </div>
+      <div class="sb_footer-links-div">
+        <h4>Social media</h4>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+      </div>
+      <div class="sb_footer-links-div">
+        <h4>Random</h4>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+      </div>
+      <div class="sb_footer-links-div">
+        <h4>Random</h4>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+      </div>
+      <div class="sb_footer-links-div">
+        <h4>Random</h4>
+        <a href="/Employer">
+          <p>Employer</p>
+        </a>
+        <a href="/Random">
+          <p>Random</p>
+        </a>
+        <a href="/Random2">
+          <p>Random2</p>
+        </a>
+      </div>
+      <div class="sb_footer-links-div">
+        <button type="submit" class="submit-button">Login</button>
+        <h4>Social media</h4>
+        <div class="socialmedia">
+          <!-- social media images with lazy loading for better renderting time -->
+          <p><img loading="lazy" src="./Assets/Images/instagram.svg" alt="Instagram"></p>
+          <p><img loading="lazy" class="facebook" src="./Assets/Images/facebook.svg" alt="Facebook"></p>
+          <p><img loading="lazy" src="./Assets/Images/youtube.svg" alt="YouTube"></p>
+        </div>
+      </div>
+    </div>
+    <!-- removed hr tag -->
+    <div class="sb_footer-below">
+      <div class="sb_footer-copyright">
+        <!-- copyrights with static year. make it dynamic later -->
+        <p>This app is &copy 2025 by group2 interactive apps all rights reserved.</p>
+      </div>
+      <div class="sb_footer-below-links">
+        <a href="/terms">
+          <div>
+            <p>Terms & Conditions</p>
+          </div>
+        </a>
+        <a href="/terms">
+          <div>
+            <p>Privacy</p>
+          </div>
+        </a>
+        <a href="/terms">
+          <div>
+            <p>Security</p>
+          </div>
+        </a>
+        <a href="/terms">
+          <div>
+            <p>Cookies</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>
