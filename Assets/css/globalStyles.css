@@ -1,17 +1,15 @@
 body {
   margin: 0;
   width: 100%;
-  font-family: sans-serif, Helvetica Neue;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #0c3334;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* this is for styling purposes remove this later or comment it out */
-/* * {
-	outline: 1px solid #f00 !important;
-} */
-
-/* navbar styles */
-
-/* submit button styles */
+/* Submit button styles */
 .submit-button {
   border-radius: 5rem;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -45,8 +43,7 @@ body {
   text-align: left;
 }
 
-/* footer.css */
-/* removed class for the extra div discuss with Nikola about this*/
+/* Footer styles */
 footer {
   background-color: #0c3334;
   margin: 0;
@@ -61,9 +58,14 @@ footer {
   align-items: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 91%; /* lowered from 100% to 91% so it does not overflow consult Nik later to discuss changes */
+  width: 91%;
   text-align: left;
   margin-bottom: 2rem;
+}
+
+h1 {
+  text-align: center;
+  color: #e7723f;
 }
 
 h4 {
@@ -77,27 +79,6 @@ h4 {
   justify-content: flex-start;
   flex-direction: column;
   color: white;
-}
-
-a {
-  /* color: white;  overwrites colors on other links*/
-  text-decoration: none;
-  font-size: 15px;
-}
-
-.socialmedia {
-  display: flex;
-  flex-direction: row;
-}
-
-.socialmedia img {
-  width: 100%;
-  padding-top: 10px;
-}
-
-.facebook {
-  width: 38% !important;
-  padding-left: 10px;
 }
 
 .sb_footer-links-div h4 {
@@ -119,8 +100,7 @@ a {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 0.2rem;
-  border: 3px;
-  width: 91%; /* added width to make it fit the footer dive Tallk to Nikola about it*/
+  width: 91%;
 }
 
 .sb_footer-below-links {
@@ -136,16 +116,46 @@ a {
   font-weight: 600;
 }
 
-hr {
-  /* color: #e7723f !important; */
-  width: 91%; /* lowered from 100% to 91% so it does not overflow consult Nik later to discuss changes */
-}
-
 .sb_footer-copyright {
   font-size: 13px;
   line-height: 15px;
   color: white;
   font-weight: 600;
+}
+
+.socialmedia {
+  display: flex;
+  flex-direction: row;
+}
+
+.socialmedia img {
+  width: 100%;
+  padding-top: 10px;
+}
+
+.facebook {
+  width: 38% !important;
+  padding-left: 10px;
+}
+
+hr {
+  width: 91%;
+}
+
+main,
+.content {
+  flex: 1 0 auto;
+  padding: 20px;
+  min-height: 300px;
+}
+
+a {
+  color: #ff914f;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e7723f;
 }
 
 @media screen and (max-width: 850px) {

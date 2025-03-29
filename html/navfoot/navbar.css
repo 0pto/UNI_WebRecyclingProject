@@ -1,0 +1,150 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar container */
+.navbar {
+  background-color: #1a3c34;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+/* Inner container for logo and menu */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo styling */
+.logo img {
+  vertical-align: middle;
+}
+
+/* Menu styling */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Menu items */
+.nav-item {
+  margin: 0 15px;
+  position: relative;
+}
+
+/* Menu links */
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  color: #ff9900;
+}
+
+/* Basket icon styling */
+.basket-icon {
+  display: flex;
+  align-items: center;
+}
+
+.basket-icon img {
+  margin-right: 5px;
+  filter: brightness(0) invert(1);
+}
+
+#basket-count {
+  background-color: #ff9900;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Dropdown styles */
+.nav-item.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1a3c34;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.dropdown-menu li {
+  margin: 5px 0;
+}
+
+.dropdown-menu .nav-link {
+  color: #fff;
+  white-space: nowrap;
+}
+
+.dropdown-menu .nav-link:hover {
+  color: #ff9900;
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.dropdown-toggle:focus + .dropdown-menu {
+  display: block;
+}
+
+/* Hamburger menu (hidden by default on desktop) */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #1a3c34;
+    flex-direction: column;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-item {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .nav-item.dropdown .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    padding: 0;
+    background-color: #2a4c44;
+  }
+}
