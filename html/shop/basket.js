@@ -1,13 +1,16 @@
+// Define the backend URL for images
+const BACKEND_URL = "http://localhost:3000";
+
 // Basket state
 let basket = JSON.parse(localStorage.getItem("basket")) || [];
 
 // Add item to basket with all details
-function addToBasket(id, name, price, image, description, rating) {
+function addToBasket(id, name, price, image, description) {
   const item = basket.find((i) => i.id === id);
   if (item) {
     item.quantity += 1;
   } else {
-    basket.push({ id, name, price, image, description, rating, quantity: 1 });
+    basket.push({ id, name, price, image, description, quantity: 1 });
   }
   updateBasket();
 }
@@ -63,16 +66,20 @@ function updateBasket() {
       const itemTotal = item.price * item.quantity;
       subtotal += itemTotal;
 
+      // Ensure the image URL uses the backend
+      const imageUrl = item.image.startsWith("/images")
+        ? `${BACKEND_URL}${item.image}`
+        : item.image;
+
       // Render basket item
       const basketItem = document.createElement("div");
       basketItem.classList.add("basket-item");
       basketItem.innerHTML = `
-        <img src="${item.image}" alt="${
+        <img src="${imageUrl}" alt="${
         item.name
       }" onerror="this.src='https://via.placeholder.com/100?text=${item.name}'">
         <div class="details">
           <h3>${item.name}</h3>
-          <p class="rating">★ ${item.rating} / 5</p>
           <p class="description">${item.description}</p>
           <p class="price">$${itemTotal.toFixed(2)} (${
         item.quantity
