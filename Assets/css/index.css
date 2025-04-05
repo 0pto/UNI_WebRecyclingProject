@@ -1,0 +1,23 @@
+/* home page styles */
+@import "./globalStyles.css";
+
+#homePageContent {
+	position: relative;
+	background-image: url("../Images/b4c27d5c-8d65-4706-937b-2c11cf74b27a.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	min-height: 35rem;
+}
+
+.textbox {
+	background-color: rgba(210, 228, 196, 0.5);
+	width: auto;
+	padding: 10px 10px 10px 10px;
+	font-size: x-large;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

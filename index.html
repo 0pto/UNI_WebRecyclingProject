@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home - RecycleNow</title>
-  <link rel="stylesheet" href="./Assets/css/globalStyles.css" />
+  <link rel="stylesheet" href="./Assets/css/index.css" />
 </head>
 
 <body>
@@ -31,8 +31,10 @@
   </nav>
 
   <!-- Main Content -->
-  <div class="mainContentWrapper" style="display: flex; flex-direction: column; min-height: 35rem;">
-    <h1>Home</h1>
+  <div id="homePageContent">
+    <span class="textbox">Welcome to the "Company". Click Log In to view your dashboard or register for our service. Go
+      visit the shop to buy items made from recycled material. If you have any questions or complaints, use the Tickets
+      link in the nav bar.</span>
   </div>
 
   <!-- footer -->
@@ -99,7 +101,7 @@
         </a>
       </div>
       <div class="sb_footer-links-div">
-        <button type="submit" class="submit-button">Login</button>
+        <a href="./login/login.html" class="submit-button">Login</a>
         <h4>Social media</h4>
         <div class="socialmedia">
           <!-- social media images with lazy loading for better renderting time -->
