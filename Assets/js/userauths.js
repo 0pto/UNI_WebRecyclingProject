@@ -61,21 +61,18 @@ async function handleRegistration() {
     console.log(formData.admin);
 
     try {
-        const response = await fetch("http://localhost:8000/user/register", {
+        await fetch("http://localhost:8000/user/register", {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
                 "Content-type": "application/json"//Set datatype being sent to JSON
             }
         }).then(function (response) {
-            console.log(response);
-            //responsePayload = response.json()
-            //console.log("Is response here?", responsePayload);
-
+            console.log(response.body);
             if (response.ok) {
                 // redirect to login page and display successfull feedback
                 formContainer.innerHTML = `<img class="form-img" loading="lazy" src="../Assets/Images/reuse.jpg" alt="recycle quote">
-            <form id="login" action="" method="get" style="width: 70%;">
+            <form id="login" style="width: 70%;">
                 <div class="success">Your account has been created. Enter your username and password here to login</div>
                 <div class="login-details">
                     <div class="input-item">
@@ -88,16 +85,76 @@ async function handleRegistration() {
                     </div>
                 </div>
                 <div class="submit-or-register" style="width: 100%; height: 30%;">
-                    <button type="submit" class="submit-button">Login</button>
+                    <button onclick=handleLogin()  type="button" class="submit-button">Login</button>
                     <h5>Don't have an account yet? click the link bellow to register</h5>
                     <button onclick=showRegistrationForm() class="submit-button" type="submit">Register</button>
                 </div>
             </form>`
             }
         });
-
-
     } catch (error) {
         console.log(error);
     }
+}
+
+//create cookies for user session
+function generateUserCookie(key, value) {
+    let expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() + 29); //Set exp to 24 hours
+    let cookie = document.cookie = `${key} = ${value}; expires = ${expireDate.toGMTString()}; paths=/`
+    return cookie;
+}
+
+//Authenticate user and give access to users dashboard
+async function handleLogin() {
+    let userType = false;
+    const loginForm = document.getElementById("login");
+    const formData = Object.fromEntries(new FormData(loginForm).entries());
+
+    try {
+        await fetch("http://localhost:8000/user/login", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-type": "application/json"//Set datatype being sent to JSON
+            }
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                //Save user cookies and redirect to dashboard
+                if (result.success) {
+                    generateUserCookie("RecycleNowJwt", result.usersToken);
+                    userType = result.type;
+                    if (userType) {
+                        window.location.href = "../dashboardAdmin/adminDashboard.html";
+                    } else {
+                        window.location.href = "../dashboardUser/userDashboard.html";
+                    }
+                } else {
+                    console.log("Accout does not exist");
+                    formContainer.innerHTML = `<img class="form-img" loading="lazy" src="../Assets/Images/reuse.jpg" alt="recycle quote">
+            <form id="login" style="width: 70%;">
+                <div class="failure">Incorect username or password entered...Please try again</div>
+                <div class="login-details">
+                    <div class="input-item">
+                        <label for="username">Username:</label>
+                        <input required type="text" id="username" name="username" />
+                    </div>
+                    <div class="input-item">
+                        <label for="password">Password:</label>
+                        <input required type="password" id="password" name="password" />
+                    </div>
+                </div>
+                <div class="submit-or-register" style="width: 100%; height: 30%;">
+                    <button onclick=handleLogin()  type="button" class="submit-button">Login</button>
+                    <h5>Don't have an account yet? click the link bellow to register</h5>
+                    <button onclick=showRegistrationForm() class="submit-button" type="submit">Register</button>
+                </div>
+            </form>`
+                }
+            });
+    } catch (error) {
+        console.log(error);
+    }
+
 }
