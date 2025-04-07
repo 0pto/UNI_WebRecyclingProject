@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Fetch user data and pre-fill the form
   try {
     const response = await fetch(`${BACKEND_URL}/api/users/${userId}`);
-    console.log("Fetch user response status:", response.status); // Debugging
+    console.log("Fetch user response status:", response.status);
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     }
     const userData = await response.json();
-    console.log("Fetched user data:", userData); // Debugging
+    console.log("Fetched user data:", userData);
 
     document.getElementById("first-name").value = userData.first_name || "";
     document.getElementById("last-name").value = userData.surname || "";
@@ -39,40 +39,79 @@ document.addEventListener("DOMContentLoaded", async () => {
   accountForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const firstName = document.getElementById("first-name").value.trim();
+    const lastName = document.getElementById("last-name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const street = document.getElementById("street").value.trim();
+    const houseNo = document.getElementById("house-no").value.trim();
+    const town = document.getElementById("town").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const county = document.getElementById("county").value.trim();
+    const newPassword = document.getElementById("new-password").value.trim();
+    const confirmPassword = document
+      .getElementById("confirm-password")
+      .value.trim();
+
+    // Basic validation
+    if (!firstName || !lastName || !email || !phone || !street || !houseNo) {
+      alert("⚠️ Please fill in all required fields.");
+      return;
+    }
+
+    if (newPassword && newPassword !== confirmPassword) {
+      alert("⚠️ Passwords do not match.");
+      return;
+    }
+
     const userData = {
-      first_name: document.getElementById("first-name").value.trim(),
-      surname: document.getElementById("last-name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      phone: document.getElementById("phone").value.trim(),
-      street: document.getElementById("street").value.trim(),
-      house_no: document.getElementById("house-no").value.trim(),
-      town: document.getElementById("town").value.trim(),
-      city: document.getElementById("city").value.trim(),
-      county: document.getElementById("county").value.trim(),
+      first_name: firstName,
+      surname: lastName,
+      email,
+      phone,
+      street,
+      house_no: houseNo,
+      town,
+      city,
+      county,
     };
 
+    // Only include password if provided
+    if (newPassword) {
+      userData.password = newPassword;
+    }
+
     try {
-      console.log("Sending update request with data:", userData); // Debugging
       const response = await fetch(`${BACKEND_URL}/api/users/${userId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
       });
 
-      console.log("Update response status:", response.status); // Debugging
-      console.log("Update response body:", await response.text()); // Debugging
-
+      const responseBody = await response.json();
       if (!response.ok) {
-        const errorData = await response.json();
         throw new Error(
-          `Failed to update user: ${errorData.error || response.statusText}`
+          `Failed to update user: ${responseBody.error || response.statusText}`
         );
       }
 
-      const result = await response.json();
-      console.log("Update successful:", result); // Debugging
-      alert("✅ Account details updated successfully!");
-      window.location.reload();
+      // Update username in localStorage if email changes
+      if (email !== localStorage.getItem("username")) {
+        localStorage.setItem("username", email);
+      }
+
+      // If password was changed, require re-login
+      if (newPassword) {
+        localStorage.removeItem("userId");
+        localStorage.removeItem("username");
+        alert(
+          "✅ Account details updated successfully! Please log in with your new password."
+        );
+        window.location.href = "../login/login.html";
+      } else {
+        alert("✅ Account details updated successfully!");
+        window.location.reload();
+      }
     } catch (error) {
       console.error("Error updating user:", error);
       alert("❌ Failed to update account details: " + error.message);

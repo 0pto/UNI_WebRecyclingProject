@@ -32,6 +32,18 @@ document.addEventListener("DOMContentLoaded", () => {
             <li class="nav-item"><a href="/UNI_WebRecyclingProject/html/Quotes/quote.html" class="nav-link">Get A Quote</a></li>
             <li class="nav-item"><a href="/UNI_WebRecyclingProject/html/Complains/tickets.html" class="nav-link">Ticket</a></li>
             <li class="nav-item"><a href="/UNI_WebRecyclingProject/html/IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
+            ${
+              isLoggedIn
+                ? `
+                  <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Dashboard</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/UNI_WebRecyclingProject/html/dashboard/userDashboard.html" class="nav-link">User Dashboard</a></li>
+                    </ul>
+                  </li>
+                `
+                : ""
+            }
             <li class="nav-item"><a href="#" id="auth-nav-button" class="nav-link">${
               isLoggedIn ? "Log Out" : "Login"
             }</a></li>
@@ -94,6 +106,17 @@ document.addEventListener("DOMContentLoaded", () => {
           navMenu.classList.remove("active");
           console.log("Nav link clicked, menu closed");
         });
+      });
+    }
+
+    // Dropdown toggle functionality
+    const dropdownToggle = document.querySelector(".dropdown-toggle");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    if (dropdownToggle && dropdownMenu) {
+      dropdownToggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        dropdownMenu.style.display =
+          dropdownMenu.style.display === "block" ? "none" : "block";
       });
     }
   }

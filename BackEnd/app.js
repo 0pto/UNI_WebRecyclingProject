@@ -195,6 +195,127 @@ const OrderItem = sequelize.define(
   }
 );
 
+// Multi-Bookings Table
+const MultiBooking = sequelize.define(
+  "MultiBooking",
+  {
+    multiBookingsid: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    startdate: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    enddate: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    collectday: {
+      type: DataTypes.STRING(15),
+      allowNull: true,
+    },
+    userid: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    itemtype: {
+      type: DataTypes.STRING(30),
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
+    binsize: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+      defaultValue: "Medium",
+    },
+  },
+  {
+    tableName: "multiBookings",
+    timestamps: false,
+  }
+);
+
+// Tickets Table
+const Ticket = sequelize.define(
+  "Ticket",
+  {
+    ticketid: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    account: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    subject: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    description: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    datetime: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },
+  },
+  {
+    tableName: "tickets",
+    timestamps: false,
+  }
+);
+
+// Single-Bookings Table
+const SingleBooking = sequelize.define(
+  "SingleBooking",
+  {
+    singlebookingid: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    datetime: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    userid: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    itemtype: {
+      type: DataTypes.STRING(30),
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
+  },
+  {
+    tableName: "singleBookings",
+    timestamps: false,
+  }
+);
+
 // Define Relationships
 User.hasMany(Order, { foreignKey: "user_id" });
 Order.belongsTo(User, { foreignKey: "user_id" });
@@ -204,6 +325,16 @@ OrderItem.belongsTo(Order, { foreignKey: "order_id" });
 
 Stock.hasMany(OrderItem, { foreignKey: "stock_id" });
 OrderItem.belongsTo(Stock, { foreignKey: "stock_id" });
+
+User.hasMany(MultiBooking, { foreignKey: "userid" });
+MultiBooking.belongsTo(User, { foreignKey: "userid" });
+
+User.hasMany(SingleBooking, { foreignKey: "userid" });
+SingleBooking.belongsTo(User, { foreignKey: "userid" });
+
+// Define Relationships
+User.hasMany(Ticket, { foreignKey: "account" });
+Ticket.belongsTo(User, { foreignKey: "account" });
 
 // Set up Express server
 const app = express();
@@ -266,6 +397,7 @@ app.put("/api/users/:id", async (req, res) => {
     town,
     city,
     county,
+    password,
   } = req.body;
 
   try {
@@ -294,12 +426,65 @@ app.put("/api/users/:id", async (req, res) => {
       town,
       city,
       county,
+      ...(password && { password }),
     });
 
     console.log("User updated successfully:", userId);
     res.json({ message: "User updated successfully" });
   } catch (error) {
     console.error("Error updating user:", error);
+    res.status(500).json({ error: "Internal server error: " + error.message });
+  }
+});
+
+//  Endpoints for Tickets
+// Get all tickets for a user
+app.get("/api/tickets", async (req, res) => {
+  const userId = req.query.userId;
+
+  try {
+    const tickets = await Ticket.findAll({ where: { account: userId } });
+    res.json(tickets);
+  } catch (error) {
+    console.error("Error fetching tickets:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Update a ticket (description only)
+app.put("/api/tickets/:id", async (req, res) => {
+  const ticketId = parseInt(req.params.id);
+  const { description } = req.body;
+
+  try {
+    const ticket = await Ticket.findByPk(ticketId);
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+
+    await ticket.update({ description });
+
+    res.json({ message: "Ticket updated successfully" });
+  } catch (error) {
+    console.error("Error updating ticket:", error);
+    res.status(500).json({ error: "Internal server error: " + error.message });
+  }
+});
+
+// Delete a ticket
+app.delete("/api/tickets/:id", async (req, res) => {
+  const ticketId = parseInt(req.params.id);
+
+  try {
+    const ticket = await Ticket.findByPk(ticketId);
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+
+    await ticket.destroy();
+    res.json({ message: "Ticket deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting ticket:", error);
     res.status(500).json({ error: "Internal server error: " + error.message });
   }
 });
@@ -432,6 +617,154 @@ app.post("/api/register", async (req, res) => {
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Add API Endpoints for Multi-Bookings
+// Get all multi-bookings for a user
+app.get("/api/multi-bookings", async (req, res) => {
+  const userId = req.query.userId;
+
+  try {
+    const bookings = await MultiBooking.findAll({ where: { userid: userId } });
+    res.json(bookings);
+  } catch (error) {
+    console.error("Error fetching multi-bookings:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Update a multi-booking
+app.put("/api/multi-bookings/:id", async (req, res) => {
+  const bookingId = parseInt(req.params.id);
+  const { startdate, enddate, collectday, address, itemtype, binsize } =
+    req.body;
+
+  try {
+    const booking = await MultiBooking.findByPk(bookingId);
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    // Validate start date (cannot be in the past)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set to start of today
+    const startDateObj = new Date(startdate);
+    if (startDateObj < today) {
+      return res
+        .status(400)
+        .json({ error: "Start date cannot be in the past" });
+    }
+
+    // Validate end date (if provided, must be after start date)
+    if (enddate) {
+      const endDateObj = new Date(enddate);
+      if (endDateObj <= startDateObj) {
+        return res
+          .status(400)
+          .json({ error: "End date must be after start date" });
+      }
+    }
+
+    // Validate itemtype
+    const validItemTypes = ["Paper", "Plastic", "Electronics", "Glass"];
+    if (!validItemTypes.includes(itemtype)) {
+      return res.status(400).json({
+        error: "Item type must be one of: Paper, Plastic, Electronics, Glass",
+      });
+    }
+
+    // Validate binsize
+    const validBinSizes = ["Small", "Medium", "Big"];
+    if (!validBinSizes.includes(binsize)) {
+      return res
+        .status(400)
+        .json({ error: "Bin size must be one of: Small, Medium, Big" });
+    }
+
+    // Calculate price (example logic, adjust as needed)
+    const basePrice = 10; // Base price per collection
+    const binSizeMultiplier = { Small: 1, Medium: 1.5, Big: 2 };
+    const itemTypeMultiplier = {
+      Paper: 1,
+      Plastic: 1.2,
+      Electronics: 1.5,
+      Glass: 1.3,
+    };
+    const price =
+      basePrice * binSizeMultiplier[binsize] * itemTypeMultiplier[itemtype];
+
+    await booking.update({
+      startdate,
+      enddate,
+      collectday,
+      address,
+      itemtype,
+      price, // Price is calculated, not taken from user input
+      binsize,
+    });
+
+    res.json({ message: "Booking updated successfully" });
+  } catch (error) {
+    console.error("Error updating multi-booking:", error);
+    res.status(500).json({ error: "Internal server error: " + error.message });
+  }
+});
+
+// Add API Endpoints for Single-Bookings
+// Get all single-bookings for a user
+app.get("/api/single-bookings", async (req, res) => {
+  const userId = req.query.userId;
+
+  try {
+    const bookings = await SingleBooking.findAll({ where: { userid: userId } });
+    res.json(bookings);
+  } catch (error) {
+    console.error("Error fetching single-bookings:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Update a single-booking
+app.put("/api/single-bookings/:id", async (req, res) => {
+  const bookingId = parseInt(req.params.id);
+  const { datetime, address, itemtype, price } = req.body;
+
+  try {
+    const booking = await SingleBooking.findByPk(bookingId);
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    await booking.update({
+      datetime,
+      address,
+      itemtype,
+      price,
+    });
+
+    res.json({ message: "Booking updated successfully" });
+  } catch (error) {
+    console.error("Error updating single-booking:", error);
+    res.status(500).json({ error: "Internal server error: " + error.message });
+  }
+});
+
+// Delete a single-booking
+app.delete("/api/single-bookings/:id", async (req, res) => {
+  const bookingId = parseInt(req.params.id);
+
+  try {
+    const booking = await SingleBooking.findByPk(bookingId);
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    await booking.destroy();
+    res.json({ message: "Booking deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting single-booking:", error);
+    res.status(500).json({ error: "Internal server error: " + error.message });
   }
 });
 

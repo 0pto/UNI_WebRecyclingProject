@@ -27,13 +27,15 @@
             width="150px"
           />
           <div class="username">
-            <p>Username</p>
-            <p>Username@gmail.com</p>
+            <p id="display-name">Name</p>
+            <p id="display-email">Email</p>
           </div>
         </div>
         <div class="greetingsand-update">
-          <span>Hi Username, Welcome to your dashboard!</span>
-          <button class="submit-button" type="button">Update My Details</button>
+          <span id="greeting">Hi, Welcome to your dashboard!</span>
+          <button class="submit-button" id="toggle-update-form" type="button">
+            Update My Details
+          </button>
           <form
             id="updateDetails"
             action=""
@@ -93,7 +95,17 @@
         </div>
       </div>
       <!-- Booking Details -->
-      <div class="bookings"></div>
+      <div class="bookings">
+        <h2>Recurring Bookings</h2>
+        <div id="multi-bookings"></div>
+        <h2>Single Bookings</h2>
+        <div id="single-bookings"></div>
+      </div>
+      <!-- Tickets/Complaints -->
+      <div class="tickets">
+        <h2>Tickets/Complaints</h2>
+        <div id="tickets-list"></div>
+      </div>
     </div>
 
     <!-- Footer Container -->
