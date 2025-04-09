@@ -10,158 +10,42 @@
 
 <body>
     <!-- navigation bar-->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">RecycleNow</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">How to Recycle</a>
-                </li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-            </ul>
-            <button class="hamburger">☰</button>
-        </div>
+    <nav class="navbar" id="nav-container">
     </nav>
 
     <!-- dashboard content -->
-    <div id="mainContent">
-        <!--profile details-->
-        <div class="profile">
-            <div id="details">
-                <!-- image with lazy loading for better rendering performnance -->
-                <img id="profilePicture" loading="lazy" src="../Assets/Images/user-solid.svg" alt="profile picture"
-                    height="150px" width="150px">
-                <div class="username">
-                    <p>Username</p>
-                    <p>Username@gmail.com</p>
-                </div>
-            </div>
-            <div class="greetingsand-update">
-                <span>Hi Username, Welcome to your dashboard!</span>
-                <!-- button to update users details add events handlers later -->
-                <button class="submit-button" type="submit">Update My Details</button>
-                <!-- Form to be dipays once the update details button is clicked -->
-                <form id="updateDetails" action="" method="post"
-                    style="display: none; border-radius: 10px; padding: 2rem">
-                    <section class="user-details" style="width: 100%">
-                        <div class="input-item">
-                            <label for="name">Fist Name:</label>
-                            <input type="text" id="name" name="user_name" />
-                        </div>
-                        <div class="input-item">
-                            <label for="name">Last Name:</label>
-                            <input type="text" id="name" name="user_name" />
-                        </div>
-                        <div class="input-item">
-                            <label for="name">Phone Number:</label>
-                            <input type="text" id="name" name="user_name" />
-                        </div>
-                        <div class="input-item">
-                            <label for="name">Home/Company Address:</label>
-                            <input type="text" id="name" name="user_name" />
-                        </div>
-                        <div class="input-item">
-                            <label for="name">Postcode:</label>
-                            <input type="text" id="name" name="user_name" />
-                        </div>
-                    </section>
-                    <section id="usernamePassword" class="username-password" style="width: 100%">
-                        <div class="input-item">
-                            <label for="name">Usename:</label>
-                            <input type="text" id="name" name="user_name" />
-                        </div>
-                        <div class="input-item">
-                            <label for="name">Email:</label>
-                            <input type="email" id="name" name="user_name" />
-                        </div>
-                        <div class="input-item">
-                            <label for="name">New Password:</label>
-                            <input type="password" id="name" name="user_name" />
-                        </div>
-                        <div class="input-item">
-                            <label for="name">Confirm Password:</label>
-                            <input type="password" id="name" name="user_name" />
-                        </div>
-                    </section>
-                    <button type="submit" class="submit-button">Update</button>
-                </form>
-            </div>
-        </div>
-        <!--booking details-->
-        <div class="bookings">
-        </div>
-        <!--statistics-->
-        <div class="statistics">
-            <canvas id="salesPieChart" style="width:45%; max-width:600px; height:100%"></canvas>
-            <canvas id="barGraph" style="width:45%; max-width:600px"></canvas>
-        </div>
+    <div id="adminDashboardContainer">
+
     </div>
 
+    <!-- footer -->
+    <!-- footer -->
     <!-- footer -->
     <footer class="sb_footer section_padding">
         <div class="sb_footer-links">
             <div class="sb_footer-links-div">
-                <h4>For Business</h4>
+                <h4>Contact</h4>
                 <a href="/Employer">
-                    <p>Employer</p>
+                    <p>Phone</p>
                 </a>
                 <a href="/Random">
-                    <p>Random</p>
+                    <p>email</p>
                 </a>
                 <a href="/Random2">
-                    <p>Random2</p>
+                    <p>Address</p>
                 </a>
             </div>
+
             <div class="sb_footer-links-div">
-                <h4>Social media</h4>
+                <h4>RecycleNow</h4>
                 <a href="/Random">
-                    <p>Random</p>
+                    <p>About</p>
                 </a>
                 <a href="/Random">
-                    <p>Random</p>
-                </a>
-                <a href="/Random">
-                    <p>Random</p>
+                    <p>Terms & Conditions</p>
                 </a>
             </div>
-            <div class="sb_footer-links-div">
-                <h4>Random</h4>
-                <a href="/Random">
-                    <p>Random</p>
-                </a>
-                <a href="/Random">
-                    <p>Random</p>
-                </a>
-                <a href="/Random">
-                    <p>Random</p>
-                </a>
-            </div>
-            <div class="sb_footer-links-div">
-                <h4>Random</h4>
-                <a href="/Random">
-                    <p>Random</p>
-                </a>
-                <a href="/Random">
-                    <p>Random</p>
-                </a>
-                <a href="/Random">
-                    <p>Random</p>
-                </a>
-            </div>
-            <div class="sb_footer-links-div">
-                <h4>Random</h4>
-                <a href="/Employer">
-                    <p>Employer</p>
-                </a>
-                <a href="/Random">
-                    <p>Random</p>
-                </a>
-                <a href="/Random2">
-                    <p>Random2</p>
-                </a>
-            </div>
+
             <div class="sb_footer-links-div">
                 <h4>Social media</h4>
                 <div class="socialmedia">
@@ -178,34 +62,13 @@
                 <!-- copyrights with static year. make it dynamic later -->
                 <p>This app is &copy 2025 by group2 interactive apps all rights reserved.</p>
             </div>
-            <div class="sb_footer-below-links">
-                <a href="/terms">
-                    <div>
-                        <p>Terms & Conditions</p>
-                    </div>
-                </a>
-                <a href="/terms">
-                    <div>
-                        <p>Privacy</p>
-                    </div>
-                </a>
-                <a href="/terms">
-                    <div>
-                        <p>Security</p>
-                    </div>
-                </a>
-                <a href="/terms">
-                    <div>
-                        <p>Cookies</p>
-                    </div>
-                </a>
-            </div>
         </div>
     </footer>
 </body>
 <!-- include the scripts with a defer attribute so that the scripts load only after all the element have rendered -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer>//chart library scripts
 </script>
-<script src="./adminDashboardScripts.js" defer></script>
+<script src="../Assets/js/renderDashboard.js" defer></script>
+<script src="../Assets/js/adminDashboard.js" defer></script>
 
 </html>

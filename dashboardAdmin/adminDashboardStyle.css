@@ -4,11 +4,12 @@ This way, all the styles in the imported file will apply here as well.
 This improves readability, performance and code maintainance */
 @import "../Assets/css/globalStyles.css";
 
-#mainContent {
+#adminDashboardContainer {
 	display: flex;
-	flex-direction: column;
-	min-height: 35rem;
-	padding: 2rem;
+    flex-direction: column;
+    min-height: 35rem;
+    padding: 0 2rem;
+    margin-top: 10rem;
 }
 
 /* user details section styles */

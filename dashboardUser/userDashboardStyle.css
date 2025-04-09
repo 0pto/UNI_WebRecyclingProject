@@ -4,7 +4,7 @@ This way, all the styles in the imported file will apply here as well.
 This improves readability, performance and code maintainance */
 @import "../Assets/css/globalStyles.css";
 
-#mainContent {
+#userDashboardContainer {
 	display: flex;
 	flex-direction: column;
 	height: 35rem;
@@ -12,8 +12,10 @@ This improves readability, performance and code maintainance */
 }
 
 /* user details section styles */
-.profile,
-.statistics {
+.profile {
+    margin: 8rem 0 6rem 0;
+}
+.profile {
 	display: flex;
 	justify-content: space-between;
 }
@@ -23,6 +25,19 @@ This improves readability, performance and code maintainance */
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+}
+.signOut {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2px 6px;
+	border-radius: 3px;
+	width: 45%;
+	border: none;
+	background-color: #8da966a1;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: medium;
 }
 
 .username {

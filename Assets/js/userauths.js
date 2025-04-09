@@ -101,7 +101,8 @@ async function handleRegistration() {
 function generateUserCookie(key, value) {
     let expireDate = new Date();
     expireDate.setDate(expireDate.getDate() + 29); //Set exp to 24 hours
-    let cookie = document.cookie = `${key} = ${value}; expires = ${expireDate.toGMTString()}; paths=/`
+    let cookie = document.cookie = `${key} = ${value}; expires = ${expireDate.toGMTString()}; domain=127.0.0.1; path=/`
+    console.log(cookie);
     return cookie;
 }
 
@@ -123,8 +124,12 @@ async function handleLogin() {
             .then((result) => {
                 //Save user cookies and redirect to dashboard
                 if (result.success) {
-                    generateUserCookie("RecycleNowJwt", result.usersToken);
                     userType = result.type;
+                    generateUserCookie("RecycleNowJwt", result.usersToken);
+                    generateUserCookie("username", result.username);
+                    generateUserCookie("email", result.email);
+                    generateUserCookie("type", userType);
+
                     if (userType) {
                         window.location.href = "../dashboardAdmin/adminDashboard.html";
                     } else {
