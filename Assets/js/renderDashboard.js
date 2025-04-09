@@ -1,13 +1,10 @@
 // get cookies and save user's session "userSessionObj"
 const allCookies = document.cookie;
 let userSessionObj = {};
-console.log("All cookies array:", userSessionObj);
-console.log("All cookies:", allCookies);
 cookiesArray = allCookies.split(";");
 cookiesArray.forEach(cookie => {
 	keyValueArray = cookie.split("=");
 	newKey = keyValueArray[0].trim();
-	console.log("newKey", newKey);
 	newValue = keyValueArray[1];
 	userSessionObj[newKey] = newValue;
 });
@@ -20,27 +17,13 @@ function HandleSignOut() {
 		document.cookie = `username =; Max-Age=-99999999; domain=127.0.0.1; path=/`
 		window.location.href = "../index.html";
 	} catch (error) {
-
+		console.log("Error:", error)
 	}
-
 }
 
 function displayDashboard() {
 	if (userSessionObj.RecycleNowJwt && userSessionObj.type === "true") {
-		document.getElementById("nav-container").innerHTML = `
-		 <div class="nav-container">
-            <a href="#" class="logo">RecycleNow</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">How to Recycle</a>
-                </li>
-				<li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
-            </ul>
-            <button class="hamburger">☰</button>
-        </div>
-		`
-		document.getElementById("adminDashboardContainer").innerHTML = `<!--profile details-->
+		document.getElementById("adminDashboardContainer").innerHTML = `
 		<div class="profile">
 			<div id="details">
 				<!-- image with lazy loading for better rendering performnance -->
@@ -116,19 +99,6 @@ function displayDashboard() {
 		</div>
 		`
 	} else if (userSessionObj.RecycleNowJwt && userSessionObj.type === "false") {
-		document.getElementById("nav-container").innerHTML = `
-		 <div class="nav-container">
-            <a href="#" class="logo">RecycleNow</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">How to Recycle</a>
-                </li>
-				<li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
-            </ul>
-            <button class="hamburger">☰</button>
-        </div>
-		`
 		document.getElementById("userDashboardContainer").innerHTML = `<!--profile details-->
 		<div class="profile">
 			<div id="details">
