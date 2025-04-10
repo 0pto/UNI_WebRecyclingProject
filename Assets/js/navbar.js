@@ -92,18 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
       navbarContainer.innerHTML = navbarHTML;
     } else {
       const navbarHTML = `
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="/UNI_WebRecyclingProject/html/index.html" class="logo">RecycleNow</a>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="/UNI_WebRecyclingProject/html/index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item">
-                      <a href="./Quotes/quote.html" class="nav-link">Get a quote</a>
-                    </li>
-                </ul>
-                <button class="hamburger">☰</button>
-            </div>
-        </nav>
+        <div class="nav-container">
+            <a href="/UNI_WebRecyclingProject/html/index.html" class="logo">RecycleNow</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item">
+                  <a href="./Quotes/quote.html" class="nav-link">Get a quote</a>
+                </li>
+            </ul>
+            <button class="hamburger">☰</button>
+        </div>
+        
       `;
       navbarContainer.innerHTML = navbarHTML;
     }

@@ -90,9 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <h4>Social media</h4>
         <div class="socialmedia">
           <!-- social media images with lazy loading for better renderting time -->
-          <p><img loading="lazy" src="./Assets/Images/instagram.svg" alt="Instagram"></p>
-          <p><img loading="lazy" class="facebook" src="./Assets/Images/facebook.svg" alt="Facebook"></p>
-          <p><img loading="lazy" src="./Assets/Images/youtube.svg" alt="YouTube"></p>
+          <p><img loading="lazy" src="../Assets/Images/instagram.svg" alt="Instagram"></p>
+          <p><img loading="lazy" class="facebook" src="../Assets/Images/facebook.svg" alt="Facebook"></p>
+          <p><img loading="lazy" src="../Assets/Images/youtube.svg" alt="YouTube"></p>
         </div>
       </div>
     </div>

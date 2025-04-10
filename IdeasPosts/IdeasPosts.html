@@ -10,106 +10,18 @@
 
 <body>
     <!-- navigation bar-->
-    <nav class="navbar" id="navbar-container">
-    </nav>
+    <nav class="navbar" id="navbar-container"></nav>
 
     <!-- Posts content -->
-    <div id="mainContent">
-        <a id="makeAPost" href="#submitPost">
-            <img loading="lazy" src="../Assets/Images/share-icon.svg" alt="share" style="width: 2rem; height: 2rem">
-            <span>Share An Idea</span>
-        </a>
-        <!--Display all posts-->
-        <div class="posts">
-            <div id="allPosts">
-                <table id="postsTable">
-                    <th></th>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-
-            <div id="postItem">
-                <div id="details author">
-                    <!-- image with lazy loading for better rendering performnance -->
-                    <img id="profilePicture" loading="lazy" src="../Assets/Images/user-solid.svg" alt="profile picture"
-                        height="150px" width="150px">
-                    <div class="username">
-                        <p>By Username</p>
-                    </div>
-                </div>
-                <h3>Post Title</h3>
-            </div>
-        </div>
-
-        <!-- Form to publish new posts-->
-        <form id="sharePost" action="" method="post">
-            <section id="submitPost" class="username-password" style="width: 100%">
-                <div class="input-item">
-                    <label for="name">Usename:</label>
-                    <input type="text" id="name" name="user_name" />
-                </div>
-                <div class="input-item">
-                    <label for="postTitle">Title:</label>
-                    <input type="text" id="postTitle" name="postTitle" />
-                </div>
-                <div class="input-item">
-                    <label for="postContent">Post Content</label>
-                    <textarea type="text" id="postContent" name="postContent"
-                        placeholder="Start your post here"></textarea> />
-                </div>
-            </section>
-            <button type="submit" class="submit-button">Publish</button>
-        </form>
-    </div>
+    <div id="mainContent"></div>
 
     <!-- footer -->
-    <footer class="sb_footer section_padding">
-        <div class="sb_footer-links">
-            <div class="sb_footer-links-div">
-                <h4>Contact</h4>
-                <a href="/Employer">
-                    <p>Phone</p>
-                </a>
-                <a href="/Random">
-                    <p>email</p>
-                </a>
-                <a href="/Random2">
-                    <p>Address</p>
-                </a>
-            </div>
-
-            <div class="sb_footer-links-div">
-                <h4>RecycleNow</h4>
-                <a href="/Random">
-                    <p>About</p>
-                </a>
-                <a href="/Random">
-                    <p>Terms & Conditions</p>
-                </a>
-            </div>
-
-            <div class="sb_footer-links-div">
-                <h4>Social media</h4>
-                <div class="socialmedia">
-                    <!-- social media images with lazy loading for better renderting time -->
-                    <p><img loading="lazy" src="../Assets/Images/instagram.svg" alt="Instagram"></p>
-                    <p><img loading="lazy" class="facebook" src="../Assets/Images/facebook.svg" alt="Facebook"></p>
-                    <p><img loading="lazy" src="../Assets/Images/youtube.svg" alt="YouTube"></p>
-                </div>
-            </div>
-        </div>
-        <!-- removed hr tag -->
-        <div class="sb_footer-below">
-            <div class="sb_footer-copyright">
-                <!-- copyrights with static year. make it dynamic later -->
-                <p>This app is &copy 2025 by group2 interactive apps all rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <footer class="sb_footer section_padding" id="footer-container"></footer>
 </body>
 <!-- include the scripts with a defer attribute so that the scripts load only after all the element have rendered -->
 <script src="../Assets/js/navbar.js" defer></script>
+<script src="../Assets//js/renderPosts.js" defer></script>
+<script src="./IdeasPosts.js" defer></script>
+<script src="../Assets/js/footer.js" defer></script>
 
 </html>
