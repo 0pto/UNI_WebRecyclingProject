@@ -12,49 +12,27 @@
     <!-- navigation bar-->
     <nav class="navbar" id="navbar-container"></nav>
 
-    <!-- Posts content -->
+    <!-- Page content -->
     <div id="mainContent">
-        <div id="title">
-            <h3>Select the services you need below:</h3>
-        </div>
+        <h3>What service would you like?:</h3>
+
         <!--All the services-->
         <div class="servicesSelection">
-            <div id="serviceItem">
+            <div id="selection">
                 <img id="serviceItemImg" loading="lazy" src="../Assets/Images/businessWaste.jpg" alt="profile picture"
                     height="150px" width="150px">
                 <div class="username">
-                    <label for="busines">Business Waste</label>
-                    <select name="busines" id="Busines">
-                        <option value="">Business Waste option 1</option>
-                        <option value="">Business Waste option 2</option>
-                        <option value="">Business Waste option 3</option>
-                        <option value="">Business Waste option 4</option>
-                        <option value="">Business Waste option 5</option>
+                    <label for="busines">Please Choose a Category</label>
+                    <select name="wasteType" id="wasteType">
+                        <option value="Business Waste">Business Waste</option>
+                        <option value="Domestic Waste">Domestic Waste</option>
                     </select>
                 </div>
+                <button onclick=submitCategory() type="button" class="submit-button">Next</button>
             </div>
-            <div id="serviceItem">
-                <img id="serviceItemImg" loading="lazy" src="../Assets/Images/domesticWaste.jpg" alt="profile picture"
-                    height="150px" width="150px">
-                <div class="username">
-                    <label for="domestic">Domestic Waste</label>
-                    <select name="domestic" id="domestic">
-                        <option value="">Domestic Waste option 1</option>
-                        <option value="">Domestic Waste option 2</option>
-                        <option value="">Domestic Waste option 3</option>
-                        <option value="">Domestic Waste option 4</option>
-                        <option value="">Domestic Waste option 5</option>
-                    </select>
-                </div>
-            </div>
-            <button type="submit" class="submit-button">Submit</button>
         </div>
-
         <!-- This section contains a table that will display the quote after subtion -->
-        <div class="displayQuote">
-
-
-        </div>
+        <div class="displayQuote" id="quoteResults"></div>
     </div>
 
     <!-- footer -->
@@ -63,8 +41,8 @@
     </footer>
 </body>
 <!-- include the scripts with a defer attribute so that the scripts load only after all the element have rendered -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer></script>
 <script src="../Assets/js/navbar.js" defer></script>
+<script src="./quote.js" defer></script>
 <script src="../Assets/js/footer.js" defer></script>
 
 </html>
