@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const ticketsContainer = document.getElementById("tickets-list");
 
   const userId = localStorage.getItem("userId");
+  const isAdmin = sessionStorage.getItem("isAdmin") === "1"; // Define isAdmin here
+
   if (!userId) {
     window.location.href = "../login/login.html";
     return;
@@ -291,7 +293,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Fetch and display tickets
   try {
-    const response = await fetch(`${BACKEND_URL}/api/tickets?userId=${userId}`);
+    const response = await fetch(
+      `${BACKEND_URL}/api/tickets?userId=${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Is-Admin": isAdmin, // Use the defined isAdmin variable
+        },
+      }
+    );
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(
@@ -310,6 +321,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <th>Ticket ID</th>
           <th>Subject</th>
           <th>Description</th>
+          <th>Admin Response</th>
           <th>Date/Time</th>
           <th>Status</th>
           <th>Actions</th>
@@ -321,11 +333,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${ticket.ticketid}</td>
           <td>${ticket.subject}</td>
           <td>${ticket.description}</td>
+          <td>${ticket.adminResponce || "No response yet"}</td>
           <td>${ticket.datetime}</td>
           <td>${ticket.status}</td>
           <td>
-            <button class="edit-btn" data-id="${ticket.ticketid}">Edit Description</button>
-            <button class="delete-btn" data-id="${ticket.ticketid}">Delete</button>
+            <button class="edit-btn" data-id="${
+              ticket.ticketid
+            }">Edit Description</button>
+            <button class="delete-btn" data-id="${
+              ticket.ticketid
+            }">Delete</button>
           </td>
         `;
         table.appendChild(row);
@@ -335,7 +352,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         editRow.classList.add("edit-form");
         editRow.style.display = "none";
         editRow.innerHTML = `
-          <td colspan="6">
+          <td colspan="7">
             <form class="edit-ticket-form" data-id="${ticket.ticketid}">
               <div class="input-item">
                 <label>Description:</label>
@@ -605,9 +622,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       phone,
       street,
       house_no: houseNo,
-      town: "", // Not in form, set to empty
-      city: "", // Not in form, set to empty
-      county: "", // Not in form, set to empty
+      town: "",
+      city: "",
+      county: "",
     };
 
     // Only include password if provided

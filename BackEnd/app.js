@@ -76,7 +76,7 @@ const User = sequelize.define(
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       field: "createdAt",
@@ -116,6 +116,11 @@ const User = sequelize.define(
     image: {
       type: DataTypes.BLOB("long"),
       allowNull: true,
+    },
+    isAdmin: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null,
     },
   },
   {
@@ -244,7 +249,7 @@ const MultiBooking = sequelize.define(
   }
 );
 
-// Tickets Table
+// Ticket model
 const Ticket = sequelize.define(
   "Ticket",
   {
@@ -262,7 +267,12 @@ const Ticket = sequelize.define(
       allowNull: true,
     },
     description: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    adminResponce: {
+      // Changed from adminResponse to match the database column name
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     datetime: {
@@ -342,8 +352,6 @@ app.use(cors());
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "../Assets/Images")));
 
-// API Endpoints
-// Get all stock items
 app.get("/api/stock", async (req, res) => {
   try {
     const stockItems = await Stock.findAll();
@@ -359,7 +367,7 @@ app.get("/api/users/:id", async (req, res) => {
   const userId = parseInt(req.params.id);
 
   try {
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(userId); // Use the User model directly (already defined earlier in app.js)
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -374,6 +382,7 @@ app.get("/api/users/:id", async (req, res) => {
       county: user.county,
       email: user.email,
       phone: user.phone,
+      isAdmin: user.isAdmin, // Include isAdmin in the response
     });
   } catch (error) {
     console.error("Error fetching user:", error);
@@ -437,24 +446,10 @@ app.put("/api/users/:id", async (req, res) => {
   }
 });
 
-//  Endpoints for Tickets
-// Get all tickets for a user
-app.get("/api/tickets", async (req, res) => {
-  const userId = req.query.userId;
-
-  try {
-    const tickets = await Ticket.findAll({ where: { account: userId } });
-    res.json(tickets);
-  } catch (error) {
-    console.error("Error fetching tickets:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-// Update a ticket (description only)
+// Update a ticket (status and adminResponce)
 app.put("/api/tickets/:id", async (req, res) => {
   const ticketId = parseInt(req.params.id);
-  const { description } = req.body;
+  const { status, adminResponce } = req.body; // Changed from adminResponse
 
   try {
     const ticket = await Ticket.findByPk(ticketId);
@@ -462,11 +457,28 @@ app.put("/api/tickets/:id", async (req, res) => {
       return res.status(404).json({ error: "Ticket not found" });
     }
 
-    await ticket.update({ description });
-
+    await ticket.update({ status, adminResponce }); // Changed from adminResponse
     res.json({ message: "Ticket updated successfully" });
   } catch (error) {
     console.error("Error updating ticket:", error);
+    res.status(500).json({ error: "Internal server error: " + error.message });
+  }
+});
+
+// Delete a ticket
+app.delete("/api/tickets/:id", async (req, res) => {
+  const ticketId = parseInt(req.params.id);
+
+  try {
+    const ticket = await Ticket.findByPk(ticketId);
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+
+    await ticket.destroy();
+    res.json({ message: "Ticket deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting ticket:", error);
     res.status(500).json({ error: "Internal server error: " + error.message });
   }
 });
@@ -554,7 +566,6 @@ app.post("/api/orders", async (req, res) => {
   }
 });
 
-// Login endpoint
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -567,12 +578,19 @@ app.post("/api/login", async (req, res) => {
     if (!user) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
-    res.json({ id: user.id, username: user.email, email: user.email });
+    res.json({
+      id: user.id,
+      username: user.email,
+      email: user.email,
+      isAdmin: user.isAdmin, // Include isAdmin
+    });
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+app.listen(3001, () => console.log("Server running on port 3001"));
 
 // Register endpoint
 app.post("/api/register", async (req, res) => {
@@ -630,6 +648,32 @@ app.get("/api/multi-bookings", async (req, res) => {
     res.json(bookings);
   } catch (error) {
     console.error("Error fetching multi-bookings:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Get all tickets (secured for admins only)
+app.get("/api/tickets", async (req, res) => {
+  const isAdmin = req.headers["x-is-admin"] === "true";
+  const userId = req.query.userId;
+
+  try {
+    let tickets;
+    if (isAdmin) {
+      // Admins can see all tickets
+      tickets = await Ticket.findAll();
+    } else {
+      // Non-admins can only see their own tickets
+      if (!userId) {
+        return res
+          .status(400)
+          .json({ error: "User ID is required for non-admin access" });
+      }
+      tickets = await Ticket.findAll({ where: { account: userId } });
+    }
+    res.json(tickets);
+  } catch (error) {
+    console.error("Error fetching tickets:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -769,7 +813,7 @@ app.delete("/api/single-bookings/:id", async (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();

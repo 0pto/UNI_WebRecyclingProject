@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isLoggedIn = localStorage.getItem("userId") !== null;
   const username = localStorage.getItem("username") || "Guest";
+  const isAdmin = sessionStorage.getItem("isAdmin") === "1";
 
   if (navbarContainer) {
     const navbarHTML = `
@@ -38,7 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle">Dashboard</a>
                     <ul class="dropdown-menu">
-                      <li><a href="/UNI_WebRecyclingProject/html/dashboard/userDashboard.html" class="nav-link">User Dashboard</a></li>
+                      ${
+                        isAdmin
+                          ? `<li><a href="/UNI_WebRecyclingProject/html/dashboard/adminDashboard.html" class="nav-link">Admin Dashboard</a></li>`
+                          : `<li><a href="/UNI_WebRecyclingProject/html/dashboard/userDashboard.html" class="nav-link">User Dashboard</a></li>`
+                      }
                     </ul>
                   </li>
                 `
@@ -69,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isLoggedIn) {
           localStorage.removeItem("userId");
           localStorage.removeItem("username");
+          sessionStorage.removeItem("isAdmin");
           alert("👋 Logged out successfully!");
           window.location.reload();
         } else {

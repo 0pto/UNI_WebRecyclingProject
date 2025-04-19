@@ -28,10 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const user = await response.json();
       localStorage.setItem("userId", user.id);
-      localStorage.setItem("username", user.username || email); // Store username
+      localStorage.setItem("username", user.username || email);
+      // Store isAdmin in sessionStorage
+      sessionStorage.setItem("isAdmin", user.isAdmin || 0);
 
       alert(`✅ Welcome, ${user.username || email}! Login successful.`);
-      window.location.href = "../index.html"; // Redirect
+
+      // Redirect based on admin status
+      if (user.isAdmin === 1) {
+        window.location.href = "../dashboard/adminDashboard.html";
+      } else {
+        window.location.href = "../index.html";
+      }
     } catch (error) {
       alert("❌ Login failed! " + error.message);
     }

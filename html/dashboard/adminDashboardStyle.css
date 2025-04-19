@@ -1,72 +1,85 @@
-/* import the global css file as explained at: 
-https://www.geeksforgeeks.org/how-to-include-one-css-file-in-another/ . 
-This way, all the styles in the imported file will apply here as well. 
-This improves readability, performance and code maintainance */
-@import "./globalStyles.css";
-
-#mainContent {
-  display: flex;
-  flex-direction: column;
-  min-height: 35rem;
-  padding: 2rem;
+.tickets {
+  margin-top: 20px;
 }
 
-/* user details section styles */
-.profile,
-.statistics {
-  display: flex;
-  justify-content: space-between;
+.tickets h2 {
+  color: #333;
+  margin-bottom: 10px;
 }
 
-#details {
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.tickets table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-.username {
-  width: 57%;
+.tickets th,
+.tickets td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
 }
 
-.greetingsand-update {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+.tickets th {
+  background-color: #f5a623; /* Matches your existing color scheme */
+  color: white;
 }
 
-#profilePicture {
-  border: 2px solid #0e32337a;
-  border-radius: 100%;
+.tickets tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
-/* Statistics section styles */
-.statistics {
-  height: 25rem;
-  margin: 2rem;
-  margin-bottom: 2rem;
+.tickets .edit-btn,
+.tickets .delete-btn,
+.tickets .cancel-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
 }
 
-#salesPieChart,
-#barGraph {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 45%;
-  border: 1px solid grey;
-  border-radius: 8px;
-  box-shadow: 6px -6px 5px 0px rgb(0 0 0 / 9%);
+.tickets .edit-btn {
+  background-color: #4caf50; /* Green for edit */
+  color: white;
 }
 
-canvas {
-  height: 100% !important;
+.tickets .delete-btn {
+  background-color: #f44336; /* Red for delete */
+  color: white;
+}
+
+.tickets .cancel-btn {
+  background-color: #ccc;
+  color: black;
+}
+
+.tickets .edit-form .input-item {
+  margin-bottom: 10px;
+}
+
+.tickets .edit-form .input-item label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.tickets .edit-form .input-item select,
+.tickets .edit-form .input-item textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tickets .edit-form .submit-button {
+  background-color: #f5a623; /* Matches your submit-button style */
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.sb_footer-below {
-  border-top: 1px solid #f1fbfb;
+.tickets .edit-form .submit-button:hover {
+  background-color: #d69120; /* Darker shade on hover */
 }
-
-/* media queries to make the page responsive */
