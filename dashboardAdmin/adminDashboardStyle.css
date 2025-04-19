@@ -43,6 +43,94 @@ This improves readability, performance and code maintainance */
 	border-radius: 100%;
 }
 
+/***** Tickets section styles *****/
+.tickets {
+	margin-top: 20px;
+  }
+  
+  .tickets h2 {
+	color: #333;
+	margin-bottom: 10px;
+  }
+  
+  .tickets table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+  }
+  
+  .tickets th,
+  .tickets td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: left;
+  }
+  
+  .tickets th {
+	background-color: #f5a623; /* Matches your existing color scheme */
+	color: white;
+  }
+  
+  .tickets tr:nth-child(even) {
+	background-color: #f9f9f9;
+  }
+  
+  .tickets .edit-btn,
+  .tickets .delete-btn,
+  .tickets .cancel-btn {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: 5px;
+  }
+  
+  .tickets .edit-btn {
+	background-color: #4caf50; /* Green for edit */
+	color: white;
+  }
+  
+  .tickets .delete-btn {
+	background-color: #f44336; /* Red for delete */
+	color: white;
+  }
+  
+  .tickets .cancel-btn {
+	background-color: #ccc;
+	color: black;
+  }
+  
+  .tickets .edit-form .input-item {
+	margin-bottom: 10px;
+  }
+  
+  .tickets .edit-form .input-item label {
+	display: block;
+	margin-bottom: 5px;
+  }
+  
+  .tickets .edit-form .input-item select,
+  .tickets .edit-form .input-item textarea {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+  }
+  
+  .tickets .edit-form .submit-button {
+	background-color: #f5a623; /* Matches your submit-button style */
+	color: white;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  .tickets .edit-form .submit-button:hover {
+	background-color: #d69120; /* Darker shade on hover */
+  }
+  
+
 /* Statistics section styles */
 .statistics {
 	height: 25rem;

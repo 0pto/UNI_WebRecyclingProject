@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basket - RecycleNow</title>
-    <link rel="stylesheet" href="./styles/basket.css" />
-</head>
-
-<body>
+    <link rel="stylesheet" href="../../Assets/css/globalStyles.css" />
+    <link rel="stylesheet" href="../navfoot/navbar.css" />
+    <link rel="stylesheet" href="../navfoot/footer.css" />
+    <link rel="stylesheet" href="../shop/basket.css" />
+  </head>
+  <body>
     <!-- Navbar Container -->
-    <nav id="shop-navbar-container"></nav>
+    <div id="navbar-container"></div>
 
     <!-- Main Content -->
     <main>
-        <h1>Your Basket</h1>
-        <div class="basket-container">
-            <div class="basket-items"></div>
-            <div class="basket-summary">
-                <h2>Price Breakdown</h2>
-                <div class="breakdown-items"></div>
-                <p>Subtotal: $<span id="basket-subtotal">0.00</span></p>
-                <p>Shipping: $<span id="basket-shipping">5.00</span></p>
-                <p class="total">Total: $<span id="basket-total">0.00</span></p>
-                <button id="checkout-btn">Proceed to Checkout</button>
-            </div>
+      <h1>Your Basket</h1>
+      <div class="basket-container">
+        <div class="basket-items"></div>
+        <div class="basket-summary">
+          <h2>Price Breakdown</h2>
+          <div class="breakdown-items"></div>
+          <p>Subtotal: $<span id="basket-subtotal">0.00</span></p>
+          <p>Shipping: $<span id="basket-shipping">5.00</span></p>
+          <p class="total">Total: $<span id="basket-total">0.00</span></p>
+          <button id="checkout-btn">Proceed to Checkout</button>
         </div>
+      </div>
     </main>
 
     <!-- Footer Container -->
-    <footer id="footer-container"></footer>
+    <div id="footer-container"></div>
 
-    <script src="../../Assets/js/navbar.js"></script>
-    <script src="./shopScripts/basket.js"></script>
-    <script src="../Assets/js/footer.js"></script>
-</body>
-
+    <script src="../navfoot/navbar.js"></script>
+    <script src="../shop/basket.js"></script>
+    <script src="../navfoot/footer.js"></script>
+  </body>
 </html>

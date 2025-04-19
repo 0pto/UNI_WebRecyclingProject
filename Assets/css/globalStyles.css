@@ -1,12 +1,12 @@
 body {
 	width: 100%;
-	min-height: 100vh;
+    min-height: 100vh;
     font-family: sans-serif, Helvetica Neue;
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: space-between; /*Reset default margin on body to remove whitespace */
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* this is for styling purposes remove this later or comment it out */
@@ -83,6 +83,32 @@ body {
 
 .hamburger:hover {
 	color: #e7723f; /* Orange on hover */
+}
+
+.main-content {
+	width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 40rem;
+    justify-content: space-between;
+}
+
+/* log out button */
+
+button.signOut, .next-btn {
+    display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	padding: 5px 6px;
+	border-radius: 3px;
+	min-width: 35%;
+	border: none;
+	background-color: #8da966a1;
+	color: #3d3636;
+	font-weight: bold;
+	font-size: medium;
+	cursor: pointer;
 }
 
 /* submit button styles */
@@ -195,7 +221,7 @@ a {
 	flex-direction: row;
 	justify-content: space-between;
 	margin-top: 0.2rem;
-	border: 3px;
+	border-top: 1px solid #f1fbfb;
 	width: 91%; /* added width to make it fit the footer dive Tallk to Nikola about it*/
 }
 

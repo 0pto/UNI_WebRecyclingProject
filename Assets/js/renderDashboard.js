@@ -9,6 +9,7 @@ cookiesArray.forEach(cookie => {
 	userSessionObj[newKey] = newValue;
 });
 
+//Log out and redirect to home page.
 function HandleSignOut() {
 	try {
 		document.cookie = `RecycleNowJwt =; Max-Age=-99999999; domain=127.0.0.1; path=/`
@@ -89,9 +90,16 @@ function displayDashboard() {
 				</form>
 			</div>
 		</div>
-		<!--booking details-->
-		<div class="bookings">
+		
+		<!-- Booking Details -->
+      	<div class="bookings"></div>
+
+		<!-- Tickets -->
+		<div class="tickets">
+		<h2>Tickets</h2>
+		<div id="tickets-list"></div>
 		</div>
+
 		<!--statistics-->
 		<div class="statistics">
 			<canvas id="salesPieChart" style="width:45%; max-width:600px; height:100%"></canvas>
@@ -165,8 +173,19 @@ function displayDashboard() {
 				</form>
 			</div>
 		</div>
-		<!--booking details-->
+		
+		<!-- Booking Details -->
 		<div class="bookings">
+			<h2>Recurring Bookings</h2>
+			<div id="multi-bookings"></div>
+			<h2>Single Bookings</h2>
+			<div id="single-bookings"></div>
+		</div>
+
+		<!-- Tickets/Complaints -->
+		<div class="tickets">
+			<h2>Tickets/Complaints</h2>
+			<div id="tickets-list"></div>
 		</div>
 		`
 

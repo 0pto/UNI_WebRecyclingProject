@@ -13,24 +13,26 @@
     <nav class="navbar" id="navbar-container"></nav>
 
     <!-- Page content -->
-    <div id="mainContent">
+    <div id="mainContent" class="main-content">
         <h3>What service would you like?:</h3>
 
         <!--All the services-->
-        <div class="servicesSelection">
-            <div id="selection">
-                <img id="serviceItemImg" loading="lazy" src="../Assets/Images/businessWaste.jpg" alt="profile picture"
-                    height="150px" width="150px">
-                <div class="username">
-                    <label for="busines">Please Choose a Category</label>
-                    <select name="wasteType" id="wasteType">
-                        <option value="Business Waste">Business Waste</option>
-                        <option value="Domestic Waste">Domestic Waste</option>
-                    </select>
-                </div>
-                <button onclick=submitCategory() type="button" class="submit-button">Next</button>
+        <div id="selection">
+            <img id="serviceItemImg" loading="lazy" src="../Assets/Images/businessWaste.jpg" alt="recycle">
+            <div class="options">
+                <label for="busines">Please Choose a Category</label>
+                <select name="wasteType" id="wasteType">
+                    <option value="Business Waste">Business Waste</option>
+                    <option value="Domestic Waste">Domestic Waste</option>
+                </select>
+                <button onclick=submitCategory() type="button" class="next-btn">
+                    <img loading="lazy" src="../Assets/Images/next-icon.svg" alt="logout Icon" height="30px"
+                        width="30px">
+                    <span>Next</span>
+                </button>
             </div>
         </div>
+
         <!-- This section contains a table that will display the quote after subtion -->
         <div class="displayQuote" id="quoteResults"></div>
     </div>

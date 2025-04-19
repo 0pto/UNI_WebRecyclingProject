@@ -4,18 +4,33 @@ This way, all the styles in the imported file will apply here as well.
 This improves readability, performance and code maintainance */
 @import "../Assets/css/globalStyles.css";
 
+/* navbar */
+.nav-container {
+    /* max-width: 1300px; */
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-link {
+	font-size: 1rem; /* Larger font size */
+	transition: all 0.3s ease;
+	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
+}
+
 #userDashboardContainer {
 	display: flex;
-	flex-direction: column;
-	height: 35rem;
-	padding: 2rem;
+    flex-direction: column;
+    min-height: 35rem;
+    padding: 0 2rem;
+    margin-top: 8rem;
+	width: 95%;
 }
 
 /* user details section styles */
-.profile {
-    margin: 8rem 0 6rem 0;
-}
-.profile {
+.profile,
+.statistics {
 	display: flex;
 	justify-content: space-between;
 }
@@ -25,19 +40,6 @@ This improves readability, performance and code maintainance */
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-}
-.signOut {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 2px 6px;
-	border-radius: 3px;
-	width: 45%;
-	border: none;
-	background-color: #8da966a1;
-	color: #ffffff;
-	font-weight: bold;
-	font-size: medium;
 }
 
 .username {
@@ -56,6 +58,180 @@ This improves readability, performance and code maintainance */
 	border: 2px solid #0e32337a;
 	border-radius: 100%;
 }
+
+/***** Styles for booking section *****/
+.bookings {
+	margin-top: 20px;
+  }
+  
+  .bookings h2 {
+	color: #333;
+	margin-bottom: 10px;
+  }
+  
+  .bookings table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+  }
+  
+  .bookings th,
+  .bookings td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: left;
+  }
+  
+  .bookings th {
+	background-color: #f5a623;
+	color: white;
+  }
+  
+  .bookings tr:nth-child(even) {
+	background-color: #f9f9f9;
+  }
+  
+  .bookings .edit-btn,
+  .bookings .delete-btn,
+  .bookings .cancel-btn {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: 5px;
+  }
+  
+  .bookings .edit-btn {
+	background-color: #4caf50;
+	color: white;
+  }
+  
+  .bookings .delete-btn {
+	background-color: #f44336;
+	color: white;
+  }
+  
+  .bookings .cancel-btn {
+	background-color: #ccc;
+	color: black;
+  }
+  
+  .bookings .edit-form .input-item {
+	margin-bottom: 10px;
+  }
+  
+  .bookings .edit-form .input-item label {
+	display: block;
+	margin-bottom: 5px;
+  }
+  
+  .bookings .edit-form .input-item input,
+  .bookings .edit-form .input-item select {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+  }
+  
+  .bookings .edit-form .submit-button {
+	background-color: #f5a623;
+	color: white;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  .bookings .edit-form .submit-button:hover {
+	background-color: #d69120;
+  }
+  
+/*Styles for tickets section */
+.tickets {
+	margin-top: 20px;
+  }
+  
+  .tickets h2 {
+	color: #333;
+	margin-bottom: 10px;
+  }
+  
+  .tickets table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+  }
+  
+  .tickets th,
+  .tickets td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: left;
+  }
+  
+  .tickets th {
+	background-color: #f5a623;
+	color: white;
+  }
+  
+  .tickets tr:nth-child(even) {
+	background-color: #f9f9f9;
+  }
+  
+  .tickets .edit-btn,
+  .tickets .delete-btn,
+  .tickets .cancel-btn {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: 5px;
+  }
+  
+  .tickets .edit-btn {
+	background-color: #4caf50;
+	color: white;
+  }
+  
+  .tickets .delete-btn {
+	background-color: #f44336;
+	color: white;
+  }
+  
+  .tickets .cancel-btn {
+	background-color: #ccc;
+	color: black;
+  }
+  
+  .tickets .edit-form .input-item {
+	margin-bottom: 10px;
+  }
+  
+  .tickets .edit-form .input-item label {
+	display: block;
+	margin-bottom: 5px;
+  }
+  
+  .tickets .edit-form .input-item textarea {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	min-height: 100px;
+  }
+  
+  .tickets .edit-form .submit-button {
+	background-color: #f5a623;
+	color: white;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  .tickets .edit-form .submit-button:hover {
+	background-color: #d69120;
+  }
 
 /* footer styles */
 footer {

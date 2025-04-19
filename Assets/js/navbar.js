@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     newValue = keyValueArray[1];
     userSessionObj[newKey] = newValue;
   });
+
   // Generate navbar
   const navbarContainer = document.getElementById("navbar-container");
   const shopNavbarContainer = document.getElementById("shop-navbar-container")
@@ -27,13 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <li class="nav-item">
               <a href="../dashboardUser/userDashboard.html" class="nav-link">My Dashboard</a>
             </li>
-            <li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
+            <li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas&Tips</a></li>
             <li class="nav-item">
               <a href="./Quotes/quote.html" class="nav-link">Get a quote</a>
             </li>
             <li class="nav-item"><a href="../Shop/shop.html" class="nav-link">Shop</a></li>
             <li class="nav-item">
-              <a href="/UNI_WebRecyclingProject/html/tickets.html" class="nav-link">Review/Complains</a>
+              <a href="/UNI_WebRecyclingProject/html/tickets.html" class="nav-link">Complains</a>
             </li>
           </ul>
           <button class="hamburger">☰</button>
