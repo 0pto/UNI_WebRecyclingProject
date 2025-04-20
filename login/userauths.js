@@ -170,6 +170,9 @@ async function handleLogin() {
                     generateUserCookie("userId", result.userId);
                     generateUserCookie("email", result.email);
                     generateUserCookie("type", userType);
+                    generateUserCookie("phone", result.phone);
+                    generateUserCookie("address", result.address);
+                    generateUserCookie("postcode", result.postcode);
 
                     if (userType) {
                         window.location.href = "../dashboardAdmin/adminDashboard.html";

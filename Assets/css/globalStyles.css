@@ -260,6 +260,19 @@ hr {
 	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
 }
 
+#updateDetails label,
+#updateDetails input{
+	display: block;
+	text-align: center;
+	color: #333;
+	margin-bottom: 0.5rem;
+}
+
+.success{
+	background-color: lightgreen;
+	padding: 5rem;
+}
+
 @media screen and (max-width: 850px) {
 	.sb_footer-heading h1 {
 		font-size: 44px;

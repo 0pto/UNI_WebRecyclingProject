@@ -22,6 +22,74 @@ function HandleSignOut() {
 	}
 }
 
+//create cookies for user session
+function generateUserCookie(key, value) {
+	let expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() + 29); //Set exp to 24 hours
+	let cookie = document.cookie = `${key} = ${value}; expires = ${expireDate.toGMTString()}; domain=127.0.0.1; path=/`
+	console.log(cookie);
+	return cookie;
+}
+
+function showUpdateUserDetailsForm() {
+	document.getElementById('updateDetails').style.display = "block";
+}
+
+//Display feedback message
+function displayFeebackMess(message, classValue, containerId) {
+	var span = document.createElement('span');
+	span.classList.value = `${classValue}`;
+	span.innerHTML = `<p>${message}</P>`;
+	document.getElementById(`${containerId}`).appendChild(span);
+}
+
+async function updateUserDetails(event) {
+	event.preventDefault();
+	const updateUserDetailsForm = document.getElementById("updateDetails");
+	formData = new FormData(updateUserDetailsForm);
+	formData.append("username", userSessionObj.username);
+
+	const updateUserDetailsFormData = Object.fromEntries(formData.entries());
+	//Make key values object from data entered.
+
+	console.log("update user detail form:", updateUserDetailsFormData);
+
+	//Send request
+	try {
+		const response = await fetch(
+			"http://localhost:8000/user/updateDetails",
+			{
+				method: "PUT",
+				headers: { "Content-type": "application/json" },
+				body: JSON.stringify(updateUserDetailsFormData)
+			}
+		);
+
+		const responseBody = await response.json();
+		generateUserCookie("phone", responseBody.phone);
+		generateUserCookie("address", responseBody.address);
+		generateUserCookie("postcode", responseBody.postcode);
+
+		if (!response.ok) {
+			console.error(responseBody.error)
+		}
+
+		displayFeebackMess(
+			"Details updated successfully",
+			"success",
+			"update-container"
+		)
+
+		//sleep for 2 seconds whilst displaying success message
+		await new Promise(r => setTimeout(r, 2000));
+
+		location.reload();
+
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 function displayDashboard() {
 	if (userSessionObj.RecycleNowJwt && userSessionObj.type === "true") {
 		document.getElementById("adminDashboardContainer").innerHTML = `
@@ -39,51 +107,35 @@ function displayDashboard() {
 					</button>
 				</div>
 			</div>
-			<div class="greetingsand-update">
+			<div class="greetingsand-update" id="update-container">
 				<span>Hello ${userSessionObj.username}, Welcome to your dashboard!</span>
 				<!-- button to update users details add events handlers later -->
-				<button class="submit-button" type="submit">Update My Details</button>
+				<button class="submit-button" onClick="showUpdateUserDetailsForm()" type="button">Update My Details</button>
 				<!-- Form to be dipays once the update details button is clicked -->
-				<form id="updateDetails" action="" method="post"
+				<form id="updateDetails" onSubmit="updateUserDetails(event)" method="post"
 					style="display: none; border-radius: 10px; padding: 2rem">
 					<section class="user-details" style="width: 100%">
 						<div class="input-item">
-							<label for="name">Fist Name:</label>
-							<input type="text" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
-							<label for="name">Last Name:</label>
-							<input type="text" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
 							<label for="name">Phone Number:</label>
-							<input type="text" id="name" name="user_name" />
+							<input type="text" id="phone" name="phone" value="${userSessionObj.phone}"/>
 						</div>
 						<div class="input-item">
 							<label for="name">Home/Company Address:</label>
-							<input type="text" id="name" name="user_name" />
+							<input type="text" id="address" name="address" value="${userSessionObj.address}"/>
 						</div>
 						<div class="input-item">
 							<label for="name">Postcode:</label>
-							<input type="text" id="name" name="user_name" />
+							<input type="text" id="postcode" name="postcode" value="${userSessionObj.postcode}"/>
 						</div>
 					</section>
 					<section id="usernamePassword" class="username-password" style="width: 100%">
 						<div class="input-item">
-							<label for="name">Usename:</label>
-							<input type="text" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
-							<label for="name">Email:</label>
-							<input type="email" id="name" name="user_name" />
+							<label for="name">Old Password:</label>
+							<input type="password" required id="old_password" name="old_password"/>
 						</div>
 						<div class="input-item">
 							<label for="name">New Password:</label>
-							<input type="password" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
-							<label for="name">Confirm Password:</label>
-							<input type="password" id="name" name="user_name" />
+							<input type="password" id="password" name="password"/>
 						</div>
 					</section>
 					<button type="submit" class="submit-button">Update</button>
@@ -122,51 +174,35 @@ function displayDashboard() {
 					</button>
 				</div>
 			</div>
-			<div class="greetingsand-update">
+			<div class="greetingsand-update" id="update-container">
 				<span>Hello ${userSessionObj.username}, Welcome to your dashboard!</span>
 				<!-- button to update users details add events handlers later -->
-				<button class="submit-button" type="submit">Update My Details</button>
+				<button class="submit-button" onClick="showUpdateUserDetailsForm()" type="button">Update My Details</button>
 				<!-- Form to be dipays once the update details button is clicked -->
-				<form id="updateDetails" action="" method="post"
+				<form id="updateDetails" onSubmit="updateUserDetails(event)" method="post"
 					style="display: none; border-radius: 10px; padding: 2rem">
 					<section class="user-details" style="width: 100%">
 						<div class="input-item">
-							<label for="name">Fist Name:</label>
-							<input type="text" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
-							<label for="name">Last Name:</label>
-							<input type="text" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
 							<label for="name">Phone Number:</label>
-							<input type="text" id="name" name="user_name" />
+							<input type="text" id="phone" name="phone" value="${userSessionObj.phone}"/>
 						</div>
 						<div class="input-item">
 							<label for="name">Home/Company Address:</label>
-							<input type="text" id="name" name="user_name" />
+							<input type="text" id="address" name="address" value="${userSessionObj.address}"/>
 						</div>
 						<div class="input-item">
 							<label for="name">Postcode:</label>
-							<input type="text" id="name" name="user_name" />
+							<input type="text" id="postcode" name="postcode" value="${userSessionObj.postcode}"/>
 						</div>
 					</section>
 					<section id="usernamePassword" class="username-password" style="width: 100%">
 						<div class="input-item">
-							<label for="name">Usename:</label>
-							<input type="text" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
-							<label for="name">Email:</label>
-							<input type="email" id="name" name="user_name" />
+							<label for="name">Old Password:</label>
+							<input type="password" required id="old_password" name="old_password" />
 						</div>
 						<div class="input-item">
 							<label for="name">New Password:</label>
-							<input type="password" id="name" name="user_name" />
-						</div>
-						<div class="input-item">
-							<label for="name">Confirm Password:</label>
-							<input type="password" id="name" name="user_name" />
+							<input type="password" id="password" name="password"/>
 						</div>
 					</section>
 					<button type="submit" class="submit-button">Update</button>

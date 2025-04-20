@@ -55,8 +55,9 @@ This improves readability, performance and code maintainance */
 }
 
 #profilePicture {
-	border: 2px solid #0e32337a;
-	border-radius: 100%;
+    border: 2px solid #0e32337a;
+    border-radius: 100%;
+    margin-right: 1rem;
 }
 
 /***** Styles for booking section *****/
