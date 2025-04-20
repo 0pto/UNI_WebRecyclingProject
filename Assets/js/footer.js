@@ -21,23 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const footerHTML = `<div class="sb_footer-links">
       <div class="sb_footer-links-div">
         <h4>Contact</h4>
-        <a href="/Employer">
+        <a href="#">
           <p>Phone</p>
         </a>
-        <a href="/Random">
+        <a href="#">
           <p>email</p>
         </a>
-        <a href="/Random2">
+        <a href="#">
           <p>Address</p>
         </a>
       </div>
 
       <div class="sb_footer-links-div">
         <h4>RecycleNow</h4>
-        <a href="/Random">
+        <a href="#">
           <p>About</p>
         </a>
-        <a href="/Random">
+        <a href="#">
           <p>Terms & Conditions</p>
         </a>
       </div>
@@ -64,29 +64,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const footerHTML = `<div class="sb_footer-links">
       <div class="sb_footer-links-div">
         <h4>Contact</h4>
-        <a href="/Employer">
+        <a href="#">
           <p>Phone</p>
         </a>
-        <a href="/Random">
+        <a href="#">
           <p>email</p>
         </a>
-        <a href="/Random2">
+        <a href="#">
           <p>Address</p>
         </a>
       </div>
 
       <div class="sb_footer-links-div">
         <h4>RecycleNow</h4>
-        <a href="/Random">
+        <a href="#">
           <p>About</p>
         </a>
-        <a href="/Random">
+        <a href="#">
           <p>Terms & Conditions</p>
         </a>
       </div>
 
       <div class="sb_footer-links-div">
-        <a href="./login/login.html" class="submit-button">Login</a>
+        <a href="../login/login.html" class="submit-button">Login</a>
         <h4>Social media</h4>
         <div class="socialmedia">
           <!-- social media images with lazy loading for better renderting time -->

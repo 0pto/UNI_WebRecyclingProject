@@ -1,79 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout - RecycleNow</title>
-    <link rel="stylesheet" href="../../Assets/css/globalStyles.css" />
-    <link rel="stylesheet" href="../navfoot/navbar.css" />
-    <link rel="stylesheet" href="../navfoot/footer.css" />
-    <link rel="stylesheet" href="../shop/checkout.css" />
-  </head>
-  <body>
-    <!-- Navbar Container -->
-    <div id="navbar-container"></div>
 
-    <!-- Main Content -->
-    <main>
-      <h1>Checkout</h1>
-      <div class="checkout-container">
-        <div class="order-summary">
-          <h2>Order Summary</h2>
-          <div class="summary-items"></div>
-          <p>Total: $<span id="checkout-total">0.00</span></p>
-        </div>
-        <div class="checkout-form">
-          <h2>Shipping Information</h2>
-          <div id="user-info"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - RecycleNow</title>
+  <link rel="stylesheet" href="../../Assets/css/globalStyles.css" />
+  <link rel="stylesheet" href="../navfoot/navbar.css" />
+  <link rel="stylesheet" href="../navfoot/footer.css" />
+  <link rel="stylesheet" href="../shop/checkout.css" />
+</head>
 
-          <h2>Payment Information</h2>
-          <form id="checkout-form">
-            <label for="card-number">Credit Card Number:</label>
-            <input
-              type="text"
-              id="card-number"
-              maxlength="19"
-              placeholder="1234 5678 9012 3456"
-              required
-            />
-            <label for="card-holder">Name on Card:</label>
-            <input type="text" id="card-holder" class="medium-input" required />
-            <div class="small-input-group">
-              <div>
-                <label for="exp-date">Expiration Date (MM/YY):</label>
-                <input
-                  type="text"
-                  id="exp-date"
-                  class="small-input"
-                  maxlength="5"
-                  placeholder="MM/YY"
-                  required
-                />
-              </div>
-              <div>
-                <label for="sec-code">Security Code:</label>
-                <input
-                  type="text"
-                  id="sec-code"
-                  class="small-input"
-                  maxlength="4"
-                  placeholder="123"
-                  required
-                />
-              </div>
-            </div>
-            <button type="submit">Place Order</button>
-          </form>
-        </div>
+<body>
+  <!-- Navbar Container -->
+  <nav class="navbar" id="shop-navbar-container"></nav>
+
+  <!-- Main Content -->
+  <main>
+    <h1>Checkout</h1>
+    <div class="checkout-container">
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-items"></div>
+        <p>Total: $<span id="checkout-total">0.00</span></p>
       </div>
-    </main>
+      <div class="checkout-form">
+        <h2>Shipping Information</h2>
+        <div id="user-info"></div>
 
-    <!-- Footer Container -->
-    <div id="footer-container"></div>
+        <h2>Payment Information</h2>
+        <form id="checkout-form">
+          <label for="card-number">Credit Card Number:</label>
+          <input type="text" id="card-number" maxlength="19" placeholder="1234 5678 9012 3456" required />
+          <label for="card-holder">Name on Card:</label>
+          <input type="text" id="card-holder" class="medium-input" required />
+          <div class="small-input-group">
+            <div>
+              <label for="exp-date">Expiration Date (MM/YY):</label>
+              <input type="text" id="exp-date" class="small-input" maxlength="5" placeholder="MM/YY" required />
+            </div>
+            <div>
+              <label for="sec-code">Security Code:</label>
+              <input type="text" id="sec-code" class="small-input" maxlength="4" placeholder="123" required />
+            </div>
+          </div>
+          <button type="submit">Place Order</button>
+        </form>
+      </div>
+    </div>
+  </main>
 
-    <script src="../navfoot/navbar.js"></script>
-    <script src="../shop/basket.js"></script>
-    <script src="../navfoot/footer.js"></script>
-    <script src="../shop/checkout.js"></script>
-  </body>
+  <!-- Footer Container -->
+  <footer class="sb_footer section_padding" id="footer-container"></footer>
+
+  <script src="../Assets/js/navbar.js" defer></script>
+  <script src="../shop/basket.js"></script>
+  <script src="../Assets/js/footer.js" defer></script>
+  <script src="../shop/checkout.js"></script>
+</body>
+
 </html>

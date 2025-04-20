@@ -12,104 +12,219 @@ document.addEventListener("DOMContentLoaded", () => {
     userSessionObj[newKey] = newValue;
   });
 
-  // Generate navbar
+  /* Generate navbar : links to some page are sending to home page now because the page is not done yet.*/
+
+  //Check the nav element unique id and the users session value and render the navbar accordingly. 
+  const navbarElement = document.querySelector("nav")
+  const navbarElementId = navbarElement.id;
+
   const navbarContainer = document.getElementById("navbar-container");
-  const shopNavbarContainer = document.getElementById("shop-navbar-container")
-  if (navbarContainer || shopNavbarContainer) {
-    if (userSessionObj.RecycleNowJwt && userSessionObj.type === "false") {
-      const navbarHTML = ` 
+  const HomeNavbarContainer = document.getElementById("navbar-container-home");
+
+  if (userSessionObj.RecycleNowJwt && userSessionObj.type === "false") {  //Navigation menu for non admin
+
+    if (navbarElementId.trim() === "navbar-container-home") {
+      const homeNavbarHTML = `
+      <div class="nav-container">
+          <a href="#" class="logo">RecycleNow</a>
+          <ul class="nav-menu">
+            <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">How to Recycle</a>
+            </li>
+            <li class="nav-item">
+              <a href="./dashboardUser/userDashboard.html" class="nav-link">My Dashboard</a>
+            </li>
+            <li class="nav-item"><a href="./IdeasPosts/IdeasPosts.html" class="nav-link">Ideas&Tips</a></li>
+            <li class="nav-item">
+              <a href="../Quotes/quote.html" class="nav-link">Get a quote</a>
+            </li>
+            <li class="nav-item"><a href="./Shop/shop.html" class="nav-link">Shop</a></li>
+            <li class="nav-item">
+              <a href="./Complains/tickets.html" class="nav-link">Complains</a>
+            </li>
+          </ul>
+          <button class="hamburger">☰</button>
+          </div>
+      `
+      navbarElement.innerHTML = homeNavbarHTML;
+    } else if (navbarElementId.trim() === "navbar-container") {
+      const otherNavbarHTML = ` 
+      <div class="nav-container">
+        <a href="#" class="logo">RecycleNow</a>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item">
+              <a href="#" class="nav-link">How to Recycle</a>
+          </li>
+          <li class="nav-item">
+            <a href="../dashboardUser/userDashboard.html" class="nav-link">My Dashboard</a>
+          </li>
+          <li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas&Tips</a></li>
+          <li class="nav-item">
+            <a href="../Quotes/quote.html" class="nav-link">Get a quote</a>
+          </li>
+          <li class="nav-item"><a href="../Shop/shop.html" class="nav-link">Shop</a></li>
+          <li class="nav-item">
+            <a href="../Complains/tickets.html" class="nav-link">Complains</a>
+          </li>
+        </ul>
+        <button class="hamburger">☰</button>
+        </div>`;
+      navbarElement.innerHTML = otherNavbarHTML;
+    } else if (navbarElementId.trim() === "shop-navbar-container") {
+      const shopNavbarHTML = `
         <div class="nav-container">
           <a href="#" class="logo">RecycleNow</a>
           <ul class="nav-menu">
-            <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
             <li class="nav-item">
                 <a href="#" class="nav-link">How to Recycle</a>
             </li>
             <li class="nav-item">
               <a href="../dashboardUser/userDashboard.html" class="nav-link">My Dashboard</a>
             </li>
-            <li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas&Tips</a></li>
+            <li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
             <li class="nav-item">
-              <a href="./Quotes/quote.html" class="nav-link">Get a quote</a>
+              <a href="../Quotes/quote.html" class="nav-link">Get a quote</a>
             </li>
             <li class="nav-item"><a href="../Shop/shop.html" class="nav-link">Shop</a></li>
             <li class="nav-item">
-              <a href="/UNI_WebRecyclingProject/html/tickets.html" class="nav-link">Complains</a>
+              <a href="./basket.html" class="nav-link">Basket <span id="basket-count">0</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="./checkout.html" class="nav-link">Checkout</a>
+            </li>
+            <li class="nav-item">
+              <a href="../Complains/tickets.html" class="nav-link">Complains</a>
             </li>
           </ul>
           <button class="hamburger">☰</button>
-          </div>`
-
-      const shopNavbarHTML = `
-          <div class="nav-container">
-            <a href="#" class="logo">RecycleNow</a>
-            <ul class="nav-menu">
-              <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-              <li class="nav-item">
-                  <a href="#" class="nav-link">How to Recycle</a>
-              </li>
-              <li class="nav-item">
-                <a href="../dashboardUser/userDashboard.html" class="nav-link">My Dashboard</a>
-              </li>
-              <li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
-              <li class="nav-item">
-                <a href="./Quotes/quote.html" class="nav-link">Get a quote</a>
-              </li>
-              <li class="nav-item"><a href="../Shop/shop.html" class="nav-link">Shop</a></li>
-              <li class="nav-item">
-                <a href="/UNI_WebRecyclingProject/html/shop/basket.html" class="nav-link">Basket <span id="basket-count">0</span></a>
-              </li>
-              <li class="nav-item">
-                <a href="/UNI_WebRecyclingProject/html/shop/checkout.html" class="nav-link">Checkout</a>
-              </li>
-              <li class="nav-item">
-                <a href="/UNI_WebRecyclingProject/html/tickets.html" class="nav-link">Review/Complains</a>
-              </li>
-            </ul>
-            <button class="hamburger">☰</button>
-          </div>
-        `
-      navbarContainer.innerHTML = navbarHTML;
-      shopNavbarContainer.innerHTML = shopNavbarHTML;
-    } else if (userSessionObj.RecycleNowJwt && userSessionObj.type === "true") {
-      const navbarHTML = `
-         <div class="nav-container">
-            <a href="#" class="logo">RecycleNow</a>
-            <ul class="nav-menu">
-              <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-              <li class="nav-item">
-                  <a href="#" class="nav-link">How to Recycle</a>
-              </li>
-              <li class="nav-item">
-                <a href="../dashboardAdmin/adminDashboard.html" class="nav-link">My Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a>
-              </li>
-            </ul>
-            <button class="hamburger">☰</button>
         </div>
-      `
-      navbarContainer.innerHTML = navbarHTML;
-    } else {
-      const navbarHTML = `
-        <div class="nav-container">
-            <a href="/UNI_WebRecyclingProject/html/index.html" class="logo">RecycleNow</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                <li class="nav-item">
-                  <a href="./Quotes/quote.html" class="nav-link">Get a quote</a>
-                </li>
-            </ul>
-            <button class="hamburger">☰</button>
-        </div>
-        
       `;
-      navbarContainer.innerHTML = navbarHTML;
+      navbarElement.innerHTML = shopNavbarHTML;
     }
 
-  }
+  } else if (userSessionObj.RecycleNowJwt && userSessionObj.type === "true") { //Navigation menu for admin
+    if (navbarElementId.trim() === "navbar-container-home") {
+      const homeNavbarHTML = `
+      <div class="nav-container">
+        <a href="#" class="logo">RecycleNow</a>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item">
+              <a href="#" class="nav-link">How to Recycle</a>
+          </li>
+          <li class="nav-item">
+            <a href="./dashboardAdmin/adminDashboard.html" class="nav-link">My Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a href="./IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a>
+          </li>
+        </ul>
+        <button class="hamburger">☰</button>
+    </div>
+  `;
+      navbarElement.innerHTML = homeNavbarHTML;
+    } else if (navbarElementId.trim() === "navbar-container") {
+      const otherNavbarHTML = `
+    <div class="nav-container">
+          <a href="#" class="logo">RecycleNow</a>
+          <ul class="nav-menu">
+            <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">How to Recycle</a>
+            </li>
+            <li class="nav-item">
+              <a href="../dashboardAdmin/adminDashboard.html" class="nav-link">My Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a>
+            </li>
+          </ul>
+          <button class="hamburger">☰</button>
+      </div>
+    `;
+      navbarElement.innerHTML = otherNavbarHTML;
+    } else {
+      const shopNavbarHTML = `
+         
+      `;
+      navbarElement.innerHTML = shopNavbarHTML;
+    }
 
+  } else {
+
+    if (navbarElementId.trim() === "navbar-container-home") {
+      const homeNavbarHTML = `
+        <div class="nav-container">
+              <a href="/UNI_WebRecyclingProject/html/index.html" class="logo">RecycleNow</a>
+              <ul class="nav-menu">
+                  <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./Shop/shop.html" class="nav-link">Shop</a></li>
+                  <li class="nav-item">
+                    <a href="../Quotes/quote.html" class="nav-link">Get a quote</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">How to Recycle</a>
+                  </li>
+              </ul>
+              <button class="hamburger">☰</button>
+          </div> 
+        `;
+      navbarElement.innerHTML = homeNavbarHTML;
+    } else if (navbarElementId.trim() === "navbar-container") {
+      const otherNavbarHTML = ` 
+        <div class="nav-container">
+          <a href="/UNI_WebRecyclingProject/html/index.html" class="logo">RecycleNow</a>
+          <ul class="nav-menu">
+              <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../Shop/shop.html" class="nav-link">Shop</a></li>
+              <li class="nav-item"><a href="../Quotes/quote.html" class="nav-link">Get a quote</a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">How to Recycle</a>
+              </li>
+          </ul>
+          <button class="hamburger">☰</button>
+        </div> 
+      `;
+      navbarElement.innerHTML = otherNavbarHTML;
+    } else if (navbarElementId.trim() === "shop-navbar-container") {
+      const shopNavbarHTML = `
+        <div class="nav-container">
+          <a href="#" class="logo">RecycleNow</a>
+          <ul class="nav-menu">
+            <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">How to Recycle</a>
+            </li>
+            <li class="nav-item">
+              <a href="../dashboardUser/userDashboard.html" class="nav-link">My Dashboard</a>
+            </li>
+            <li class="nav-item"><a href="../IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
+            <li class="nav-item">
+              <a href="../Quotes/quote.html" class="nav-link">Get a quote</a>
+            </li>
+            <li class="nav-item"><a href="../Shop/shop.html" class="nav-link">Shop</a></li>
+            <li class="nav-item">
+              <a href="./basket.html" class="nav-link">Basket <span id="basket-count">0</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="./checkout.html" class="nav-link">Checkout</a>
+            </li>
+            <li class="nav-item">
+              <a href="../Complains/tickets.html" class="nav-link">Complains</a>
+            </li>
+          </ul>
+          <button class="hamburger">☰</button>
+        </div>
+      `;
+      navbarElement.innerHTML = shopNavbarHTML;
+    }
+
+    HomeNavbarContainer.innerHTML = homeNavbarHTML;
+    navbarContainer.innerHTML = otherNavbarHTML;
+  }
 
   // Hamburger menu toggle
   const hamburger = document.querySelector(".hamburger");

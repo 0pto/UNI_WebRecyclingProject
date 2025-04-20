@@ -1,3 +1,7 @@
+body{
+  margin-top: 5rem;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -58,4 +62,10 @@
 
 .product-card button:hover {
   background-color: #e68a00;
+}
+
+.nav-link {
+	font-size: 1rem; /* Larger font size */
+	transition: all 0.3s ease;
+	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
 }

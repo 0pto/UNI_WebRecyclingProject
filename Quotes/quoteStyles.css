@@ -9,13 +9,21 @@ This improves readability, performance and code maintainance */
 	margin: 7rem 0 2rem 0px;
 }
 
+.main-content {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 40rem;
+    justify-content: default;
+}
+
 #selection {
     width: 80%;
     min-height: 30rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
-	box-shadow: -1px 1px 5px 0px rgb(0 0 0 / 9%);
 }
 
 #serviceItemImg {
