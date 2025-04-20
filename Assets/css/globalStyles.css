@@ -254,6 +254,12 @@ hr {
 	font-weight: 600;
 }
 
+.nav-user .nav-link {
+	font-size: 1rem; /* Larger font size */
+	transition: all 0.3s ease;
+	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
+}
+
 @media screen and (max-width: 850px) {
 	.sb_footer-heading h1 {
 		font-size: 44px;

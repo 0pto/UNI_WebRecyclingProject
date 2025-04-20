@@ -36,6 +36,7 @@ let barColors = [
 	"#434f91"
 ];
 
+//Keys for the refuse amount recycled pie chart
 let salesData = [
 	"House Furnitures",
 	"Electricals",
@@ -46,7 +47,16 @@ let salesData = [
 /* Total sales array in pounds for each category per year 
 ( this is just some dummy data; to be replaced by fetched data later)*/
 let salesDataValue = [4678, 106788, 5798, 2778, 40778];
-let sectionsColors = ["#18db55", "#f4a845", "#145d9f", "#fdf9b4", "#c1ff72"];
+let sectionsColors = [
+	"#76db18",
+	"#18db55",
+	"#d9b382",
+	"#f4a845",
+	"#68a8b0",
+	"#145d9f",
+	"#b8c288",
+	"#fdf9b4"
+];
 
 
 // Generate pie chart
@@ -110,8 +120,11 @@ async function populateCharts() {
 				let bookingsList = Object.values(result.bookingTotals[0])
 				bookingsList = bookingsList.slice(2);
 				console.log(bookingsList);
+				let quantityRecycledList = Object.values(result.salesTotals[0])
+				quantityRecycledList = quantityRecycledList;
+				console.log(quantityRecycledList)
 				// if (service.monthlyPrice && service.monthlyPrice !== 0) {
-				generatePieChart(salesData, salesDataValue, sectionsColors);
+				generatePieChart(salesData, quantityRecycledList, sectionsColors);
 				generateBarGraph(allBookingCategory, bookingsList, barColors);
 				// } else {
 

@@ -10,7 +10,9 @@ This improves readability, performance and code maintainance */
     min-height: 35rem;
     padding: 7rem 2rem;
     align-items: center;
+    width: 95%;
 }
+
 /* share post styles */
 #makeAPostContainer {
 	display: flex;
@@ -41,6 +43,7 @@ This improves readability, performance and code maintainance */
     margin-top: 2rem;
     flex-direction: column;
     align-items: center;
+    width: 95%;
 }
 .postItem {
     min-height: 10rem;
@@ -77,5 +80,11 @@ This improves readability, performance and code maintainance */
 	width: 13%;
     border-radius: 8px;
 	background-color: #01e478;
+}
+
+.nav-link {
+	font-size: 1rem; /* Larger font size */
+	transition: all 0.3s ease;
+	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
 }
 /* media queries to make the page responsive */

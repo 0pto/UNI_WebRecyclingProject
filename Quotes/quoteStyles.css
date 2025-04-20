@@ -54,6 +54,12 @@ select#wasteType {
     font-size: 1.25rem;
 }
 
+.nav-link {
+	font-size: 1rem; /* Larger font size */
+	transition: all 0.3s ease;
+	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
+}
+
 /* media queries to make the page responsive */
 @media only screen and (max-width: 299px) {
    

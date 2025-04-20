@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (navbarElementId.trim() === "navbar-container-home") {
       const homeNavbarHTML = `
-      <div class="nav-container">
+      <div class="nav-container nav-user">
           <a href="#" class="logo">RecycleNow</a>
           <ul class="nav-menu">
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
