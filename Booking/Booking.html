@@ -1,0 +1,38 @@
+<html style="background-color: #cfd3da;">
+    <head>
+        <link rel="stylesheet" href="Booking.css"></link>
+    </head>
+    <body>
+        <form id="booking-form" action="" method="post">
+            <span class="textbox">
+                <h1 style="text-align: center;">Single Booking Form</h1>
+                <label for="Date">Date</label><br>
+                <input type="date" id="Date"><br>
+                <label for="ID">Person Name</label><br>
+                <input style="width: 50%; height: 5%;" type="text" id="Name"><br>
+                <label for="Address">Address</label><br>
+                <input style="width: 50%; height: 5%;" type="text" id="Name"><br>
+                <label for="Type">Item Type</label><br>
+                <select id="Type" name="Item Type">
+                    <option value="">----</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="autoparts">Auto Parts</option>
+                    <option value="buildingmaterials">Building Materials</option>
+                    <option value="HouseFurniture">House Furniture</option>
+                    <option value="Plastics">Plastics</option>
+                    <option value="Glass">Glass</option>
+                    <option value="Paper">Paper</option>
+                </select><br>
+                <label for="Price">Price</label><br>
+                £<textarea disabled style="width: 20%; height: 5%;"></textarea><br>
+            
+
+                <button type="submit" formmethod="post">Submit</button>
+                <div style="text-align: right;">
+                    <a href="./MultiBooking.html">Create a single booking here.</a>
+                </div>
+            </span>
+        </form>
+    </body>
+</html>

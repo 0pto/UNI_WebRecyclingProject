@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </li>
             <li class="nav-item"><a href="./Shop/shop.html" class="nav-link">Shop</a></li>
             <li class="nav-item">
-              <a href="./Complains/tickets.html" class="nav-link">Complains</a>
+              <a href="./Complaints/complaints.html" class="nav-link">Complaints</a>
             </li>
           </ul>
           <button class="hamburger">☰</button>
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </li>
           <li class="nav-item"><a href="../Shop/shop.html" class="nav-link">Shop</a></li>
           <li class="nav-item">
-            <a href="../Complains/tickets.html" class="nav-link">Complains</a>
+            <a href="../Complaints/complaints.html" class="nav-link">Complaints</a>
           </li>
         </ul>
         <button class="hamburger">☰</button>
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <a href="./checkout.html" class="nav-link">Checkout</a>
             </li>
             <li class="nav-item">
-              <a href="../Complains/tickets.html" class="nav-link">Complains</a>
+              <a href="../Complaints/complaints.html" class="nav-link">Complaints</a>
             </li>
           </ul>
           <button class="hamburger">☰</button>
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <a href="./checkout.html" class="nav-link">Checkout</a>
             </li>
             <li class="nav-item">
-              <a href="../Complains/tickets.html" class="nav-link">Complains</a>
+              <a href="../Complaints/complaints.html" class="nav-link">Complaints</a>
             </li>
           </ul>
           <button class="hamburger">☰</button>

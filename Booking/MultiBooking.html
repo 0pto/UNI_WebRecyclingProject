@@ -1,0 +1,58 @@
+<html style="background-color: #cfd3da;">
+    <head>
+        <link rel="stylesheet" href="MultiBooking.css"></link>
+    </head>
+    <body>
+        <form id="recbooking-form" action="" method="post">
+            <span class="textbox">
+                <h1 style="text-align: center;">Reoccuring Booking Form</h1>
+                <label for="StartDate">Start Date</label><br>
+                <input type="date" id="StartDate"><br>
+                <label for="EndDate">End Date</label><br>
+                <input type="date" id="EndDate"><br>
+                <label for="CollectDay">Collection Day</label><br>
+                <select id="BinSize" name="Bin Size">
+                    <option value="">----</option>
+                    <option value="Mon">Monday</option>
+                    <option value="Tue">Tuesday</option>
+                    <option value="Wed">Wednesday</option>
+                    <option value="Thu">Thursday</option>
+                    <option value="Fri">Friday</option>
+                    <option value="Sat">Saturday</option>
+                    <option value="Sun">Sunday</option>
+                </select><br>
+                <label for="ID">Person Name</label><br>
+                <input style="width: 50%; height: 5%;" type="text" id="Name"><br>
+                <label for="Address">Address</label><br>
+                <input style="width: 50%; height: 5%;" type="text" id="Name"><br>
+                <label for="Type">Item Type</label><br>
+                <select id="Type" name="Item Type">
+                    <option value="">----</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="autoparts">Auto Parts</option>
+                    <option value="buildingmaterials">Building Materials</option>
+                    <option value="HouseFurniture">House Furniture</option>
+                    <option value="Plastics">Plastics</option>
+                    <option value="Glass">Glass</option>
+                    <option value="Paper">Paper</option>
+                </select><br>
+                <label for="BinSize">Bin Size</label><br>
+                <select id="BinSize" name="Bin Size">
+                    <option value="">----</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                </select><br>
+                <label for="Price">Price</label><br>
+                £<textarea disabled style="width: 20%; height: 5%;"></textarea><br>
+
+                <button type="submit" formmethod="post">Submit</button>
+                <div style="text-align: right;">
+                    <a href="./Booking.html">Create a single booking here.</a>
+                </div>
+            </span>
+
+        </form>       
+    </body>
+</html>
