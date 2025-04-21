@@ -2,33 +2,35 @@ import { DataTypes } from "sequelize";
 import sequelizeConnector from "../database/dbConnection.js";
 
 // Single-Bookings Table
-export const SingleBooking = sequelizeConnector.define("singleBooking", {
-  singlebookingid: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+export const SingleBooking = sequelizeConnector.define(
+  "singleBooking",
+  {
+    singlebookingid: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    date: {
+      type: DataTypes.STRING(40),
+      allowNull: true,
+    },
+    userid: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    itemtype: {
+      type: DataTypes.STRING(30),
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
   },
-  date: {
-    type: DataTypes.STRING(20),
-    allowNull: true,
-  },
-  userid: {
-    type: DataTypes.STRING(10),
-    allowNull: true,
-  },
-  address: {
-    type: DataTypes.STRING(45),
-    allowNull: true,
-  },
-  itemtype: {
-    type: DataTypes.STRING(30),
-    allowNull: true,
-  },
-  price: {
-    type: DataTypes.FLOAT,
-    allowNull: true,
-  },
-},
   {
     tableName: "singleBookings",
     timestamps: false,
