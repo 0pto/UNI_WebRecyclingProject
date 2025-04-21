@@ -1,71 +1,90 @@
-body{
-  margin-top: 5rem;
+@import "../Assets/css/globalStyles.css";
+
+#mainContent {
+  margin: 7rem 0 2rem 0;
 }
 
-.product-grid {
+.main-content {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 40rem;
+}
+
+#selection {
+  width: 80%;
+  min-height: 30rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(1, 1fr); /* 1 column by default */
+  gap: 1rem;
+  justify-content: space-around;
 }
 
 .product-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  text-align: center;
-  background-color: #fff;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
-.product-card img {
-  max-width: 100%;
-  height: 150px; /* Fixed height for consistency */
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-img {
+  height: 15rem;
+  width: auto;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
-.product-card h3 {
-  font-size: 1.2em;
-  margin: 10px 0;
-}
-
-.product-card .rating {
-  color: #ff9900;
-  font-size: 1em;
-  margin: 5px 0;
-}
-
-.product-card .description {
-  color: #555;
-  font-size: 0.9em;
-  margin: 5px 0;
-  flex-grow: 1;
-}
-
-.product-card .price {
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.product-card button {
-  background-color: #ff9900;
+.submit-button {
+  background-color: #01e478;
   color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
   border: none;
-  padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
+  font-size: 1rem;
 }
 
-.product-card button:hover {
-  background-color: #e68a00;
+.submit-button:hover {
+  background-color: #ff914f;
 }
 
-.nav-link {
-	font-size: 1rem; /* Larger font size */
-	transition: all 0.3s ease;
-	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
+/* Media queries for responsive grid layout */
+@media only screen and (max-width: 299px) {
+  #selection {
+    width: 95%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+  #selection {
+    width: 90%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 991px) {
+  #selection {
+    width: 85%;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  #selection {
+    width: 80%;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #selection {
+    width: 80%;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
 }

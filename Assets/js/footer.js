@@ -1,10 +1,10 @@
-// Conditionally render footer content 
+// Conditionally render footer content
 document.addEventListener("DOMContentLoaded", () => {
   // get cookies and save user's session "userSessionObj"
   const allCookies = document.cookie;
   let userSessionObj = {};
   cookiesArray = allCookies.split(";");
-  cookiesArray.forEach(cookie => {
+  cookiesArray.forEach((cookie) => {
     keyValueArray = cookie.split("=");
     newKey = keyValueArray[0].trim();
     newValue = keyValueArray[1];
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <div class="sb_footer-links-div">
-        <a href="../login/login.html" class="submit-button">Login</a>
+       <a href="/UNI_WebRecyclingProject/login/login.html" class="submit-button">Login</a>
         <h4>Social media</h4>
         <div class="socialmedia">
           <!-- social media images with lazy loading for better renderting time -->
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="sb_footer-copyright">
         <p>© ${new Date().getFullYear()} RecycleNow. All rights reserved.</p>
       </div>
-    </div>  `
+    </div>  `;
     footerContainer.innerHTML = footerHTML;
   }
 });

@@ -1,112 +1,159 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const BACKEND_URL = "http://localhost:3000";
-  const summaryItems = document.querySelector(".summary-items");
-  const checkoutTotal = document.getElementById("checkout-total");
-  const checkoutForm = document.getElementById("checkout-form");
-  const userInfoContainer = document.getElementById("user-info");
+async function loadCheckout() {
+  const basket = JSON.parse(localStorage.getItem("basket")) || [];
+  const priceBreakdownContainer = document.getElementById("price-breakdown");
+  let total = 0;
 
-  const userId = localStorage.getItem("userId");
-  if (!userId) {
-    window.location.href = "../login/login.html";
+  // Populate user details from cookies
+  const allCookies = document.cookie;
+  let userSessionObj = {};
+  cookiesArray = allCookies.split(";");
+  cookiesArray.forEach((cookie) => {
+    keyValueArray = cookie.split("=");
+    newKey = keyValueArray[0].trim();
+    newValue = keyValueArray[1];
+    userSessionObj[newKey] = newValue;
+  });
+
+  if (!userSessionObj.RecycleNowJwt) {
+    alert("Please log in to proceed.");
+    window.location.href = "/UNI_WebRecyclingProject/Login/login.html";
     return;
   }
 
+  // Fetch user details
+  let user = {};
   try {
-    const userResponse = await fetch(`${BACKEND_URL}/api/users/${userId}`);
-    if (!userResponse.ok) throw new Error("Failed to fetch user data");
-    const userData = await userResponse.json();
-
-    userInfoContainer.innerHTML = `
-      <p><strong>Name:</strong> ${userData.first_name} ${userData.surname}</p>
-      <p><strong>Address:</strong> ${userData.street} ${userData.house_no}, ${userData.town}, ${userData.city}, ${userData.county}</p>
-      <p><strong>Email:</strong> ${userData.email}</p>
-    `;
+    const response = await fetch(
+      `http://localhost:8000/user/getUser/${userSessionObj.userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch user: " + response.statusText);
+    }
+    user = await response.json();
   } catch (error) {
-    console.error("Error loading user info:", error);
+    console.error("Error fetching user:", error);
+    alert("Failed to load user details.");
+    return;
   }
 
+  document.getElementById("first-name").value = user.first_name || "";
+  document.getElementById("surname").value = user.surname || "";
+  document.getElementById("address").value = user.address || "";
+  document.getElementById("postcode").value = user.postcode || "";
+  document.getElementById("phone").value = user.phone || "";
+
+  // Display price breakdown
+  priceBreakdownContainer.innerHTML = `
+      <h3 class="text-lg font-semibold mb-2">Order Summary</h3>
+      ${basket
+        .map(
+          (item) => `
+          <div class="flex justify-between mb-1">
+              <span>${item.name} x ${item.quantity}</span>
+              <span>£${(item.price * item.quantity).toFixed(2)}</span>
+          </div>
+      `
+        )
+        .join("")}
+      <div class="flex justify-between font-bold mt-2 pt-2 border-t">
+          <span>Total</span>
+          <span>£${basket
+            .reduce((sum, item) => sum + item.price * item.quantity, 0)
+            .toFixed(2)}</span>
+      </div>
+  `;
+}
+
+async function placeOrder() {
   const basket = JSON.parse(localStorage.getItem("basket")) || [];
-  let total = 0;
-  basket.forEach((item) => {
-    const itemTotal = item.price * item.quantity;
-    total += itemTotal;
-    const summaryItem = document.createElement("div");
-    summaryItem.classList.add("summary-item");
-    summaryItem.innerHTML = `
-      <span>${item.name} (x${item.quantity})</span>
-      <span>$${itemTotal.toFixed(2)}</span>
-    `;
-    summaryItems.appendChild(summaryItem);
+  if (basket.length === 0) {
+    alert("Your basket is empty.");
+    return;
+  }
+
+  // Validate shipping details
+  const address = document.getElementById("address").value.trim();
+  const postcode = document.getElementById("postcode").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  if (!address || !postcode || !phone) {
+    alert("Please fill in all shipping details.");
+    return;
+  }
+
+  // Validate bank details
+  const cardNumber = document.getElementById("card-number").value.trim();
+  const expiryDate = document.getElementById("expiry-date").value.trim();
+  const cvv = document.getElementById("cvv").value.trim();
+  if (!cardNumber || !expiryDate || !cvv) {
+    alert("Please fill in all bank details.");
+    return;
+  }
+
+  // Basic format validation
+  const cardNumberRegex = /^\d{16}$/;
+  const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+  const cvvRegex = /^\d{3}$/;
+  if (!cardNumberRegex.test(cardNumber.replace(/\s/g, ""))) {
+    alert("Please enter a valid 16-digit card number.");
+    return;
+  }
+  if (!expiryDateRegex.test(expiryDate)) {
+    alert("Please enter a valid expiry date in MM/YY format.");
+    return;
+  }
+  if (!cvvRegex.test(cvv)) {
+    alert("Please enter a valid 3-digit CVV.");
+    return;
+  }
+
+  const allCookies = document.cookie;
+  let userSessionObj = {};
+  cookiesArray = allCookies.split(";");
+  cookiesArray.forEach((cookie) => {
+    keyValueArray = cookie.split("=");
+    newKey = keyValueArray[0].trim();
+    newValue = keyValueArray[1];
+    userSessionObj[newKey] = newValue;
   });
-  checkoutTotal.textContent = (total + 5.0).toFixed(2);
 
-  // Format input helpers
-  const cardNumberInput = document.getElementById("card-number");
-  const expDateInput = document.getElementById("exp-date");
+  const userId = userSessionObj.userId;
+  const totalAmount = basket
+    .reduce((sum, item) => sum + item.price * item.quantity, 0)
+    .toFixed(2);
+  const orderData = {
+    userID: userId,
+    totalAmount: totalAmount,
+    status: "Pending",
+    createdAt: new Date().toISOString().split("T")[0],
+    items: basket,
+  };
 
-  // Format card number as 1234 5678 9012 3456
-  cardNumberInput.addEventListener("input", (e) => {
-    let value = e.target.value.replace(/\D/g, ""); // Remove non-digits
-    value = value.slice(0, 16); // Limit to 16 digits
-    e.target.value = value.replace(/(\d{4})/g, "$1 ").trim();
-  });
-
-  // Format expiration date as MM/YY
-  expDateInput.addEventListener("input", (e) => {
-    let value = e.target.value.replace(/\D/g, ""); // Remove non-digits
-    value = value.slice(0, 4); // Limit to 4 digits
-    if (value.length > 2) {
-      e.target.value = `${value.slice(0, 2)}/${value.slice(2)}`;
+  try {
+    const response = await fetch("http://localhost:8000/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
+    const result = await response.json();
+    if (response.ok) {
+      alert("Order placed successfully!");
+      localStorage.removeItem("basket");
+      window.location.href = "/UNI_WebRecyclingProject/Shop/shop.html";
     } else {
-      e.target.value = value;
+      alert("Failed to place order: " + result.error);
     }
-  });
+  } catch (error) {
+    console.error("Error placing order:", error);
+    alert("Failed to place order. Please try again.");
+  }
+}
 
-  checkoutForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const cardNumber = document
-      .getElementById("card-number")
-      .value.replace(/\s/g, "");
-    const secCode = document.getElementById("sec-code").value;
-    const expDate = document.getElementById("exp-date").value;
-    const cardHolder = document.getElementById("card-holder").value;
-
-    // Validate payment information only
-    const isCardNumberValid = /^\d{16}$/.test(cardNumber);
-    const isSecCodeValid = /^\d{3,4}$/.test(secCode);
-    const isExpDateValid = /^(0[1-9]|1[0-2])\/\d{2}$/.test(expDate);
-    const isCardHolderValid = cardHolder.trim().length > 0;
-
-    if (
-      isCardNumberValid &&
-      isSecCodeValid &&
-      isExpDateValid &&
-      isCardHolderValid
-    ) {
-      const items = basket.map((item) => ({
-        stock_id: item.id,
-        quantity: item.quantity,
-      }));
-      try {
-        const response = await fetch(`${BACKEND_URL}/api/orders`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ user_id: parseInt(userId), items }),
-        });
-        if (!response.ok) throw new Error("Failed to place order");
-        localStorage.removeItem("basket");
-        window.location.href = "../index.html";
-      } catch (error) {
-        console.error("Error placing order:", error);
-      }
-    } else {
-      console.log(
-        "Validation failed:\n" +
-          (!isCardNumberValid ? "- Card number must be 16 digits\n" : "") +
-          (!isSecCodeValid ? "- Security code must be 3 or 4 digits\n" : "") +
-          (!isExpDateValid ? "- Expiration date must be MM/YY\n" : "") +
-          (!isCardHolderValid ? "- Name on card is required\n" : "")
-      );
-    }
-  });
-});
+document.addEventListener("DOMContentLoaded", loadCheckout);

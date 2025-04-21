@@ -1,86 +1,72 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  // Define the backend URL for API requests and images
-  const BACKEND_URL = "http://localhost:3000";
-
-  console.log("DOM loaded, fetching products...");
-  const productList = document.getElementById("product-list");
-  if (!productList) {
-    console.error("Element with ID 'product-list' not found!");
-    return;
-  }
-
+async function fetchProducts() {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/stock`);
-    console.log("Fetch response status:", response.status);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const products = await response.json();
-    console.log("Fetched products:", products);
-
-    if (products.length === 0) {
-      productList.innerHTML = "<p>No products available.</p>";
-      return;
-    }
-
-    products.forEach((product, index) => {
-      console.log(`Rendering product ${index + 1}:`, product);
-      const productCard = document.createElement("div");
-      productCard.classList.add("product-card");
-      const imageUrl = product.image_url
-        ? `${BACKEND_URL}${product.image_url}`
-        : "https://via.placeholder.com/150?text=Product+Image";
-      productCard.innerHTML = `
-        <img src="${imageUrl}" alt="${product.name}" />
-        <h3>${product.name}</h3>
-        <p>${product.description || "No description available."}</p>
-        <p>Price: $${product.price.toFixed(2)}</p>
-        <p>Stock: ${product.stock_quantity}</p>
-        <button onclick="addToBasket(${product.id}, '${product.name}', ${
-        product.price
-      }, '${imageUrl}', '${product.description || ""}')">Add to Basket</button>
-      `;
-      productList.appendChild(productCard);
+    const response = await fetch("http://localhost:8000/api/products", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
     });
-    console.log("All products rendered.");
+    const products = await response.json();
+    const selectionContainer = document.getElementById("selection");
+    selectionContainer.innerHTML = "";
+    products.forEach((product) => {
+      const imageUrl = `http://localhost:8000${product.ImageURL}`;
+      selectionContainer.innerHTML += `
+              <div class="product-card">
+                  <img src="${imageUrl}" alt="${
+        product.productName
+      }" class="product-img">
+                  <h3 class="text-lg font-semibold mt-2">${
+                    product.productName
+                  }</h3>
+                  <p class="text-gray-600">${product.description}</p>
+                  <p class="text-green-600 font-bold mt-2">£${product.price.toFixed(
+                    2
+                  )}</p>
+                  <p class="text-gray-500">In Stock: ${
+                    product.stockQuantity
+                  }</p>
+                  <button class="submit-button mt-4" onclick="addToBasket(${
+                    product.id
+                  }, '${product.productName}', ${
+        product.price
+      })">Add to Basket</button>
+              </div>
+          `;
+    });
   } catch (error) {
     console.error("Error fetching products:", error);
-    productList.innerHTML =
-      "<p>Error loading products. Please try again later.</p>";
+    alert("Failed to load products. Please try again later.");
   }
-});
+}
 
-// Add to basket function
-function addToBasket(id, name, price, image_url, description) {
+function addToBasket(productId, productName, price) {
   let basket = JSON.parse(localStorage.getItem("basket")) || [];
-  const existingItem = basket.find((item) => item.id === id);
-
+  const existingItem = basket.find((item) => item.id === productId);
   if (existingItem) {
     existingItem.quantity += 1;
   } else {
     basket.push({
-      id,
-      name,
-      price,
-      image: image_url,
-      description,
+      id: productId,
+      name: productName,
+      price: price,
       quantity: 1,
     });
   }
-
   localStorage.setItem("basket", JSON.stringify(basket));
   updateBasketCount();
-  // Removed alert(`${name} added to basket!`);
 }
 
-// Update basket count in the navbar
 function updateBasketCount() {
   const basket = JSON.parse(localStorage.getItem("basket")) || [];
-  const basketCount = document.getElementById("basket-count");
-  if (basketCount) {
-    basketCount.textContent = basket.reduce(
-      (sum, item) => sum + item.quantity,
-      0
-    );
+  const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
+  const basketCountElement = document.getElementById("basket-count");
+  if (basketCountElement) {
+    basketCountElement.textContent = totalItems;
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetchProducts();
+  updateBasketCount();
+});

@@ -1,42 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basket - RecycleNow</title>
-  <link rel="stylesheet" href="../../Assets/css/globalStyles.css" />
-  <link rel="stylesheet" href="../navfoot/navbar.css" />
-  <link rel="stylesheet" href="../navfoot/footer.css" />
-  <link rel="stylesheet" href="../shop/basket.css" />
-</head>
-
-<body>
-  <!-- Navbar Container -->
-  <nav class="navbar" id="shop-navbar-container"></nav>
-
-  <!-- Main Content -->
-  <main>
-    <h1>Your Basket</h1>
-    <div class="basket-container">
-      <div class="basket-items"></div>
-      <div class="basket-summary">
-        <h2>Price Breakdown</h2>
-        <div class="breakdown-items"></div>
-        <p>Subtotal: $<span id="basket-subtotal">0.00</span></p>
-        <p>Shipping: $<span id="basket-shipping">5.00</span></p>
-        <p class="total">Total: $<span id="basket-total">0.00</span></p>
-        <button id="checkout-btn">Proceed to Checkout</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basket</title>
+    <link rel="stylesheet" href="./basket.css" />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar-container"></nav>
+    <div id="mainContent" class="main-content">
+      <h3>Your Basket</h3>
+      <div class="basket-container">
+        <div id="selection"></div>
+        <div id="price-breakdown"></div>
+      </div>
+      <div class="flex justify-end mt-6">
+        <button class="submit-button" onclick="proceedToCheckout()">
+          Proceed to Checkout
+        </button>
       </div>
     </div>
-  </main>
-
-  <!-- Footer Container -->
-  <footer class="sb_footer section_padding" id="footer-container"></footer>
-
-  <script src="../Assets/js/navbar.js" defer></script>
-  <script src="../shop/basket.js"></script>
-  <script src="../Assets/js/footer.js" defer></script>
-</body>
-
+    <footer class="sb_footer section_padding" id="footer-container"></footer>
+    <script src="../Assets/js/navbar.js" defer></script>
+    <script src="./basket.js" defer></script>
+    <script src="../Assets/js/footer.js" defer></script>
+  </body>
 </html>

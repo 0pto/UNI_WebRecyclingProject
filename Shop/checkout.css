@@ -1,83 +1,68 @@
-.checkout-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  gap: 20px;
+@import "../Assets/css/globalStyles.css";
+
+#mainContent {
+  margin: 7rem 0 2rem 0;
 }
 
-.order-summary,
-.checkout-form {
-  flex: 1;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-}
-
-.summary-items {
-  margin-bottom: 20px;
-}
-
-.summary-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.checkout-form h2 {
-  font-size: 1.5em;
-  margin: 20px 0 15px;
-}
-
-.checkout-form form {
+.main-content {
+  width: 95%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  min-height: 40rem;
 }
 
-.checkout-form label {
-  font-weight: bold;
-}
-
-.checkout-form input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.checkout-form .medium-input {
-  width: 70%; /* Smaller than full-width fields like card number */
-}
-
-.checkout-form .small-input-group {
+.checkout-container {
   display: flex;
-  gap: 20px;
+  flex-direction: row;
+  width: 100%;
+  gap: 2rem;
 }
 
-.checkout-form .small-input-group div {
+#price-breakdown {
   flex: 1;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-form .small-input {
-  width: 100%; /* Fits within the flex container */
+.shipping-bank-details {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.checkout-form input:invalid {
-  border-color: #ff4444;
-}
-
-.checkout-form button {
-  background-color: #ff9900;
+.submit-button {
+  background-color: #01e478;
   color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
   border: none;
-  padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
-  margin-top: 15px;
+  font-size: 1rem;
+  transition: transform 0.2s;
 }
 
-.checkout-form button:hover {
-  background-color: #e68a00;
+.submit-button:hover {
+  background-color: #ff914f;
+  transform: scale(1.02);
+}
+
+input:focus {
+  outline: none;
+  border-color: #01e478;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 991px) {
+  .checkout-container {
+    flex-direction: column;
+  }
+  #price-breakdown,
+  .shipping-bank-details {
+    width: 100%;
+  }
 }

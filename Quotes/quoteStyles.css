@@ -6,73 +6,62 @@ This improves readability, performance and code maintainance */
 
 /* services section styles */
 #mainContent {
-	margin: 7rem 0 2rem 0px;
+  margin: 7rem 0 2rem 0px;
 }
 
 .main-content {
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 40rem;
-    justify-content: default;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 40rem;
+  justify-content: default;
 }
 
 #selection {
-    width: 80%;
-    min-height: 30rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  width: 80%;
+  min-height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 #serviceItemImg {
-	height: 30rem;
-    width: auto;
+  height: 30rem;
+  width: auto;
 }
 
 .options {
-    height: 30rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    width: 40%;
-    font-size: 1.25rem;
-    font-weight: bold;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 40%;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
-.next-btn:hover{
-	background-color: #ff914f;
+.next-btn:hover {
+  background-color: #ff914f;
 }
 select#wasteType {
-    border: none;
-    border-bottom: 4px solid #808080ad;
-    width: 100%;
-    height: 2rem;
-    background-color: #dae9da91;
-    font-size: 1.25rem;
-}
-
-.nav-link {
-	font-size: 1rem; /* Larger font size */
-	transition: all 0.3s ease;
-	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
+  border: none;
+  border-bottom: 4px solid #808080ad;
+  width: 100%;
+  height: 2rem;
+  background-color: #dae9da91;
+  font-size: 1.25rem;
 }
 
 /* media queries to make the page responsive */
 @media only screen and (max-width: 299px) {
-   
 }
 @media only screen and (min-width: 299px) and (max-width: 600px) {
-    
 }
 @media only screen and (min-width: 601px) and (max-width: 991px) {
-   
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    
 }
 @media only screen and (min-width: 1200px) and (max-width: 1868px) {
-   
 }
