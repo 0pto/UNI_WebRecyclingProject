@@ -7,12 +7,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userId = userSessionObj.userId;
   const isAdmin = userSessionObj.type;
 
-  // Helper function to format dates for datetime-local input
-  function formatDateForInput(date) {
-    if (!date || date === "undefined") return ""; // Return empty string if undefined
-    const parsedDate = new Date(date);
-    if (isNaN(parsedDate)) return ""; // Return empty string if invalid date
-    return parsedDate.toISOString().slice(0, 16); // Format as yyyy-MM-ddThh:mm
+  // Helper function to convert YYYY-MM-DD to DD/MM/YYYY for display
+  function formatDateForDisplay(date) {
+    if (!date || date === "undefined") return "";
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  }
+
+  // Helper function to check if a date is in the past (for filtering)
+  function isDateInPast(date) {
+    if (!date) return false;
+    const [year, month, day] = date.split("-");
+    const bookingDate = new Date(year, month - 1, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Compare dates only, ignoring time
+    return bookingDate < today;
   }
 
   // Fetch and display multi-bookings
@@ -36,132 +45,133 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       const table = document.createElement("table");
       table.innerHTML = `
-          <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Collection Day</th>
-            <th>Address</th>
-            <th>Item Type</th>
-            <th>Bin Size</th>
-            <th>Price</th>
-            <th>Actions</th>
-          </tr>
-        `;
+        <tr>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Collection Day</th>
+          <th>Address</th>
+          <th>Item Type</th>
+          <th>Bin Size</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      `;
       multiBookings.forEach((booking) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${booking.startdate}</td>
-            <td>${booking.enddate || "Indefinite"}</td>
-            <td>${booking.collectday}</td>
-            <td>${booking.address}</td>
-            <td>${booking.itemtype}</td>
-            <td>${booking.binsize}</td>
-            <td>$${booking.price.toFixed(2)}</td>
-            <td>
-              <button class="edit-btn" data-id="${
-                booking.multiBookingsid
-              }">Edit</button>
-              <button class="delete-btn" data-id="${
-                booking.multiBookingsid
-              }">Delete</button>
-            </td>
-          `;
+          <td>${booking.startdate}</td>
+          <td>${booking.enddate || "Indefinite"}</td>
+          <td>${booking.collectday}</td>
+          <td>${booking.address}</td>
+          <td>${booking.itemtype}</td>
+          <td>${booking.binsize}</td>
+          <td>$${booking.price.toFixed(2)}</td>
+          <td>
+            <button class="edit-btn" data-id="${
+              booking.multiBookingsid
+            }">Edit</button>
+            <button class="delete-btn" data-id="${
+              booking.multiBookingsid
+            }">Delete</button>
+          </td>
+        `;
         table.appendChild(row);
 
+        // Add edit form below the row (hidden by default)
         const editRow = document.createElement("tr");
         editRow.classList.add("edit-form");
         editRow.style.display = "none";
         editRow.innerHTML = `
-            <td colspan="8">
-              <form class="edit-multi-booking-form" data-id="${
-                booking.multiBookingsid
-              }">
-                <div class="input-item">
-                  <label>Start Date:</label>
-                  <input type="date" name="startdate" value="${
-                    booking.startdate
-                  }" required />
-                </div>
-                <div class="input-item">
-                  <label>Indefinite:</label>
-                  <input type="checkbox" name="indefinite" ${
-                    !booking.enddate ? "checked" : ""
-                  } />
-                </div>
-                <div class="input-item">
-                  <label>End Date:</label>
-                  <input type="date" name="enddate" value="${
-                    booking.enddate || ""
-                  }" ${!booking.enddate ? "disabled" : ""} />
-                </div>
-                <div class="input-item">
-                  <label>Collection Day:</label>
-                  <select name="collectday" required>
-                    <option value="Monday" ${
-                      booking.collectday === "Monday" ? "selected" : ""
-                    }>Monday</option>
-                    <option value="Tuesday" ${
-                      booking.collectday === "Tuesday" ? "selected" : ""
-                    }>Tuesday</option>
-                    <option value="Wednesday" ${
-                      booking.collectday === "Wednesday" ? "selected" : ""
-                    }>Wednesday</option>
-                    <option value="Thursday" ${
-                      booking.collectday === "Thursday" ? "selected" : ""
-                    }>Thursday</option>
-                    <option value="Friday" ${
-                      booking.collectday === "Friday" ? "selected" : ""
-                    }>Friday</option>
-                    <option value="Saturday" ${
-                      booking.collectday === "Saturday" ? "selected" : ""
-                    }>Saturday</option>
-                    <option value="Sunday" ${
-                      booking.collectday === "Sunday" ? "selected" : ""
-                    }>Sunday</option>
-                  </select>
-                </div>
-                <div class="input-item">
-                  <label>Address:</label>
-                  <input type="text" name="address" value="${
-                    booking.address
-                  }" required />
-                </div>
-                <div class="input-item">
-                  <label>Item Type:</label>
-                  <select name="itemtype" required>
-                    <option value="Paper" ${
-                      booking.itemtype === "Paper" ? "selected" : ""
-                    }>Paper</option>
-                    <option value="Plastic" ${
-                      booking.itemtype === "Plastic" ? "selected" : ""
-                    }>Plastic</option>
-                    <option value="Electronics" ${
-                      booking.itemtype === "Electronics" ? "selected" : ""
-                    }>Electronics</option>
-                    <option value="Glass" ${
-                      booking.itemtype === "Glass" ? "selected" : ""
-                    }>Glass</option>
-                  </select>
-                </div>
-                <div class="input-item">
-                  <label>Bin Size:</label>
-                  <select name="binsize" required>
-                    <option value="Small" ${
-                      booking.binsize === "Small" ? "selected" : ""
-                    }>Small</option>
-                    <option value="Medium" ${
-                      booking.binsize === "Medium" ? "selected" : ""
-                    }>Medium</option>
-                    <option value="Big" ${
-                      booking.binsize === "Big" ? "selected" : ""
-                    }>Big</option>
-                  </select>
-                </div>
-                <button type="submit" class="submit-button">Save</button>
-                <button type="button" class="cancel-btn">Cancel</button>
-              </form>
-            </td>
-          `;
+          <td colspan="8">
+            <form class="edit-multi-booking-form" data-id="${
+              booking.multiBookingsid
+            }">
+              <div class="input-item">
+                <label>Start Date:</label>
+                <input type="date" name="startdate" value="${
+                  booking.startdate
+                }" required />
+              </div>
+              <div class="input-item">
+                <label>Indefinite:</label>
+                <input type="checkbox" name="indefinite" ${
+                  !booking.enddate ? "checked" : ""
+                } />
+              </div>
+              <div class="input-item">
+                <label>End Date:</label>
+                <input type="date" name="enddate" value="${
+                  booking.enddate || ""
+                }" ${!booking.enddate ? "disabled" : ""} />
+              </div>
+              <div class="input-item">
+                <label>Collection Day:</label>
+                <select name="collectday" required>
+                  <option value="Monday" ${
+                    booking.collectday === "Monday" ? "selected" : ""
+                  }>Monday</option>
+                  <option value="Tuesday" ${
+                    booking.collectday === "Tuesday" ? "selected" : ""
+                  }>Tuesday</option>
+                  <option value="Wednesday" ${
+                    booking.collectday === "Wednesday" ? "selected" : ""
+                  }>Wednesday</option>
+                  <option value="Thursday" ${
+                    booking.collectday === "Thursday" ? "selected" : ""
+                  }>Thursday</option>
+                  <option value="Friday" ${
+                    booking.collectday === "Friday" ? "selected" : ""
+                  }>Friday</option>
+                  <option value="Saturday" ${
+                    booking.collectday === "Saturday" ? "selected" : ""
+                  }>Saturday</option>
+                  <option value="Sunday" ${
+                    booking.collectday === "Sunday" ? "selected" : ""
+                  }>Sunday</option>
+                </select>
+              </div>
+              <div class="input-item">
+                <label>Address:</label>
+                <input type="text" name="address" value="${
+                  booking.address
+                }" required />
+              </div>
+              <div class="input-item">
+                <label>Item Type:</label>
+                <select name="itemtype" required>
+                  <option value="Paper" ${
+                    booking.itemtype === "Paper" ? "selected" : ""
+                  }>Paper</option>
+                  <option value="Plastic" ${
+                    booking.itemtype === "Plastic" ? "selected" : ""
+                  }>Plastic</option>
+                  <option value="Electronics" ${
+                    booking.itemtype === "Electronics" ? "selected" : ""
+                  }>Electronics</option>
+                  <option value="Glass" ${
+                    booking.itemtype === "Glass" ? "selected" : ""
+                  }>Glass</option>
+                </select>
+              </div>
+              <div class="input-item">
+                <label>Bin Size:</label>
+                <select name="binsize" required>
+                  <option value="Small" ${
+                    booking.binsize === "Small" ? "selected" : ""
+                  }>Small</option>
+                  <option value="Medium" ${
+                    booking.binsize === "Medium" ? "selected" : ""
+                  }>Medium</option>
+                  <option value="Big" ${
+                    booking.binsize === "Big" ? "selected" : ""
+                  }>Big</option>
+                </select>
+              </div>
+              <button type="submit" class="submit-button">Save</button>
+              <button type="button" class="cancel-btn">Cancel</button>
+            </form>
+          </td>
+        `;
         table.appendChild(editRow);
       });
       multiBookingsContainer.appendChild(table);
@@ -187,68 +197,82 @@ document.addEventListener("DOMContentLoaded", async () => {
     const singleBookings = await response.json();
     console.log("Fetched single-bookings:", singleBookings);
 
-    if (singleBookings.length === 0) {
-      singleBookingsContainer.innerHTML = "<p>No single bookings found.</p>";
+    // Filter out past bookings
+    const currentDateTime = new Date();
+    currentDateTime.setHours(0, 0, 0, 0); // Compare dates only
+    const filteredBookings = singleBookings.filter((booking) => {
+      if (!booking.date) return false;
+      const [year, month, day] = booking.date.split("-");
+      const bookingDate = new Date(year, month - 1, day);
+      return bookingDate >= currentDateTime;
+    });
+
+    if (filteredBookings.length === 0) {
+      singleBookingsContainer.innerHTML =
+        "<p>No upcoming single bookings found.</p>";
     } else {
       const table = document.createElement("table");
       table.innerHTML = `
-          <tr>
-            <th>Date & Time</th>
-            <th>Address</th>
-            <th>Item Type</th>
-            <th>Price</th>
-            <th>Actions</th>
-          </tr>
-        `;
-      singleBookings.forEach((booking) => {
+        <tr>
+          <th>Date</th>
+          <th>Address</th>
+          <th>Item Type</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      `;
+      filteredBookings.forEach((booking) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${booking.datetime}</td>
-            <td>${booking.address}</td>
-            <td>${booking.itemtype}</td>
-            <td>$${booking.price.toFixed(2)}</td>
-            <td>
-              <button class="edit-btn" data-id="${
-                booking.singlebookingid
-              }">Edit</button>
-              <button class="delete-btn" data-id="${
-                booking.singlebookingid
-              }">Delete</button>
-            </td>
-          `;
+          <td>${formatDateForDisplay(booking.date)}</td>
+          <td>${booking.address}</td>
+          <td>${booking.itemtype}</td>
+          <td>$${booking.price.toFixed(2)}</td>
+          <td>
+            <button class="edit-btn" data-id="${
+              booking.singlebookingid
+            }">Edit</button>
+            <button class="delete-btn" data-id="${
+              booking.singlebookingid
+            }">Delete</button>
+          </td>
+        `;
         table.appendChild(row);
 
+        // Add edit form below the row (hidden by default)
         const editRow = document.createElement("tr");
         editRow.classList.add("edit-form");
         editRow.style.display = "none";
         editRow.innerHTML = `
-            <td colspan="5">
-              <form class="edit-single-booking-form" data-id="${
-                booking.singlebookingid
-              }">
-                <div class="input-item">
-                  <label>Date & Time:</label>
-                  <input type="datetime-local" name="datetime" value="${formatDateForInput(
-                    booking.datetime
-                  )}" required />
-                </div>
-                <div class="input-item">
-                  <label>Address:</label>
-                  <input type="text" name="address" value="${
-                    booking.address
-                  }" required />
-                </div>
-                <div class="input-item">
-                  <label>Item Type:</label>
-                  <input type="text" name="itemtype" value="${
-                    booking.itemtype
-                  }" required />
-                </div>
-                <button type="submit" class="submit-button">Save</button>
-                <button type="button" class="cancel-btn">Cancel</button>
-              </form>
-            </td>
-          `;
+          <td colspan="5">
+            <form class="edit-single-booking-form" data-id="${
+              booking.singlebookingid
+            }">
+              <div class="input-item">
+                <label>Date:</label>
+                <input type="date" name="date" value="${
+                  booking.date
+                }" min="${currentDateTime
+          .toISOString()
+          .slice(0, 10)}" required />
+              </div>
+              <div class="input-item">
+                <label>Address:</label>
+                <input type="text" name="address" value="${
+                  booking.address
+                }" required />
+              </div>
+              <div class="input-item">
+                <label>Item Type:</label>
+                <input type="text" name="itemtype" value="${
+                  booking.itemtype
+                }" required />
+              </div>
+              <button type="submit" class="submit-button">Save</button>
+              <button type="button" class="cancel-btn">Cancel</button>
+            </form>
+          </td>
+        `;
         table.appendChild(editRow);
       });
       singleBookingsContainer.appendChild(table);
@@ -284,51 +308,52 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       const table = document.createElement("table");
       table.innerHTML = `
-          <tr>
-            <th>Ticket ID</th>
-            <th>Subject</th>
-            <th>Description</th>
-            <th>Admin Response</th>
-            <th>Date/Time</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        `;
+        <tr>
+          <th>Ticket ID</th>
+          <th>Subject</th>
+          <th>Description</th>
+          <th>Admin Response</th>
+          <th>Date/Time</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      `;
       tickets.forEach((ticket) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${ticket.ticketid}</td>
-            <td>${ticket.subject}</td>
-            <td>${ticket.description}</td>
-            <td>${ticket.adminResponce || "No response yet"}</td>
-            <td>${ticket.datetime}</td>
-            <td>${ticket.status}</td>
-            <td>
-              <button class="edit-btn" data-id="${
-                ticket.ticketid
-              }">Edit Description</button>
-              <button class="delete-btn" data-id="${
-                ticket.ticketid
-              }">Delete</button>
-            </td>
-          `;
+          <td>${ticket.ticketid}</td>
+          <td>${ticket.subject}</td>
+          <td>${ticket.description}</td>
+          <td>${ticket.adminResponce || "No response yet"}</td>
+          <td>${ticket.datetime}</td>
+          <td>${ticket.status}</td>
+          <td>
+            <button class="edit-btn" data-id="${
+              ticket.ticketid
+            }">Edit Description</button>
+            <button class="delete-btn" data-id="${
+              ticket.ticketid
+            }">Delete</button>
+          </td>
+        `;
         table.appendChild(row);
 
+        // Add edit form below the row (hidden by default)
         const editRow = document.createElement("tr");
         editRow.classList.add("edit-form");
         editRow.style.display = "none";
         editRow.innerHTML = `
-            <td colspan="7">
-              <form class="edit-ticket-form" data-id="${ticket.ticketid}">
-                <div class="input-item">
-                  <label>Description:</label>
-                  <textarea name="description" required>${ticket.description}</textarea>
-                </div>
-                <button type="submit" class="submit-button">Save</button>
-                <button type="button" class="cancel-btn">Cancel</button>
-              </form>
-            </td>
-          `;
+          <td colspan="7">
+            <form class="edit-ticket-form" data-id="${ticket.ticketid}">
+              <div class="input-item">
+                <label>Description:</label>
+                <textarea name="description" required>${ticket.description}</textarea>
+              </div>
+              <button type="submit" class="submit-button">Save</button>
+              <button type="button" class="cancel-btn">Cancel</button>
+            </form>
+          </td>
+        `;
         table.appendChild(editRow);
       });
       ticketsContainer.appendChild(table);
@@ -348,6 +373,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       editForm.style.display =
         editForm.style.display === "none" ? "table-row" : "none";
 
+      // Handle indefinite checkbox
       const indefiniteCheckbox = editForm.querySelector(
         'input[name="indefinite"]'
       );
@@ -359,10 +385,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       });
 
+      // Client-side validation for start date
       const startDateInput = editForm.querySelector('input[name="startdate"]');
       const today = new Date().toISOString().split("T")[0];
       startDateInput.setAttribute("min", today);
 
+      // Client-side validation for end date
       startDateInput.addEventListener("change", () => {
         const startDate = new Date(startDateInput.value);
         endDateInput.setAttribute("min", startDate.toISOString().split("T")[0]);
@@ -378,6 +406,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Handle edit form submission for multi-bookings
   multiBookingsContainer.addEventListener("submit", async (e) => {
     if (e.target.classList.contains("edit-multi-booking-form")) {
       e.preventDefault();
@@ -412,15 +441,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
         }
 
-        alert(" Booking updated successfully!");
+        alert("✅ Booking updated successfully!");
         window.location.reload();
       } catch (error) {
         console.error("Error updating booking:", error);
-        alert(" Failed to update booking: " + error.message);
+        alert("❌ Failed to update booking: " + error.message);
       }
     }
   });
 
+  // Handle edit button clicks for single-bookings
   singleBookingsContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("edit-btn")) {
       const bookingId = e.target.dataset.id;
@@ -440,16 +470,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Handle edit form submission for single-bookings
   singleBookingsContainer.addEventListener("submit", async (e) => {
     if (e.target.classList.contains("edit-single-booking-form")) {
       e.preventDefault();
       const bookingId = e.target.dataset.id;
       const formData = new FormData(e.target);
       const updatedBooking = {
-        datetime: formData.get("datetime"),
+        date: formData.get("date"), // Corrected field name to match database
         address: formData.get("address"),
         itemtype: formData.get("itemtype"),
       };
+
+      console.log("Updating single booking with data:", updatedBooking);
 
       try {
         const response = await fetch(
@@ -462,6 +495,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
         const responseBody = await response.json();
+        console.log("Backend response:", responseBody);
+
         if (!response.ok) {
           throw new Error(
             `Failed to update booking: ${
@@ -470,15 +505,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
         }
 
-        alert(" Booking updated successfully!");
+        alert("✅ Booking updated successfully!");
         window.location.reload();
       } catch (error) {
         console.error("Error updating booking:", error);
-        alert(" Failed to update booking: " + error.message);
+        alert("❌ Failed to update booking: " + error.message);
       }
     }
   });
 
+  // Handle edit button clicks for tickets
   ticketsContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("edit-btn")) {
       const ticketId = e.target.dataset.id;
@@ -498,6 +534,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Handle edit form submission for tickets
   ticketsContainer.addEventListener("submit", async (e) => {
     if (e.target.classList.contains("edit-ticket-form")) {
       e.preventDefault();
@@ -510,11 +547,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       try {
         const response = await fetch(`${BACKEND_URL}/api/tickets/${ticketId}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "X-Is-Admin": isAdmin, // Add X-Is-Admin header
+          },
           body: JSON.stringify(updatedTicket),
         });
 
         const responseBody = await response.json();
+        console.log("Backend response for ticket update:", responseBody);
+
         if (!response.ok) {
           throw new Error(
             `Failed to update ticket: ${
@@ -523,15 +565,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
         }
 
-        alert(" Ticket description updated successfully!");
+        alert("✅ Ticket description updated successfully!");
         window.location.reload();
       } catch (error) {
         console.error("Error updating ticket:", error);
-        alert(" Failed to update ticket: " + error.message);
+        alert("❌ Failed to update ticket: " + error.message);
       }
     }
   });
 
+  // Function to delete a multi-booking
   async function deleteMultiBooking(bookingId) {
     if (!confirm("Are you sure you want to delete this booking?")) return;
 
@@ -552,14 +595,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      alert(" Booking deleted successfully!");
+      alert("✅ Booking deleted successfully!");
       window.location.reload();
     } catch (error) {
       console.error("Error deleting booking:", error);
-      alert(" Failed to delete booking: " + error.message);
+      alert("❌ Failed to delete booking: " + error.message);
     }
   }
 
+  // Function to delete a single-booking
   async function deleteSingleBooking(bookingId) {
     if (!confirm("Are you sure you want to delete this booking?")) return;
 
@@ -580,20 +624,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      alert(" Booking deleted successfully!");
+      alert("✅ Booking deleted successfully!");
       window.location.reload();
     } catch (error) {
       console.error("Error deleting booking:", error);
-      alert(" Failed to delete booking: " + error.message);
+      alert("❌ Failed to delete booking: " + error.message);
     }
   }
 
+  // Function to delete a ticket
   async function deleteTicket(ticketId) {
     if (!confirm("Are you sure you want to delete this ticket?")) return;
 
     try {
       const response = await fetch(`${BACKEND_URL}/api/tickets/${ticketId}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Is-Admin": isAdmin, // Add X-Is-Admin header for consistency
+        },
       });
 
       const responseBody = await response.json();
@@ -605,11 +654,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      alert(" Ticket deleted successfully!");
+      alert("✅ Ticket deleted successfully!");
       window.location.reload();
     } catch (error) {
       console.error("Error deleting ticket:", error);
-      alert(" Failed to delete ticket: " + error.message);
+      alert("❌ Failed to delete ticket: " + error.message);
     }
   }
 });

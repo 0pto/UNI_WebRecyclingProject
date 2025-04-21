@@ -8,19 +8,49 @@
   </head>
   <body>
     <nav class="navbar" id="navbar-container"></nav>
+
     <div id="mainContent" class="main-content">
       <h3>Your Basket</h3>
+
       <div class="basket-container">
-        <div id="selection"></div>
-        <div id="price-breakdown"></div>
+        <!-- Basket Items -->
+        <div id="selection">
+          <!-- Sample basket item structure for JS rendering -->
+          <div class="basket-item">
+            <img src="path/to/image.jpg" alt="Product" class="basket-img" />
+            <div class="basket-details">
+              <strong>Product Name</strong>
+              <p>£19.99 x 2</p>
+            </div>
+            <div class="quantity-controls">
+              <button>-</button>
+              <span>2</span>
+              <button>+</button>
+            </div>
+            <button class="remove-button">Remove</button>
+          </div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div id="price-breakdown">
+          <h4>Price Summary</h4>
+          <p>Subtotal: £39.98</p>
+          <p>Shipping: £4.99</p>
+          <hr />
+          <p><strong>Total: £44.97</strong></p>
+        </div>
       </div>
+
+      <!-- Checkout Button -->
       <div class="flex justify-end mt-6">
         <button class="submit-button" onclick="proceedToCheckout()">
           Proceed to Checkout
         </button>
       </div>
     </div>
+
     <footer class="sb_footer section_padding" id="footer-container"></footer>
+
     <script src="../Assets/js/navbar.js" defer></script>
     <script src="./basket.js" defer></script>
     <script src="../Assets/js/footer.js" defer></script>

@@ -1,0 +1,148 @@
+/* Booking page styles */
+body {
+  background-image: url(../Images/b4c27d5c-8d65-4706-937b-2c11cf74b27a.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.main-content {
+  margin: 10rem 0 5rem 0; /* Increased top and bottom spacing */
+  padding: 2rem;
+  width: 95%;
+  max-width: 600px; /* Match form width in screenshot */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: #0c3334;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.booking-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.tab.active {
+  background-color: #8dc63f;
+  color: #fff;
+}
+
+.tab:hover {
+  background-color: #ff914f;
+  color: #fff;
+}
+
+.booking-form {
+  background-color: rgba(
+    210,
+    228,
+    196,
+    0.8
+  ); /* Semi-transparent background like index.html */
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+.booking-form h2 {
+  color: #0c3334;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  color: #3d3636;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: sans-serif, Helvetica Neue;
+}
+
+.form-group input[readonly] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.submit-button {
+  width: 100%;
+  font-size: 1.2rem; /* Match globalStyles.css */
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.error-message:not(:empty) {
+  display: block;
+}
+
+.success-message {
+  color: #008000;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.success-message:not(:empty) {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin: 8rem 0 4rem 0; /* Slightly less spacing on mobile */
+    padding: 1rem;
+  }
+
+  .booking-form {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .booking-form h2 {
+    font-size: 1.2rem;
+  }
+}

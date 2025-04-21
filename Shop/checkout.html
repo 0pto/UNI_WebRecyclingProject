@@ -8,101 +8,61 @@
   </head>
   <body>
     <nav class="navbar" id="navbar-container"></nav>
+
     <div id="mainContent" class="main-content">
       <h3>Checkout</h3>
       <div class="checkout-container">
-        <div id="price-breakdown" class="bg-white p-4 rounded-lg shadow"></div>
+        <!-- Order Summary -->
+        <div id="price-breakdown"></div>
+
+        <!-- Shipping and Bank Details -->
         <div class="shipping-bank-details">
-          <div class="bg-white p-4 rounded-lg shadow mb-4">
-            <h4 class="text-lg font-semibold mb-2">Shipping Information</h4>
-            <div class="space-y-4">
-              <div>
-                <label class="block text-gray-700">First Name</label>
-                <input
-                  type="text"
-                  id="first-name"
-                  class="w-full p-2 border rounded"
-                  disabled
-                />
-              </div>
-              <div>
-                <label class="block text-gray-700">Surname</label>
-                <input
-                  type="text"
-                  id="surname"
-                  class="w-full p-2 border rounded"
-                  disabled
-                />
-              </div>
-              <div>
-                <label class="block text-gray-700">Address</label>
-                <input
-                  type="text"
-                  id="address"
-                  class="w-full p-2 border rounded"
-                  placeholder="123 Main St"
-                />
-              </div>
-              <div>
-                <label class="block text-gray-700">Postcode</label>
-                <input
-                  type="text"
-                  id="postcode"
-                  class="w-full p-2 border rounded"
-                  placeholder="AB12 3CD"
-                />
-              </div>
-              <div>
-                <label class="block text-gray-700">Phone</label>
-                <input
-                  type="text"
-                  id="phone"
-                  class="w-full p-2 border rounded"
-                  placeholder="01234 567890"
-                />
-              </div>
-            </div>
+          <!-- Shipping -->
+          <div class="form-section">
+            <h4>Shipping Information</h4>
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" disabled />
+
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" disabled />
+
+            <label for="address">Address</label>
+            <input type="text" id="address" placeholder="123 Main St" />
+
+            <label for="postcode">Postcode</label>
+            <input type="text" id="postcode" placeholder="AB12 3CD" />
+
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" placeholder="01234 567890" />
           </div>
-          <div class="bg-white p-4 rounded-lg shadow">
-            <h4 class="text-lg font-semibold mb-2">Bank Details</h4>
-            <div class="space-y-4">
-              <div>
-                <label class="block text-gray-700">Card Number</label>
-                <input
-                  type="text"
-                  id="card-number"
-                  class="w-full p-2 border rounded"
-                  placeholder="1234 5678 9012 3456"
-                />
-              </div>
-              <div>
-                <label class="block text-gray-700">Expiry Date</label>
-                <input
-                  type="text"
-                  id="expiry-date"
-                  class="w-full p-2 border rounded"
-                  placeholder="MM/YY"
-                />
-              </div>
-              <div>
-                <label class="block text-gray-700">CVV</label>
-                <input
-                  type="text"
-                  id="cvv"
-                  class="w-full p-2 border rounded"
-                  placeholder="123"
-                />
-              </div>
-            </div>
+
+          <!-- Payment -->
+          <div class="form-section">
+            <h4>Bank Details</h4>
+            <label for="card-number">Card Number</label>
+            <input
+              type="text"
+              id="card-number"
+              placeholder="1234 5678 9012 3456"
+            />
+
+            <label for="expiry-date">Expiry Date</label>
+            <input type="text" id="expiry-date" placeholder="MM/YY" />
+
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="123" />
           </div>
         </div>
       </div>
+
+      <!-- Checkout Button -->
       <div class="flex justify-end mt-6">
         <button class="submit-button" onclick="placeOrder()">
           Place Order
         </button>
       </div>
     </div>
+
     <footer class="sb_footer section_padding" id="footer-container"></footer>
     <script src="../Assets/js/navbar.js" defer></script>
     <script src="./checkout.js" defer></script>

@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make a Ticket - RecycleNow</title>
+    <link rel="stylesheet" href="../../Assets/css/globalStyles.css" />
+    <link rel="stylesheet" href="../Assets/css/index.css" />
+    <link rel="stylesheet" href="../navfoot/navbar.css" />
+    <link rel="stylesheet" href="../navfoot/footer.css" />
+    <link rel="stylesheet" href="./ticketStyles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Make a Ticket - RecycleNow</title>
-  <link rel="stylesheet" href="../../Assets/css/globalStyles.css" />
-  <link rel="stylesheet" href="../navfoot/navbar.css" />
-  <link rel="stylesheet" href="../navfoot/footer.css" />
-  <link rel="stylesheet" href="./ticketStyles.css" />
-</head>
+  <body>
+    <!-- Navbar Container -->
+    <nav class="navbar" id="navbar-container"></nav>
 
-<body>
-  <!-- Navbar Container -->
-  <nav class="navbar" id="navbar-container"></nav>
+    <!-- Main Content -->
+    <main>
+      <h1>Make a Ticket</h1>
+      <div class="ticket-form-container">
+        <form id="ticket-form" action="" method="post">
+          <div class="form-group">
+            <label for="ticket-subject">Subject:</label>
+            <input type="text" id="ticket-subject" name="subject" required />
+          </div>
+          <div class="form-group">
+            <label for="ticket-description">Description:</label>
+            <textarea
+              id="ticket-description"
+              name="description"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-button">Submit Ticket</button>
+        </form>
+        <p id="ticketError" class="error-message"></p>
+        <p id="ticketSuccess" class="success-message"></p>
+      </div>
+    </main>
 
-  <!-- Main Content -->
-  <main>
-    <h1>Make a Ticket</h1>
-    <div class="ticket-form-container">
-      <form id="ticket-form" action="" method="post">
-        <div class="form-group">
-          <label for="ticket-subject">Subject:</label>
-          <input type="text" id="ticket-subject" name="subject" required />
-        </div>
-        <div class="form-group">
-          <label for="ticket-category">Category:</label>
-          <select id="ticket-category" name="category" required>
-            <option value="">Select a category</option>
-            <option value="general">General Inquiry</option>
-            <option value="billing">Billing Issue</option>
-            <option value="service">Service Request</option>
-            <option value="complaint">Complaint</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="ticket-description">Description:</label>
-          <textarea id="ticket-description" name="description" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="submit-button">Submit Ticket</button>
-      </form>
-    </div>
-  </main>
+    <!-- Footer Container -->
+    <footer class="sb_footer section_padding" id="footer-container"></footer>
 
-  <!-- Footer Container -->
-  <footer class="sb_footer section_padding" id="footer-container"></footer>
-
-  <!-- Scripts -->
-  <script src="../Assets/js/navbar.js" defer></script>
-  <script src="../shop/basket.js" defer></script>
-  <script src="../Assets/js/footer.js" defer></script>
-  <script src="./ticketScripts.js" defer></script>
-</body>
-
-
+    <!-- Scripts -->
+    <script src="../Assets/js/navbar.js" defer></script>
+    <script src="../shop/basket.js" defer></script>
+    <script src="../Assets/js/footer.js" defer></script>
+    <script src="./ticketScripts.js" defer></script>
+  </body>
 </html>

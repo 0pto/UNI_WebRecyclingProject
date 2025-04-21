@@ -18,14 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (userSessionObj.RecycleNowJwt && userSessionObj.type === "false") {
     const commonLinks = `
       <li class="nav-item"><a href="${homePath}" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">How to Recycle</a></li>
+      <li class="nav-item"><a href="${root}/bookings/bookings.html" class="nav-link">Bookings</a></li>
+      <li class="nav-item"><a href="${root}/Shop/shop.html" class="nav-link">Shop</a></li>
       <li class="nav-item"><a href="${root}/dashboardUser/userDashboard.html" class="nav-link">My Dashboard</a></li>
       <li class="nav-item"><a href="${root}/IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
       <li class="nav-item"><a href="${root}/Quotes/quote.html" class="nav-link">Get a quote</a></li>
-      <li class="nav-item"><a href="${root}/Shop/shop.html" class="nav-link">Shop</a></li>
-      <li class="nav-item"><a href="${root}/Shop/basket.html" class="nav-link">Basket <span id="basket-count">0</span></a></li>
-      <li class="nav-item"><a href="${root}/Shop/checkout.html" class="nav-link">Checkout</a></li>
       <li class="nav-item"><a href="${root}/Complains/tickets.html" class="nav-link">Complains</a></li>
+       <li class="nav-item"><a href="${root}/Shop/basket.html" class="nav-link">Basket <span id="basket-count">0</span></a></li>
+      
     `;
 
     navbarElement.innerHTML = `
@@ -40,11 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (userSessionObj.RecycleNowJwt && userSessionObj.type === "true") {
     const adminLinks = `
       <li class="nav-item"><a href="${homePath}" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">How to Recycle</a></li>
+      <li class="nav-item"><a href="${root}/bookings/bookings.html" class="nav-link">Bookings</a></li>
       <li class="nav-item"><a href="${root}/dashboardAdmin/adminDashboard.html" class="nav-link">My Dashboard</a></li>
       <li class="nav-item"><a href="${root}/IdeasPosts/IdeasPosts.html" class="nav-link">Ideas & Tips</a></li>
       <li class="nav-item"><a href="${root}/Shop/shop.html" class="nav-link">Shop</a></li>
       <li class="nav-item"><a href="${root}/Shop/basket.html" class="nav-link">Basket <span id="basket-count">0</span></a></li>
+      
     `;
 
     navbarElement.innerHTML = `
