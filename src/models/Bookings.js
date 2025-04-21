@@ -11,7 +11,7 @@ export const SingleBooking = sequelizeConnector.define(
       autoIncrement: true,
     },
     date: {
-      type: DataTypes.STRING(40),
+      type: DataTypes.STRING(20),
       allowNull: true,
     },
     userid: {

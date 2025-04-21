@@ -1,23 +1,29 @@
 import express from "express";
+import {
+  getAllMultiBookings,
+  updateMultiBookings,
+  getAllSingleBookings,
+  updateSingleBooking,
+  deleteSingleBooking,
+  createSingleBooking,
+  createMultiBooking,
+} from "./bookingsControllers.js";
 
-// //import controller and midlewares
-import { getAllMultiBookings, updateMultiBookings, getAllSingleBookings, updateSingleBooking, deleteSingleBooking } from "./bookingsControllers.js";
+const usersBookingsRouter = express.Router();
 
-
-const usersBookingsRouter = express.Router();//set router
-
-//Read booking data
+// Read booking data
 usersBookingsRouter.get("/api/multi-bookings", getAllMultiBookings);
 usersBookingsRouter.get("/api/single-bookings", getAllSingleBookings);
 
-//update booking data
+// Create booking data
+usersBookingsRouter.post("/bookings/single", createSingleBooking); // Removed verifyToken
+usersBookingsRouter.post("/bookings/multi", createMultiBooking); // Removed verifyToken
+
+// Update booking data
 usersBookingsRouter.put("/api/multi-bookings/:id", updateMultiBookings);
 usersBookingsRouter.put("/api/single-bookings/:id", updateSingleBooking);
 
-//delete booking data
+// Delete booking data
 usersBookingsRouter.delete("/api/single-bookings/:id", deleteSingleBooking);
-
-
-// usersBookingsRouter.post("/post", createAPost);
 
 export default usersBookingsRouter;
