@@ -63,6 +63,9 @@ export const loginUser = async (req, res) => {
 			username: req.matchingUser.username,
 			email: req.matchingUser.email,
 			type: req.matchingUser.is_admin,
+			phone: req.matchingUser.phone,
+			address: req.matchingUser.address,
+			postcode: req.matchingUser.postcode,
 			usersToken
 		});
 	} catch (error) {
