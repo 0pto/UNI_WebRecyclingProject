@@ -5,81 +5,177 @@ This improves readability, performance and code maintainance */
 @import "../Assets/css/globalStyles.css";
 
 #mainContent {
-  display: flex;
-  flex-direction: column;
-  min-height: 35rem;
-  padding: 7rem 2rem;
-  align-items: center;
-  width: 95%;
+	display: flex;
+    flex-direction: column;
+    min-height: 35rem;
+    padding: 7rem 2rem;
+    align-items: center;
+    width: 95%;
 }
 
 /* share post styles */
 #makeAPostContainer {
-  display: flex;
-  width: 90%;
-  padding: 1rem 0;
+	display: flex;
+    width: 90%;
+    padding: 1rem 0;
 }
 #makeAPost {
-  height: 2rem;
-  width: 11%;
-  display: flex;
-  align-items: center;
-  background-color: #01e478;
-  color: #ffffff;
-  font-weight: bold;
-  border-radius: 5px;
-  box-shadow: 6px -6px 5px 0px rgb(0 0 0 / 9%);
+	height: 2rem;
+    width: 11%;
+    display: flex;
+    align-items: center;
+    background-color: #01e478;
+    color: #ffffff;
+    font-weight: bold;
+	border-radius: 5px;
+	box-shadow: 6px -6px 5px 0px rgb(0 0 0 / 9%);
 }
 
 #makeAPost:hover {
-  background-color: #ff914f;
+	background-color: #ff914f;
+	
 }
 
 /* all posts section styles */
 .posts {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-  flex-direction: column;
-  align-items: center;
-  width: 95%;
+	display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
 }
 .postItem {
-  min-height: 10rem;
-  width: 90%;
-  border-radius: 2rem;
+    min-height: 10rem;
+    width: 90%;
+    border-radius: 2rem;
 }
 
-.postItem,
-#sharePost {
-  background-color: #f2fefe;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 0 2rem 0;
-  box-shadow: 6px -6px 5px 0px rgb(0 0 0 / 9%);
-  padding: 1rem;
+.postItem, #sharePost {
+    background-color: #f2fefe;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 2rem 0;
+    box-shadow: 6px -6px 5px 0px rgb(0 0 0 / 9%);
+    padding: 1rem;
 }
 
 .post-content {
-  width: 92%;
+    width: 92%;
 }
 
 .profilePicture {
-  height: 5rem;
-  width: 5rem;
+	height:5rem; 
+	width: 5rem;
 }
 
-#sharePost {
-  flex-direction: column;
-  width: 60%;
-  border-radius: 8px;
-  height: 20rem;
-  width: 77%;
+#sharePost{
+	flex-direction: column;
+    width: 60%;
+    border-radius: 8px;
+    height: 20rem;
+	width: 77%;
 }
 #submitPostBtn {
-  width: 13%;
-  border-radius: 8px;
-  background-color: #01e478;
+	width: 13%;
+    border-radius: 8px;
+	background-color: #01e478;
 }
 
+.nav-link {
+	font-size: 1rem; /* Larger font size */
+	transition: all 0.3s ease;
+	padding: 1rem 0.30rem; /* Increased padding for bigger buttons */
+}
 /* media queries to make the page responsive */
+@media only screen and (min-width: 299px) and (max-width: 600px) {
+    #makeAPost{
+        width: 100%;
+    }
+
+    .post-content {
+        width: 85%;
+        margin-left: 5%;
+    }
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media only screen and (min-width: 601px) and (max-width: 991px) {
+     #makeAPost{
+        width: 30%;
+    }
+    
+    .post-content {
+        width: 85%;
+        margin-left: 5%;
+    }
+
+    .nav-link{
+        font-size: 0.7rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .nav-container{
+        justify-content: flex-start;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    #makeAPost{
+        width: 30%;
+    }
+    
+    .post-content {
+        width: 85%;
+        margin-left: 5%;
+    }
+
+    .nav-link{
+        font-size: 1rem;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    .nav-container{
+        justify-content: flex-start;
+    }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1868px) {
+    #makeAPost{
+        width: 30%;
+    }
+    
+    .post-content {
+        width: 85%;
+        margin-left: 5%;
+    }
+
+    .nav-link{
+        font-size: 1rem;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+}
+

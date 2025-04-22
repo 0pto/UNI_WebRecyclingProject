@@ -73,7 +73,7 @@ async function handleRegistration(event) {
     if (employeeNo.trim() === "" && selectedRole === "Yes") {
         displayFeebackMess(
             "You've selected admin option . Please provide your employee number.",
-            "warning",
+            "warning_toast_mess",
             "role-container"
         )
         event.preventDefault();
@@ -81,7 +81,7 @@ async function handleRegistration(event) {
     } else if (employeeNo.trim() !== "" && selectedRole === "No") {
         displayFeebackMess(
             "You've provided your employee number. If you're a staff member, Please select yes for staff option.",
-            "warning",
+            "warning_toast_mess",
             "role-container"
         )
         event.preventDefault();
@@ -99,6 +99,7 @@ async function handleRegistration(event) {
 
     //Send request if admin role are set
     if ("role" in registrationFormData) {
+        event.preventDefault();
         try {
             await fetch("http://localhost:8000/user/register", {
                 method: "POST",
@@ -106,13 +107,13 @@ async function handleRegistration(event) {
                 headers: {
                     "Content-type": "application/json"//Set datatype being sent to JSON
                 }
-            }).then(function (response) {
-                console.log(response.body);
+            }).then((response) => {
+                console.log("response", response);
                 if (response.ok) {
                     // redirect to login page and display successfull feedback
                     formContainer.innerHTML = `<img class="form-img" loading="lazy" src="../Assets/Images/reuse.jpg" alt="recycle quote">
-                <form id="login" style="width: 70%;">
-                    <div class="success">Your account has been created. Enter your username and password here to login</div>
+                <form onsubmit="handleLogin(event)" id="login" style="width: 70%;">
+                    <div class="success_toast_mess">Your account has been created. Enter your username and password here to login</div>
                     <div class="login-details">
                         <div class="input-item">
                             <label for="username">Username:</label>
@@ -124,11 +125,32 @@ async function handleRegistration(event) {
                         </div>
                     </div>
                     <div class="submit-or-register" style="width: 100%; height: 30%;">
-                        <button onclick=handleLogin()  type="button" class="submit-button">Login</button>
+                        <button type="submit" class="submit-button">Login</button>
                         <h5>Don't have an account yet? click the link bellow to register</h5>
-                        <button onclick=showRegistrationForm() class="submit-button" type="submit">Register</button>
+                        <button onclick=showRegistrationForm() class="submit-button" type="button">Register</button>
                     </div>
                 </form>`
+                } else if (response.status === 409) {
+                    displayFeebackMess(
+                        "Looks like either the username or the email already exist.Please chose new dertails and try again",
+                        "warning",
+                        "register"
+                    )
+                    event.preventDefault();
+                    return false;
+                } else if (response.status === 400) {
+                    displayFeebackMess(
+                        `Incorect password format... Pasword must have;
+                        <ul class="feedLst">
+                            <li class="feedLst-item">Min 8 characters</li>
+                            <li class="feedLst-item">Min one uppercase and one lowercase</li>
+                            <li class="feedLst-item">Min one digit and special one character </li>
+                        </ul>`,
+                        "warning",
+                        "register"
+                    )
+                    event.preventDefault();
+                    return false;
                 }
             });
         } catch (error) {
@@ -147,11 +169,11 @@ function generateUserCookie(key, value) {
 }
 
 //Authenticate user and give access to users dashboard
-async function handleLogin() {
+async function handleLogin(event) {
     let userType = false;
     const loginForm = document.getElementById("login");
     const formData = Object.fromEntries(new FormData(loginForm).entries()); //Make key values object from data entered.
-
+    event.preventDefault();
     try {
         await fetch("http://localhost:8000/user/login", {
             method: "POST",
@@ -170,6 +192,9 @@ async function handleLogin() {
                     generateUserCookie("userId", result.userId);
                     generateUserCookie("email", result.email);
                     generateUserCookie("type", userType);
+                    generateUserCookie("phone", result.phone);
+                    generateUserCookie("address", result.address);
+                    generateUserCookie("postcode", result.postcode);
 
                     if (userType) {
                         window.location.href = "../dashboardAdmin/adminDashboard.html";
@@ -177,10 +202,11 @@ async function handleLogin() {
                         window.location.href = "../dashboardUser/userDashboard.html";
                     }
                 } else {
+                    event.preventDefault();
                     console.log("Accout does not exist");
                     formContainer.innerHTML = `<img class="form-img" loading="lazy" src="../Assets/Images/reuse.jpg" alt="recycle quote">
             <form id="login" style="width: 70%;">
-                <div class="failure">Incorect username or password entered...Please try again</div>
+                <div class="warning_toast_mess">Incorect username or password entered...Please try again</div>
                 <div class="login-details">
                     <div class="input-item">
                         <label for="username">Username:</label>
@@ -192,7 +218,7 @@ async function handleLogin() {
                     </div>
                 </div>
                 <div class="submit-or-register" style="width: 100%; height: 30%;">
-                    <button onclick=handleLogin()  type="button" class="submit-button">Login</button>
+                    <button onclick=handleLogin(event)  type="button" class="submit-button">Login</button>
                     <h5>Don't have an account yet? click the link bellow to register</h5>
                     <button onclick=showRegistrationForm() class="submit-button" type="submit">Register</button>
                 </div>

@@ -43,6 +43,12 @@ This improves readability, performance and code maintainance */
   border-radius: 100%;
 }
 
+.update-btn {
+  width: 13%;
+  border-radius: 8px;
+  background-color: #01e478;
+}
+
 /***** Tickets section styles *****/
 .tickets {
   margin-top: 20px;
@@ -170,3 +176,63 @@ canvas#salesPieChart {
 }
 
 /* media queries to make the page responsive */
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+  .bookings table,
+.tickets table {
+  font-size: 0.55rem;
+}
+.bookings .edit-btn,
+.bookings .delete-btn,
+.tickets .edit-btn,
+.tickets .delete-btn  {
+  max-width: 2rem;
+  padding: 0.3rem;
+  font-size: 0.55rem;
+}
+
+.profile{
+  display: block;
+  text-align: center;
+}
+
+.username{
+  width: 100%;
+  text-align: center;
+}
+
+button.signOut, .next-bt,
+.submit-button {
+  display: block;
+  margin: 1rem auto;
+}
+
+#updateDetails label, #updateDetails input {
+  margin: 0.5rem auto;
+}
+}
+@media only screen and (min-width: 601px) and (max-width: 991px) {
+.bookings table,
+.tickets table {
+  font-size: 0.75rem;
+}
+
+.profile{
+  display: block;
+  text-align: center;
+}
+
+.username{
+  width: 100%;
+  text-align: center;
+}
+
+button.signOut, .next-bt,
+.submit-button {
+  display: block;
+  margin: 1rem auto;
+}
+
+#updateDetails label, #updateDetails input {
+  margin: 0.5rem auto;
+}
+}

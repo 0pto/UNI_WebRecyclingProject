@@ -6,7 +6,6 @@ This improves readability, performance and code maintainance */
 
 /* navbar */
 .nav-container {
-  /* max-width: 1300px; */
   margin: 0;
   display: flex;
   justify-content: space-between;
@@ -51,6 +50,12 @@ This improves readability, performance and code maintainance */
 #profilePicture {
   border: 2px solid #0e32337a;
   border-radius: 100%;
+}
+
+.update-btn {
+  width: 13%;
+  border-radius: 8px;
+  background-color: #01e478;
 }
 
 /***** Styles for booking section *****/
@@ -174,7 +179,8 @@ This improves readability, performance and code maintainance */
 
 .tickets .edit-btn,
 .tickets .delete-btn,
-.tickets .cancel-btn {
+.tickets .cancel-btn,
+.edit-btn {
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
@@ -182,9 +188,10 @@ This improves readability, performance and code maintainance */
   margin-right: 5px;
 }
 
-.tickets .edit-btn {
+.edit-btn {
   background-color: #4caf50;
   color: white;
+  font-size: 1rem;
 }
 
 .tickets .delete-btn {
@@ -223,7 +230,7 @@ This improves readability, performance and code maintainance */
   cursor: pointer;
 }
 
-.tickets .edit-form .submit-button:hover {
+.tickets .edit-form .submit-button:hover, .edit-btn:hover {
   background-color: #d69120;
 }
 
@@ -240,3 +247,63 @@ footer {
 }
 
 /* media queries to make the page responsive */
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+  .bookings table,
+.tickets table {
+  font-size: 0.55rem;
+}
+.bookings .edit-btn,
+.bookings .delete-btn,
+.tickets .edit-btn,
+.tickets .delete-btn  {
+  max-width: 2rem;
+  padding: 0.3rem;
+  font-size: 0.55rem;
+}
+
+.profile{
+  display: block;
+  text-align: center;
+}
+
+.username{
+  width: 100%;
+  text-align: center;
+}
+
+button.signOut, .next-bt,
+.submit-button {
+  display: block;
+  margin: 1rem auto;
+}
+
+#updateDetails label, #updateDetails input {
+  margin: 0.5rem auto;
+}
+}
+@media only screen and (min-width: 601px) and (max-width: 991px) {
+.bookings table,
+.tickets table {
+  font-size: 0.75rem;
+}
+
+.profile{
+  display: block;
+  text-align: center;
+}
+
+.username{
+  width: 100%;
+  text-align: center;
+}
+
+button.signOut, .next-bt,
+.submit-button {
+  display: block;
+  margin: 1rem auto;
+}
+
+#updateDetails label, #updateDetails input {
+  margin: 0.5rem auto;
+}
+}

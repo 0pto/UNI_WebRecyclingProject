@@ -16,7 +16,7 @@ function renderContent() {
         <!--Display all posts-->
         <div class="posts"id="posts">
             <div id ="makeAPostContainer">     
-                <a id="makeAPost" href="#submitPost">
+                <a id="makeAPost" href="#sharePost">
                     <img loading="lazy" src="../Assets/Images/share-icon.svg" alt="share" style="width: 2rem; height: 2rem">
                     <span>Share An Idea</span>
                 </a>

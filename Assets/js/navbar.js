@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const navbarElement = document.querySelector("nav");
-  const navbarElementId = navbarElement.id;
 
   const root = "/UNI_WebRecyclingProject";
   const homePath = `${root}/index.html`;

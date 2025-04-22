@@ -1,4 +1,4 @@
-//Keys for the booking barchart
+//Keys and colors lists for booking barchart
 let allBookingCategory = [
 	"Single: House Furnitures",
 	"Reoccuring: House Furnitures",
@@ -36,27 +36,9 @@ let barColors = [
 	"#434f91"
 ];
 
-//Keys for the refuse amount recycled pie chart
-let salesData = [
-	"House Furnitures",
-	"Electricals",
-	"Clothing",
-	"Auto parts",
-	"Building material"
-];
-/* Total sales array in pounds for each category per year 
-( this is just some dummy data; to be replaced by fetched data later)*/
-let salesDataValue = [4678, 106788, 5798, 2778, 40778];
-let sectionsColors = [
-	"#76db18",
-	"#18db55",
-	"#d9b382",
-	"#f4a845",
-	"#68a8b0",
-	"#145d9f",
-	"#b8c288",
-	"#fdf9b4"
-];
+//Keys and colors lists for the refuse amount recycled pie chart
+let salesData = ["Electronics", "Clothing", "Auto Parts", "Building Materials", "House Furniture", "Plastic", "Glass", "Paper"];
+let sectionsColors = ["#76db18", "#18db55", "#d9b382", "#f4a845", "#68a8b0", "#145d9f", "#b8c288", "#fdf9b4"];
 
 
 // Generate pie chart
@@ -111,7 +93,6 @@ async function populateCharts() {
 			method: "GET",
 			headers: {
 				"Content-type": "application/json",//Set datatype being sent to JSON
-				"Authorization": `Bearer ${userSessionObj.RecycleNowJwt}`//send token for authentication
 			}
 		})
 			.then((response) => response.json())

@@ -120,15 +120,15 @@ async function getAQuote() {
                     quoteResultsDiv.innerHTML = `    
                     <table>
                         <tr>
-                            <th>Here is your quote for${service.description} ( ${service.category})</th>
+                            <th>Here is your quote for ${service.description} ( ${service.category})</th>
                         </tr>
                         <tr>
                             <td>One time Service</td>
-                            <td>${service.oneTimePickup}</td>
+                            <td>£${service.oneTimePickup}</td>
                         </tr>
                         <tr>
                             <td>Monthly Subscription Service</td>
-                            <td>${service.monthlyPrice}</td>
+                            <td>£${service.monthlyPrice}</td>
                         </tr>
                     </table>
                     `
@@ -136,11 +136,11 @@ async function getAQuote() {
                     quoteResultsDiv.innerHTML = `
                     <table>
                         <tr>
-                            <th>Here is your quote for${service.description} ( ${service.category})</th>
+                            <th>Here is your quote for ${service.description} ( ${service.category})</th>
                         </tr>
                         <tr>
                             <td>One time Service</td>
-                            <td>${service.oneTimePickup}</td>
+                            <td>£${service.oneTimePickup}</td>
                         </tr>
                         <tr>
                             <td>Monthly Subscription Service</td>
