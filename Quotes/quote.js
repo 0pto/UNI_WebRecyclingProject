@@ -17,7 +17,11 @@ async function submitCategory() {
                     console.log(services);
                     // business waste options
                     selectionContainer.innerHTML = `
-                 <button onclick=goBack() type="button" class="submit-button">Back</button>
+                 <button onclick=goBack() type="button" class="back-btn">
+                    <img loading="lazy" src="../Assets/Images/arrow-left-solid.svg" alt=" go back icon" height="30px"
+                        width="30px">
+                    <span>Back</span>
+                 </button>
                  <img id="serviceItemImg" loading="lazy" src="../Assets/Images/businessWaste.jpg" alt="profile picture"
                  height="150px" width="150px">
                  <div class="choices">
@@ -55,7 +59,11 @@ async function submitCategory() {
                     console.log(services);
                     // Domestic waste options
                     selectionContainer.innerHTML = `
-                    <button onclick=goBack() type="button" class="submit-button">Back</button> 
+                    <button onclick=goBack() type="button" class="back-btn">
+                        <img loading="lazy" src="../Assets/Images/arrow-left-solid.svg" alt=" go back icon" height="30px"
+                        width="30px">
+                        <span>Back</span>
+                    </button> 
                     <img id="serviceItemImg" loading="lazy" src="../Assets/Images/domesticWaste.jpg" alt="profile picture" height="150px" width="150px">
                     <div class="choices">
                         <form id="domesticForm">   

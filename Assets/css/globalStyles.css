@@ -99,7 +99,7 @@ body {
 /* log out button */
 
 button.signOut,
-.next-btn {
+.next-btn, .back-btn {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
