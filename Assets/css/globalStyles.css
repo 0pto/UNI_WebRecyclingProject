@@ -327,44 +327,71 @@ hr {
 }
 
 /****************** Media queries for Responsive Navbar*********************/
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
+@media only screen and (max-width: 299px) {
+	.sb_footer-heading h1 {
+		font-size: 27px;
+		line-height: 38px;
+	}
+}
 
-  .navbar {
-    padding: 1rem; /* Reduced padding on mobile */
-  }
+@media only screen and (min-width: 300px) and (max-width: 768px) {
+	.hamburger {
+		display: block;
+	}
 
-  .logo {
-    font-size: 1.5rem; /* Slightly smaller logo on mobile */
-  }
+	.navbar {
+		padding: 1rem; /* Reduced padding on mobile */
+	}
 
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #0c3334; /* Dark green */
-    flex-direction: column;
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-  }
+	.logo {
+		font-size: 1.5rem; /* Slightly smaller logo on mobile */
+	}
 
-  .nav-menu.active {
-    display: flex;
-  }
+	.nav-menu {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: #0c3334; /* Dark green */
+		flex-direction: column;
+		padding: 1.5rem;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		z-index: 999;
+	}
 
-  .nav-item {
-    margin: 1.5rem 0; /* Increased spacing on mobile */
-    text-align: center;
-  }
+	.nav-menu.active {
+		display: flex;
+	}
 
-  .nav-link {
-    font-size: 1.2rem; /* Slightly smaller font on mobile */
-    display: block;
-    padding: 0.5rem 1rem;
-  }
+	.nav-item {
+		margin: 1.5rem 0; /* Increased spacing on mobile */
+		text-align: center;
+	}
+
+	.nav-link {
+		font-size: 1.2rem; /* Slightly smaller font on mobile */
+		display: block;
+		padding: 0.5rem 1rem;
+	}
+
+	.sb_footer-heading h1 {
+		font-size: 34px;
+		line-height: 42px;
+	}
+	.sb_footer-below {
+		flex-direction: column;
+		justify-content: left;
+	}
+	.sb_footer-below-links p {
+		margin-left: 0rem;
+		margin-top: 1rem;
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 900px) {
+	a.nav-link {
+		padding: 0.1rem;
+		font-size: 1rem;
+	}
 }

@@ -4,6 +4,10 @@ This way, all the styles in the imported file will apply here as well.
 This improves readability, performance and code maintainance */
 @import "../Assets/css/globalStyles.css";
 
+body {
+	width: 98.7%;
+}
+
 #mainContent {
 	display: flex;
     flex-direction: column;
@@ -97,14 +101,6 @@ This improves readability, performance and code maintainance */
         width: 85%;
         margin-left: 5%;
     }
-    .navbar {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-    }
 }
 @media only screen and (min-width: 601px) and (max-width: 991px) {
      #makeAPost{
@@ -116,25 +112,8 @@ This improves readability, performance and code maintainance */
         margin-left: 5%;
     }
 
-    .nav-link{
-        font-size: 0.7rem;
-    }
-
     .logo {
         font-size: 1.25rem;
-    }
-
-    .nav-container{
-        justify-content: flex-start;
-    }
-
-    .navbar {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
     }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -154,10 +133,6 @@ This improves readability, performance and code maintainance */
     .logo {
         font-size: 2rem;
     }
-
-    .nav-container{
-        justify-content: flex-start;
-    }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1868px) {
     #makeAPost{
@@ -176,6 +151,5 @@ This improves readability, performance and code maintainance */
     .logo {
         font-size: 2rem;
     }
-
 }
 
