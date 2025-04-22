@@ -2,15 +2,27 @@ import jwt from "jsonwebtoken";
 import User from "../models/users.js";
 import BookingStats from "../models/bookingStats.js";
 import SalesStats from "../models/salesStats.js";
+import { Op } from "sequelize";
 
+//Handle user registration
 export const registerAUser = async (req, res) => {
 	try {
 		let doesUserExist = await User.findOne({
-			where: { username: req.body.username }
+			where: {
+				[Op.or]: [{
+					username: req.body.username
+				},
+				{
+					email: req.body.email
+				}
+				]
+			}
 		});
+
+		//Send existing data response if user name or email already exist.
 		if (doesUserExist) {
 			res.status(409).json({
-				message: "Username is already in use!"
+				message: "Looks like either the username or the email already exist.Please chose new dertails and try again"
 			});
 		} else {
 			const userObject = {
@@ -38,20 +50,6 @@ export const registerAUser = async (req, res) => {
 	}
 };
 
-//Delete a user
-export const deleteUser = async (req, res) => {
-	try {
-		await User.deleteOne({ username: req.body.username });
-		res.status(202).send({
-			success: true,
-			message: `${req.body.username} has been deleted`
-		});
-	} catch (error) {
-		console.log(error);
-		res.status(500).send({ success: false, error: error.message });
-	}
-};
-
 //Handle user athentication for login
 export const loginUser = async (req, res) => {
 	try {
@@ -73,23 +71,39 @@ export const loginUser = async (req, res) => {
 	}
 };
 
-//Update a user
+//Handle user's details update.
 export const updateUser = async (req, res) => {
 	try {
 		// define the filter
 		const filter = { username: req.body.username };
-		// define the field that is being updated
-		const update = { [req.body.key]: req.body.value };
 
-		let updatedUser = await User.findOneAndUpdate(filter, update, {
-			new: true // returns the updated values
-		});
-		console.log(updatedUser);
-		res.status(200).send({
+		const updateData = {};
+
+		//Populate "updateData" object with client data  
+		for (const [key, value] of Object.entries(req.body)) {
+			if (value.trim() !== "" && key !== "old_password") {
+				updateData[key] = value;
+			}
+		}
+
+		await User.update(
+			{
+				...updateData
+			},
+			{ where: { ...filter } }
+		)
+
+		const newUserData = await User.findOne({ where: { ...filter } });
+
+		res.status(200).json({
 			success: true,
-			message: `the ${req.body.key} has been updated to ${req.body.value}`,
-			key: req.body.key,
-			value: req.body.value
+			userId: newUserData.id,
+			username: newUserData.username,
+			email: newUserData.email,
+			type: newUserData.is_admin,
+			phone: newUserData.phone,
+			address: newUserData.address,
+			postcode: newUserData.postcode
 		});
 	} catch (error) {
 		console.log(error);
@@ -98,7 +112,7 @@ export const updateUser = async (req, res) => {
 	}
 };
 
-//Handle user athentication for login
+//Get all data for bookings statistics and recycled items statistics
 export const getBookingsAndSalesTotals = async (req, res) => {
 	try {
 		//Get totals for bookings
@@ -113,7 +127,7 @@ export const getBookingsAndSalesTotals = async (req, res) => {
 			},
 		});
 
-		//Get sales totals finish this later.
+		//Get recycled quantities totals.
 		const allMonthlyTotalSales = await SalesStats.findAll({
 			attributes: {
 				exclude: [
@@ -125,6 +139,7 @@ export const getBookingsAndSalesTotals = async (req, res) => {
 			},
 		});
 
+		//send response dynamically.
 		if (allMonthlyTotalBookings && allMonthlyTotalSales) {
 			res.status(200).send({
 				success: true,
@@ -150,6 +165,35 @@ export const getBookingsAndSalesTotals = async (req, res) => {
 				message: ["No data yet"]
 			});
 		}
+	} catch (error) {
+		console.log(error);
+		res.status(500).send({ success: false, error: error.message });
+	}
+};
+
+//Get user by id
+export const getUserByid = async (req, res) => {
+	try {
+		const userId = parseInt(req.params.id);
+		const user = await User.findByPk(userId);
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+		res.json(user);
+	} catch (error) {
+		console.error("Error fetching user:", error);
+		res.status(500).json({ error: "Internal server error" });
+	}
+};
+
+/*****may be later if time *****/
+export const deleteUser = async (req, res) => {
+	try {
+		await User.deleteOne({ username: req.body.username });
+		res.status(202).send({
+			success: true,
+			message: `${req.body.username} has been deleted`
+		});
 	} catch (error) {
 		console.log(error);
 		res.status(500).send({ success: false, error: error.message });

@@ -1,24 +1,3 @@
-import User from "../models/users.js";
-
-export const getmatchingEmail = async (req, res, next) => {
-	try {
-		// find the user in the data base
-		const filter = { username: req.body.username };
-		const userObj = await User.findOne(filter);
-
-		if (userObj && req.body.email === userObj.email) {
-			console.log("the email is corect");
-			next();
-		} else {
-			// throw an error if entered email does not match the email in the data base
-			throw Error("incorect username or password");
-		}
-	} catch (error) {
-		console.log(error);
-		res.status(500).send({ success: false, error: error.message });
-	}
-};
-
 //Check if the email format is valid
 export const isEmailValid = async (req, res, next) => {
 	try {
@@ -46,6 +25,18 @@ export const isEmailValid = async (req, res, next) => {
 
 //Check if the password is valid and secure
 export const isPasswordValid = async (req, res, next) => {
+	if (req.method === "POST") {
+		checkPasswordValidity(req, res, next)
+	}
+	else if (req.method === "PUT") {
+		if (req.body.password.trim() !== "" && req.body.username.trim() !== "") {
+			checkPasswordValidity(req, res, next)
+		}
+		next(); //move to next validations if successfull action
+	}
+};
+
+function checkPasswordValidity(req, res, next) {
 	try {
 		const regexForValidPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 		const chosenPassword = req.body.password;
@@ -74,4 +65,4 @@ export const isPasswordValid = async (req, res, next) => {
 		console.log(error);
 		res.status(500).send({ success: false, error: error.message });
 	}
-};
+}

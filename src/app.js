@@ -50,6 +50,7 @@ app.use(
   )
 );
 
+//Set all routes
 app.use("/user", usersRouter);
 app.use("/", usersPostsRouter);
 app.use("/quotes", quoteRouter);
@@ -58,20 +59,27 @@ app.use("/", usersBookingsRouter);
 app.use("/", stockRouter);
 app.use("/", orderRouter);
 
+// Define Relationships between models
 User.hasMany(Post, { foreignKey: "userId", as: "posts" });
 Post.belongsTo(User, { foreignKey: "userId", as: "user" });
+
 User.hasMany(MultiBooking, { foreignKey: "userid" });
 MultiBooking.belongsTo(User, { foreignKey: "userid" });
+
 User.hasMany(SingleBooking, { foreignKey: "userid" });
 SingleBooking.belongsTo(User, { foreignKey: "userid" });
+
 User.hasMany(Ticket, { foreignKey: "account" });
 Ticket.belongsTo(User, { foreignKey: "account" });
+
 User.hasMany(Order, { foreignKey: "userID" });
 Order.belongsTo(User, { foreignKey: "userID" });
+
 Order.hasMany(OrderItem, { foreignKey: "orderID" });
 OrderItem.belongsTo(Order, { foreignKey: "orderID" });
 OrderItem.belongsTo(Stock, { foreignKey: "stockID" });
 
+//Synch Models to database.
 sequelizeConnector
   .sync()
   .then((result) => {
@@ -81,6 +89,7 @@ sequelizeConnector
     console.log(`Error whilst synching models to database: ${err}`);
   });
 
+//Set the port to run the app.
 app.listen(PORT, () => {
   console.log(`App running on port: ${PORT}`);
 });
