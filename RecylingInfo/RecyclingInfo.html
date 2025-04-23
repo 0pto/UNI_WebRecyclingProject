@@ -1,0 +1,45 @@
+<html style="background-color: #cfd3da;">
+
+<head>
+    <link rel="stylesheet" href="RecyclingInfo.css">
+    </link>
+</head>
+
+<body>
+    <!-- navigation bar-->
+    <nav class="navbar" id="navbar-container"></nav>
+
+    <div class="main-content">
+        <form id="recyinfo-form" action="" method="post">
+            <span class="textbox">
+                <h1 style="text-align: center;">Recycling Information</h1>
+                <div style="text-align: center;">
+                    <label for="code">Product Code</label><br>
+                    <input type="text" id="code" style="width: 20%; height: 10%;">
+                </div>
+                <div style="text-align: center;">
+                    <br>
+                    <button type="submit" formmethod="post">Submit</button>
+                </div>
+            </span>
+        </form>
+        <span class="textbox textbox2" style="top: 85%; left: 50%; transform: translate(-50%, -85%)">
+            <h3 style="text-align: center;">Information for Product</h3>
+            <label for="materials">Materials:</label>
+            <textarea id="materials" style="width: 50%; resize: none;"></textarea><br><br>
+            <label for="canRecycle">Can Recycle?</label>
+            <textarea id="canRecycle" style="width: 50%; resize: none;"></textarea>
+        </span>
+    </div>
+
+    <!-- footer -->
+    <footer class="sb_footer section_padding" id="footer-container">
+    </footer>
+
+    <!-- scripts -->
+    <script src="../Assets/js/navbar.js" defer></script>
+    <script src="./infoScripts.js" defer></script>
+    <script src="../Assets/js/footer.js" defer></script>
+</body>
+
+</html>

@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <li class="nav-item"><a href="${root}/Shop/shop.html" class="nav-link">Shop</a></li>
       <li class="nav-item"><a href="${root}/Shop/basket.html" class="nav-link">Basket <span id="basket-count">0</span></a></li>
       <li class="nav-item"><a href="${root}/Quotes/quote.html" class="nav-link">Get a quote</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">How to Recycle</a></li>
+      <li class="nav-item"><a href="${root}/RecylingInfo/RecyclingInfo.html" class="nav-link">How to Recycle</a></li>
       <li class="nav-item"><a href="${root}/Login/login.html" class="nav-link">Login</a></li>
     `;
 

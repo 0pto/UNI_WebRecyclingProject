@@ -32,8 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(
-        `Failed to fetch multi-bookings: ${
-          errorData.error || response.statusText
+        `Failed to fetch multi-bookings: ${errorData.error || response.statusText
         }`
       );
     }
@@ -67,12 +66,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${booking.binsize}</td>
           <td>$${booking.price.toFixed(2)}</td>
           <td>
-            <button class="edit-btn" data-id="${
-              booking.multiBookingsid
-            }">Edit</button>
-            <button class="delete-btn" data-id="${
-              booking.multiBookingsid
-            }">Delete</button>
+            <button class="edit-btn" data-id="${booking.multiBookingsid
+          }">Edit</button>
+            <button class="delete-btn" data-id="${booking.multiBookingsid
+          }">Delete</button>
           </td>
         `;
         table.appendChild(row);
@@ -83,88 +80,69 @@ document.addEventListener("DOMContentLoaded", async () => {
         editRow.style.display = "none";
         editRow.innerHTML = `
           <td colspan="8">
-            <form class="edit-multi-booking-form" data-id="${
-              booking.multiBookingsid
-            }">
+            <form class="edit-multi-booking-form" data-id="${booking.multiBookingsid
+          }">
               <div class="input-item">
                 <label>Start Date:</label>
-                <input type="date" name="startdate" value="${
-                  booking.startdate
-                }" required />
+                <input type="date" name="startdate" value="${booking.startdate
+          }" required />
               </div>
               <div class="input-item">
                 <label>Indefinite:</label>
-                <input type="checkbox" name="indefinite" ${
-                  !booking.enddate ? "checked" : ""
-                } />
+                <input type="checkbox" name="indefinite" ${!booking.enddate ? "checked" : ""
+          } />
               </div>
               <div class="input-item">
                 <label>End Date:</label>
-                <input type="date" name="enddate" value="${
-                  booking.enddate || ""
-                }" ${!booking.enddate ? "disabled" : ""} />
+                <input type="date" name="enddate" value="${booking.enddate || ""
+          }" ${!booking.enddate ? "disabled" : ""} />
               </div>
               <div class="input-item">
                 <label>Collection Day:</label>
                 <select name="collectday" required>
-                  <option value="Monday" ${
-                    booking.collectday === "Monday" ? "selected" : ""
-                  }>Monday</option>
-                  <option value="Tuesday" ${
-                    booking.collectday === "Tuesday" ? "selected" : ""
-                  }>Tuesday</option>
-                  <option value="Wednesday" ${
-                    booking.collectday === "Wednesday" ? "selected" : ""
-                  }>Wednesday</option>
-                  <option value="Thursday" ${
-                    booking.collectday === "Thursday" ? "selected" : ""
-                  }>Thursday</option>
-                  <option value="Friday" ${
-                    booking.collectday === "Friday" ? "selected" : ""
-                  }>Friday</option>
-                  <option value="Saturday" ${
-                    booking.collectday === "Saturday" ? "selected" : ""
-                  }>Saturday</option>
-                  <option value="Sunday" ${
-                    booking.collectday === "Sunday" ? "selected" : ""
-                  }>Sunday</option>
+                  <option value="Monday" ${booking.collectday === "Monday" ? "selected" : ""
+          }>Monday</option>
+                  <option value="Tuesday" ${booking.collectday === "Tuesday" ? "selected" : ""
+          }>Tuesday</option>
+                  <option value="Wednesday" ${booking.collectday === "Wednesday" ? "selected" : ""
+          }>Wednesday</option>
+                  <option value="Thursday" ${booking.collectday === "Thursday" ? "selected" : ""
+          }>Thursday</option>
+                  <option value="Friday" ${booking.collectday === "Friday" ? "selected" : ""
+          }>Friday</option>
+                  <option value="Saturday" ${booking.collectday === "Saturday" ? "selected" : ""
+          }>Saturday</option>
+                  <option value="Sunday" ${booking.collectday === "Sunday" ? "selected" : ""
+          }>Sunday</option>
                 </select>
               </div>
               <div class="input-item">
                 <label>Address:</label>
-                <input type="text" name="address" value="${
-                  booking.address
-                }" required />
+                <input type="text" name="address" value="${booking.address
+          }" required />
               </div>
               <div class="input-item">
                 <label>Item Type:</label>
                 <select name="itemtype" required>
-                  <option value="Paper" ${
-                    booking.itemtype === "Paper" ? "selected" : ""
-                  }>Paper</option>
-                  <option value="Plastic" ${
-                    booking.itemtype === "Plastic" ? "selected" : ""
-                  }>Plastic</option>
-                  <option value="Electronics" ${
-                    booking.itemtype === "Electronics" ? "selected" : ""
-                  }>Electronics</option>
-                  <option value="Glass" ${
-                    booking.itemtype === "Glass" ? "selected" : ""
-                  }>Glass</option>
+                  <option value="Paper" ${booking.itemtype === "Paper" ? "selected" : ""
+          }>Paper</option>
+                  <option value="Plastic" ${booking.itemtype === "Plastic" ? "selected" : ""
+          }>Plastic</option>
+                  <option value="Electronics" ${booking.itemtype === "Electronics" ? "selected" : ""
+          }>Electronics</option>
+                  <option value="Glass" ${booking.itemtype === "Glass" ? "selected" : ""
+          }>Glass</option>
                 </select>
               </div>
               <div class="input-item">
                 <label>Bin Size:</label>
                 <select name="binsize" required>
-                  <option value="Small" ${
-                    booking.binsize === "Small" ? "selected" : ""
-                  }>Small</option>
-                  <option value="Medium" ${
-                    booking.binsize === "Medium" ? "selected" : ""
-                  }>Medium</option>
-                  <option value="Big" ${
-                    booking.binsize === "Big" ? "selected" : ""
-                  }>Big</option>
+                  <option value="Small" ${booking.binsize === "Small" ? "selected" : ""
+          }>Small</option>
+                  <option value="Medium" ${booking.binsize === "Medium" ? "selected" : ""
+          }>Medium</option>
+                  <option value="Big" ${booking.binsize === "Big" ? "selected" : ""
+          }>Big</option>
                 </select>
               </div>
               <button type="submit" class="submit-button">Save</button>
@@ -189,8 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(
-        `Failed to fetch single-bookings: ${
-          errorData.error || response.statusText
+        `Failed to fetch single-bookings: ${errorData.error || response.statusText
         }`
       );
     }
@@ -229,12 +206,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${booking.itemtype}</td>
           <td>$${booking.price.toFixed(2)}</td>
           <td>
-            <button class="edit-btn" data-id="${
-              booking.singlebookingid
-            }">Edit</button>
-            <button class="delete-btn" data-id="${
-              booking.singlebookingid
-            }">Delete</button>
+            <button class="edit-btn" data-id="${booking.singlebookingid
+          }">Edit</button>
+            <button class="delete-btn" data-id="${booking.singlebookingid
+          }">Delete</button>
           </td>
         `;
         table.appendChild(row);
@@ -245,28 +220,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         editRow.style.display = "none";
         editRow.innerHTML = `
           <td colspan="5">
-            <form class="edit-single-booking-form" data-id="${
-              booking.singlebookingid
-            }">
+            <form class="edit-single-booking-form" data-id="${booking.singlebookingid
+          }">
               <div class="input-item">
                 <label>Date:</label>
-                <input type="date" name="date" value="${
-                  booking.date
-                }" min="${currentDateTime
-          .toISOString()
-          .slice(0, 10)}" required />
+                <input type="date" name="date" value="${booking.date
+          }" min="${currentDateTime
+            .toISOString()
+            .slice(0, 10)}" required />
               </div>
               <div class="input-item">
                 <label>Address:</label>
-                <input type="text" name="address" value="${
-                  booking.address
-                }" required />
+                <input type="text" name="address" value="${booking.address
+          }" required />
               </div>
               <div class="input-item">
                 <label>Item Type:</label>
-                <input type="text" name="itemtype" value="${
-                  booking.itemtype
-                }" required />
+                <input type="text" name="itemtype" value="${booking.itemtype
+          }" required />
               </div>
               <button type="submit" class="submit-button">Save</button>
               <button type="button" class="cancel-btn">Cancel</button>
@@ -328,12 +299,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${ticket.datetime}</td>
           <td>${ticket.status}</td>
           <td>
-            <button class="edit-btn" data-id="${
-              ticket.ticketid
-            }">Edit Description</button>
-            <button class="delete-btn" data-id="${
-              ticket.ticketid
-            }">Delete</button>
+            <button class="edit-btn" data-id="${ticket.ticketid
+          }">Edit Description</button>
+            <button class="delete-btn" data-id="${ticket.ticketid
+          }">Delete</button>
           </td>
         `;
         table.appendChild(row);
@@ -435,8 +404,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const responseBody = await response.json();
         if (!response.ok) {
           throw new Error(
-            `Failed to update booking: ${
-              responseBody.error || response.statusText
+            `Failed to update booking: ${responseBody.error || response.statusText
             }`
           );
         }
@@ -499,8 +467,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!response.ok) {
           throw new Error(
-            `Failed to update booking: ${
-              responseBody.error || response.statusText
+            `Failed to update booking: ${responseBody.error || response.statusText
             }`
           );
         }
@@ -559,8 +526,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!response.ok) {
           throw new Error(
-            `Failed to update ticket: ${
-              responseBody.error || response.statusText
+            `Failed to update ticket: ${responseBody.error || response.statusText
             }`
           );
         }
@@ -575,6 +541,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Function to delete a multi-booking
+  // async function deleteMultiBooking(bookingId) {
+  //   if (!confirm("Are you sure you want to delete this booking?")) return;
+
+  //   try {
+  //     const response = await fetch(
+  //       `${BACKEND_URL}/api/multi-bookings/${bookingId}`,
+  //       {
+  //         method: "DELETE",
+  //       }
+  //     );
+
+  //     const responseBody = await response.json();
+  //     if (!response.ok) {
+  //       throw new Error(
+  //         `Failed to delete booking: ${responseBody.error || response.statusText
+  //         }`
+  //       );
+  //     }
+
+  //     alert("✅ Booking deleted successfully!");
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.error("Error deleting booking:", error);
+  //     alert("❌ Failed to delete booking: " + error.message);
+  //   }
+  // }
+
+  // Function to delete a multi-booking
   async function deleteMultiBooking(bookingId) {
     if (!confirm("Are you sure you want to delete this booking?")) return;
 
@@ -583,23 +577,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         `${BACKEND_URL}/api/multi-bookings/${bookingId}`,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userSessionObj.recyclenowjwt}`,
+          },
         }
       );
+
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        throw new Error(`Expected JSON, but received: ${text.slice(0, 100)}...`);
+      }
 
       const responseBody = await response.json();
       if (!response.ok) {
         throw new Error(
-          `Failed to delete booking: ${
-            responseBody.error || response.statusText
+          `Failed to delete booking: ${responseBody.error || response.statusText
           }`
         );
       }
 
-      alert("✅ Booking deleted successfully!");
+      alert("Booking deleted successfully!");
       window.location.reload();
     } catch (error) {
       console.error("Error deleting booking:", error);
-      alert("❌ Failed to delete booking: " + error.message);
+      alert("Failed to delete booking: " + error.message);
     }
   }
 
@@ -618,8 +622,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const responseBody = await response.json();
       if (!response.ok) {
         throw new Error(
-          `Failed to delete booking: ${
-            responseBody.error || response.statusText
+          `Failed to delete booking: ${responseBody.error || response.statusText
           }`
         );
       }
@@ -648,8 +651,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const responseBody = await response.json();
       if (!response.ok) {
         throw new Error(
-          `Failed to delete ticket: ${
-            responseBody.error || response.statusText
+          `Failed to delete ticket: ${responseBody.error || response.statusText
           }`
         );
       }
