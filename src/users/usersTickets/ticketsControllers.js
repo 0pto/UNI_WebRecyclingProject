@@ -33,7 +33,7 @@ export const createTicket = async (req, res) => {
 
 // Get all tickets (secured for admins only)
 export const getAllTickets = async (req, res) => {
-  const isAdmin = req.headers["x-is-admin"] === "true";
+  const isAdmin = req.headers["x-is-admin"];
   const userId = req.query.userId;
 
   try {
@@ -58,7 +58,7 @@ export const getAllTickets = async (req, res) => {
 // Update a ticket (status and adminResponce)
 export const updateATicket = async (req, res) => {
   const ticketId = parseInt(req.params.id);
-  const { status, adminResponce } = req.body;
+  const { status, adminResponce, description } = req.body;
 
   try {
     const ticket = await Ticket.findByPk(ticketId);
@@ -66,7 +66,7 @@ export const updateATicket = async (req, res) => {
       return res.status(404).json({ error: "Ticket not found" });
     }
 
-    await ticket.update({ status, adminResponce });
+    await ticket.update({ status, adminResponce, description });
     res.json({ message: "Ticket updated successfully" });
   } catch (error) {
     console.error("Error updating ticket:", error);

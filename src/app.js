@@ -46,7 +46,7 @@ app.use(express.urlencoded({ limit: 52428800, extended: true }));
 app.use(
   "/images",
   express.static(
-    path.join(__dirname, "../../UNI_WebRecyclingProject/Assets/Images")
+    path.join(__dirname, "../../../UNI_WebRecyclingProject/Assets/Images")
   )
 );
 

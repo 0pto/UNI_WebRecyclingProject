@@ -334,3 +334,20 @@ export const deleteSingleBooking = async (req, res) => {
     res.status(500).json({ error: "Internal server error: " + error.message });
   }
 };
+
+// Delete a multi-booking
+export const deleteMultiBooking = async (req, res) => {
+  const bookingId = parseInt(req.params.id);
+  try {
+    const booking = await MultiBooking.findByPk(bookingId);
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    await booking.destroy();
+    res.json({ message: "Booking deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting multi-booking:", error);
+    res.status(500).json({ error: "Internal server error: " + error.message });
+  }
+}

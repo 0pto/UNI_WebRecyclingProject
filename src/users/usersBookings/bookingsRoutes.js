@@ -5,6 +5,7 @@ import {
   getAllSingleBookings,
   updateSingleBooking,
   deleteSingleBooking,
+  deleteMultiBooking,
   createSingleBooking,
   createMultiBooking,
 } from "./bookingsControllers.js";
@@ -25,5 +26,6 @@ usersBookingsRouter.put("/api/single-bookings/:id", updateSingleBooking);
 
 // Delete booking data
 usersBookingsRouter.delete("/api/single-bookings/:id", deleteSingleBooking);
+usersBookingsRouter.delete("/api/multi-bookings/:id", deleteMultiBooking);
 
 export default usersBookingsRouter;
