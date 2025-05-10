@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get A Quote</title>
+    <link rel="stylesheet" href="./quoteStyles.css">
+</head>
+
+<body>
+    <!-- navigation bar-->
+    <nav class="navbar" id="navbar-container"></nav>
+
+    <!-- Page content -->
+    <div id="mainContent" class="main-content">
+        <h3>What service would you like?:</h3>
+
+        <!--All the services-->
+        <div id="selection">
+            <img id="serviceItemImg" loading="lazy" src="../Assets/Images/businessWaste.jpg" alt="recycle">
+            <div class="options">
+                <label for="busines">Please Choose a Category</label>
+                <select name="wasteType" id="wasteType">
+                    <option value="Business Waste">Business Waste</option>
+                    <option value="Domestic Waste">Domestic Waste</option>
+                </select>
+                <button onclick=submitCategory() type="button" class="next-btn">
+                    <img loading="lazy" src="../Assets/Images/next-icon.svg" alt="logout Icon" height="30px"
+                        width="30px">
+                    <span>Next</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- This section contains a table that will display the quote after subtion -->
+        <div class="displayQuote" id="quoteResults"></div>
+    </div>
+
+    <!-- footer -->
+    <!-- footer -->
+    <footer class="sb_footer section_padding" id="footer-container">
+    </footer>
+</body>
+<!-- include the scripts with a defer attribute so that the scripts load only after all the element have rendered -->
+<script src="../Assets/js/navbar.js" defer></script>
+<script src="./quote.js" defer></script>
+<script src="../Assets/js/footer.js" defer></script>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basket - RecycleNow</title>
+  <link rel="stylesheet" href="../../Assets/css/globalStyles.css" />
+  <link rel="stylesheet" href="../navfoot/navbar.css" />
+  <link rel="stylesheet" href="../navfoot/footer.css" />
+  <link rel="stylesheet" href="../shop/basket.css" />
+</head>
+
+<body>
+  <!-- Navbar Container -->
+  <nav class="navbar" id="shop-navbar-container"></nav>
+
+  <!-- Main Content -->
+  <main>
+    <h1>Your Basket</h1>
+    <div class="basket-container">
+      <div class="basket-items"></div>
+      <div class="basket-summary">
+        <h2>Price Breakdown</h2>
+        <div class="breakdown-items"></div>
+        <p>Subtotal: $<span id="basket-subtotal">0.00</span></p>
+        <p>Shipping: $<span id="basket-shipping">5.00</span></p>
+        <p class="total">Total: $<span id="basket-total">0.00</span></p>
+        <button id="checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Container -->
+  <footer class="sb_footer section_padding" id="footer-container"></footer>
+
+  <script src="../Assets/js/navbar.js" defer></script>
+  <script src="../shop/basket.js"></script>
+  <script src="../Assets/js/footer.js" defer></script>
+</body>
+
+</html>

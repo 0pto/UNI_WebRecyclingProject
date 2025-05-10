@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./loginstyles.css">
+    </link>
+    <title>Login/Register</title>
+</head>
+
+<body>
+    <!-- navigation bar-->
+    <nav class="navbar" id="navbar-container"></nav>
+    <!-- these forms follow the best practice notion prescribe by the mdn web docs. 
+     See more at https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Your_first_form  -->
+
+    <!-- Login from to display if user clicks on the login button -->
+    <div id="main-content">
+        <div id="formContainer" class="login-form-container">
+            <img class="form-img" loading="lazy" src="../Assets/Images/reuse.jpg" alt="recycle quote">
+            <form id="login" style="width: 70%;">
+                <div class="login-details">
+                    <div class="input-item">
+                        <label for="username">Username:</label>
+                        <input required type="text" id="username" name="username" />
+                    </div>
+                    <div class="input-item">
+                        <label for="password">Password:</label>
+                        <input required type="password" id="password" name="password" />
+                    </div>
+                </div>
+                <div class="submit-or-register" style="width: 100%; height: 30%;">
+                    <button type="button" onclick=handleLogin() class="submit-button">Login</button>
+                    <h5>Don't have an account yet? click the link bellow to register</h5>
+                    <button onclick=showRegistrationForm() class="submit-button" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+
+        <!--  -->
+        <!-- <div id="registerContainer" class="register-form-container"
+            style="display: none; border-radius: 10px; padding: 2rem">
+            
+        </div> -->
+    </div>
+    <!-- footer -->
+    <!-- footer -->
+    <footer class="sb_footer section_padding" id="footer-container"></footer>
+    <script src="../Assets/js/navbar.js" defer></script>
+    <script src="./userauths.js" defer></script>
+    <script src="../Assets/js/footer.js" defer></script>
+
+</body>
+
+</html>
